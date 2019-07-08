@@ -8,7 +8,7 @@ import android.util.Log;
 
 // ADAPTED FROM TEXTBOOK CODE: Chapter 9
 
-//TODO: Add randomness to the ball's bounces. Right now the ball bounces in a completely
+// TODO: Add randomness to the ball's bounces. Right now the ball bounces in a completely
 // predictable manner, maybe change its angle of bounce very slightly every time it hits something?
 
 public class BOBall {
@@ -26,7 +26,7 @@ public class BOBall {
     object using a geometric shape (in unity you can have circle colliders too!)
     They are used to interact with the level, you can think of the
     collider as the actual 'body' of our game object. The coordinates
-    (top, left, right, and bottom) represent where our gameobject's 'body'
+    (top, left, right, and bottom) represent where our game object's 'body'
     is locationed in the game space.
      */
 
@@ -41,7 +41,7 @@ public class BOBall {
         // standard constructor that always makes that ball
         // 1% of screen width
         ballWidth = screenX / 100;
-        ballHeight = ballWidth; // it's a perfect sqaure ball
+        ballHeight = ballWidth; // it's a perfect square ball
 
         collider = new RectF();
         paddle = p;
