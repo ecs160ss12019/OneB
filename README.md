@@ -11,8 +11,8 @@ Gabriella Quattrone is a Sacramento Local. Our designated "gamer" of the group, 
 creating delicious smoothies in her free time.
 
 Kira Bender was born and raised in San Diego, California. Previously a pre-med student, Kira is
-trying to make her mark at as "Front-End Kween." When she's not bouldering or hiking, you can find
-her crackin' open a cold one by the pool.
+trying to make her mark as "Front-End Kween." When she's not bouldering or hiking, you can find her
+crackin' open a cold one by the pool.
 
 Michel Eter is a transfer student from Tracy, California seeking to lower his Rice Purity Score by
 the time he graduates. His hobbies include utilizing Spotify and all it has to offer as well as
