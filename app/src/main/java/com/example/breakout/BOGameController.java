@@ -83,7 +83,7 @@ public class BOGameController extends Activity {
     // STATES
     public boolean createState = true;
     public boolean newGameState = true;
-    public volatile boolean gameRunningState = false;
+    public volatile boolean gameRunningState = false; // Volatile implies the variable can be changed in threads
     public boolean pauseState = true;
     public boolean gameOverState = false;
 
@@ -113,7 +113,6 @@ public class BOGameController extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-
         mBOGame.resume();
     }
 

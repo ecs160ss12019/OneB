@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".BOGameController"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:screenOrientation="landscape">>
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
