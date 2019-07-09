@@ -7,8 +7,8 @@ The player can move the paddle to any location to keep the ball from hitting the
 
 Team Members:
 
-Gabriella Quattrone is a Sacramento Local. Our designated "gamer" of the group, Gabby also enjoys
-creating delicious smoothies in her free time.
+Gabriella Quattrone is a Sacramento Local double-majoring in Computer Science and Japanese. Our
+designated "gamer" of the group, Gabby also enjoys creating delicious smoothies in her free time.
 
 Kira Bender was born and raised in San Diego, California. Previously a pre-med student, Kira is
 trying to make her mark as "Front-End Kween." When she's not bouldering or hiking, you can find her
