@@ -8,14 +8,15 @@ import android.util.Log;
 public class BOBlock {
     /*
     This will handle the blocks and the block logic
-    including colisions and deletions
+    including collisions and deletions
      */
 
     private RectF collider;
     private float length;
     private float height;
-    private boolean isDead; // check to see if the block has been destoryed
+    private boolean isDead; // check to see if the block has been destroyed
 
+    private BOGameController gameController;
 
     // we want the positions to be relative to the screen
     private int screenX;
@@ -26,7 +27,7 @@ public class BOBlock {
     private float yPos;
 
 
-    BOBlock(int xScreen, int yScreen, float x, float y) {
+    BOBlock(int xScreen, int yScreen, float x, float y, BOGameController gameController) {
         screenX = xScreen;
         screenY = yScreen;
         length = xScreen / 10;
@@ -34,6 +35,8 @@ public class BOBlock {
 
         xPos = x;
         yPos = y;
+
+        this.gameController = gameController;
 
         collider = new RectF(xPos, yPos, xPos + length, yPos + height);
         isDead = false;
@@ -48,9 +51,11 @@ public class BOBlock {
         if(collided(ball))
         {
             // We're going to lazy delete this block. Since this app isn't super memory
-            // intensive if a block is 'hit' it'll just change it's collider elements to negative numbers
+            // intensive if a block is 'hit' it'll just change its collider elements to negative numbers
             // effectively removing it from the screen
             collider = new RectF(-1,-1,-1,-1);
+            gameController.score++;
+
         }
     }
 

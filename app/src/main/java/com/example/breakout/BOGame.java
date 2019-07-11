@@ -204,7 +204,7 @@ public class BOGame extends SurfaceView implements Runnable {
                               // its low-key dumb and repetition of code, but hey we do what we gotta do.
 
             while (canAddMore) {
-                BOBlock temp = new BOBlock(mScreenX, mScreenY, curX + xMargin, curY + yMargin);
+                BOBlock temp = new BOBlock(mScreenX, mScreenY, curX + xMargin, curY + yMargin, gameController);
                 blocks.add(temp);
                 height = temp.getHeight();
                 curX += (temp.getLength() + xMargin);
@@ -225,6 +225,7 @@ public class BOGame extends SurfaceView implements Runnable {
         // Reset our game objects
 
         //Reset the score
+        gameController.score = 0;
 
         // Set the state to gameRunning
         blocks.clear();
@@ -311,6 +312,8 @@ public class BOGame extends SurfaceView implements Runnable {
                 }
             }
 
+            mCanvas.drawText("Score: " + gameController.score,mScreenX / 3,mScreenY / 2, mPaint);
+
             if(DEBUGGING) {
                 printDebuggingText();
             }
@@ -385,7 +388,7 @@ public class BOGame extends SurfaceView implements Runnable {
         paddle.update(FPS);
         for(int i = 0; i < blocks.size(); i++)
         {
-            blocks.get(i).update(ball);
+            blocks.get(i).update(ball); // if collided with ball
         }
 
     }
