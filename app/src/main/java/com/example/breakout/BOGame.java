@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.media.MediaPlayer;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -71,11 +73,17 @@ public class BOGame extends SurfaceView implements Runnable {
     public BOGame(BOGameController controller, Context context, int x, int y) {
         /*
             Standard constructor that takes a context (read GameController),
-            and x (int) and y (int) cooridinate. It will then proceed to
+            and x (int) and y (int) coordinate. It will then proceed to
             use those coordinates to draw our game space using the
-            canvas and paint tools avaliable to use.
+            canvas and paint tools available to use.
          */
         super(context);
+
+        // Starts playing the music over the gameplay and loops it
+        // We should consider only putting music on menu screen
+        MediaPlayer media = MediaPlayer.create(context, R.raw.game_soundtrack);
+        media.start();
+        media.setLooping(true);
 
         gameController = controller;
 
@@ -96,7 +104,7 @@ public class BOGame extends SurfaceView implements Runnable {
         holder = getHolder();
         mPaint = new Paint();
 
-        // Initialzie our game objects
+        // Initialize our game objects
         paddle = new BOPaddle(mScreenX, mScreenY);
         ball = new BOBall(mScreenX, paddle);
         blocks = new ArrayList<>();
@@ -171,11 +179,11 @@ public class BOGame extends SurfaceView implements Runnable {
         It will return nothing and take nothing as a parameter, but it modifies the blocks member.
          */
 
-        //TODO: -> |PRIORITY| Right now the blocks can possible be unsymmertric depending on screen resolution
+        //TODO: -> |PRIORITY| Right now the blocks can possible be asymmertric depending on screen resolution
         // It will also just generate a bunch of blocks until it cannot go through the screen anymore
         // This means depending on the resolution we can have a different number of blocks
         // What we want is a fixed amount of blocks AND to have those blocks be a fixed distance away from
-        // one another. Therefore we need a mathamatical function to help us
+        // one another. Therefore we need a mathematical function to help us
         // Step 1: Determine how much 'padding' we want on the screen edges (meaning how much distance do we want from the left most of the screen to the first block
         // and how much distance we want from the right most of the screen to the last block. This value should be the same)
         // Step 2: within the space between the two paddings, what should the size of the blocks be in order to fit "x" blocks within our space. We must change the BOBlock constructor to
