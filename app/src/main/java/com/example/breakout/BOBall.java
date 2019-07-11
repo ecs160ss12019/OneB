@@ -5,6 +5,8 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
 
+import java.util.Random;
+
 
 // ADAPTED FROM TEXTBOOK CODE: Chapter 9
 
@@ -35,7 +37,7 @@ public class BOBall {
     private float ballWidth;
     private float ballHeight;
 
-    private BOPaddle paddle; // pass a reference to the paddle so we can reset the ball to it's position
+    private BOPaddle paddle; // pass a reference to the paddle so we can reset the ball to its position
 
     BOBall(int screenX, BOPaddle p) {
         // standard constructor that always makes that ball
@@ -45,6 +47,7 @@ public class BOBall {
 
         collider = new RectF();
         paddle = p;
+
 
     }
 
@@ -139,7 +142,9 @@ public class BOBall {
         // You could even increase it as the game progresses
         // to make it harder
         yVelocity = -(y / 3);
-        xVelocity = (y / 3);
+        //xVelocity = (y / 3);
+        Random initialV = new Random();
+        xVelocity = (float) (initialV.nextInt(2000) - 1000);
     }
 
     // Getters and Setters
