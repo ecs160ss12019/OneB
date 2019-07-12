@@ -61,6 +61,9 @@ public class BOGame extends SurfaceView implements Runnable {
     private BOBall ball;
     private ArrayList<BOBlock> blocks;
 
+    // For the music
+    private MediaPlayer media;
+
     // Thread and Thread Handling
     private Thread gameThread = null;
 
@@ -81,9 +84,7 @@ public class BOGame extends SurfaceView implements Runnable {
 
         // Starts playing the music over the gameplay and loops it
         // We should consider only putting music on menu screen
-        MediaPlayer media = MediaPlayer.create(context, R.raw.game_soundtrack);
-        media.start();
-        media.setLooping(true);
+        media = MediaPlayer.create(context, R.raw.game_soundtrack);
 
         gameController = controller;
 
@@ -125,6 +126,8 @@ public class BOGame extends SurfaceView implements Runnable {
             // call the update method
             if(!gameController.pauseState){
                 update();
+                media.start();
+                media.setLooping(true);
                 // Now the bat and ball are in
                 // their new positions
                 // we can see if there have
@@ -312,10 +315,12 @@ public class BOGame extends SurfaceView implements Runnable {
                 if (won) {
                     mCanvas.drawText("You won!!!",
                             mScreenX / 3, mScreenY / 2, mPaint);
+                    Log.v("tag", "won");
                     startNewGame();
                 } else {
                     mCanvas.drawText("Tap To Resume!",
                             mScreenX / 3, mScreenY / 2, mPaint);
+                    Log.v("tag", "resume");
 
                 }
             }

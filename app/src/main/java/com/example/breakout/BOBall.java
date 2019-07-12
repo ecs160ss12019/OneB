@@ -33,6 +33,7 @@ public class BOBall {
      */
 
     private float xVelocity;
+    private float speed;
     private float yVelocity;
     private float ballWidth;
     private float ballHeight;
@@ -141,10 +142,18 @@ public class BOBall {
         // You could vary this to suit
         // You could even increase it as the game progresses
         // to make it harder
-        yVelocity = -(y / 3);
-        //xVelocity = (y / 3);
-        Random initialV = new Random();
-        xVelocity = (float) (initialV.nextInt(2000) - 1000);
+
+        // Magnitude of the velocity
+        speed = 1000;
+        Random random = new Random();
+        // Choose a random yVelocity component between appropriate bounds
+        yVelocity = (float) -1 * (random.nextInt((int)Math.round(0.7*speed)) + ((float)0.3*speed));
+        // Compute teh xVelocity based on desired magnitude
+        xVelocity = (float) (Math.sqrt(speed*speed - yVelocity*yVelocity));
+        // Randomly make xVelocity negative or positive
+        if (random.nextInt(100) > 50) {
+            xVelocity *= -1;
+        }
     }
 
     // Getters and Setters
