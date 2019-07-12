@@ -235,7 +235,7 @@ public class BOGame extends SurfaceView implements Runnable {
     private void startNewGame() {
         // Reset our game objects
 
-        //Reset the score
+        // Reset the score
         gameController.score = 0;
 
         // Set the state to gameRunning
@@ -324,8 +324,9 @@ public class BOGame extends SurfaceView implements Runnable {
 
                 }
             }
-
-            mCanvas.drawText("Score: " + gameController.score,mScreenX / 3,mScreenY / 2, mPaint);
+            int scoreSize = fontSize / 2;
+            mPaint.setTextSize(scoreSize);
+            mCanvas.drawText("Score: " + gameController.score,mScreenX / 55,mScreenY / 9, mPaint);
 
             if(DEBUGGING) {
                 printDebuggingText();

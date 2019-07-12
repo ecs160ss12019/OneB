@@ -47,6 +47,7 @@ public class BOBlock {
         mCanvas.drawRect(collider, mPaint);
     }
 
+    // This is if it collides with a regular block. In the future, add tougher blocks.
     void update(BOBall ball) {
         if(collided(ball))
         {
@@ -54,7 +55,7 @@ public class BOBlock {
             // intensive if a block is 'hit' it'll just change its collider elements to negative numbers
             // effectively removing it from the screen
             collider = new RectF(-1,-1,-1,-1);
-            gameController.score++;
+            gameController.score += 10;
 
         }
     }
