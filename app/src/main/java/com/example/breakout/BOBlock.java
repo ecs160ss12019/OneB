@@ -14,7 +14,8 @@ public class BOBlock {
     private RectF collider;
     private float length;
     private float height;
-    private boolean isDead; // check to see if the block has been destroyed
+    public boolean isDead; // check to see if the block has been destroyed
+    //TODO: change me back to private later
 
     private BOGameController gameController;
 
@@ -82,8 +83,8 @@ public class BOBlock {
         return height;
     }
 
-    RectF getCollider() {
-        return collider;
+    void setCollider(RectF r ) { // mainly a debugging tool
+        collider = r;
     }
 
     boolean getDeadStatus() {

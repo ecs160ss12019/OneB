@@ -39,6 +39,8 @@ public class BOGame extends SurfaceView implements Runnable {
                                              // declaring something 'final
                                              // means it can be read, but not modified
 
+    private final boolean fuckThisShit = false; // If this is true, a touch will just delete blocks one by one :^). Useful when u dont want to actually play the gam
+
     public BOGameController gameController; // stores a reference to our gameController
                                             // it's important this is accessible
                                             // by every class!!
@@ -73,9 +75,7 @@ public class BOGame extends SurfaceView implements Runnable {
     private Thread gameThread = null;
 
 
-    // TODO: -> |PRIORITY| Someone get the sound effects engine working. I AM TOO LAZYYY!!!
     // TODO: ALLOW USER TO PAUSE THE GAME. Maybe though a swipe?
-    // TODO: -> |PRIORITY !!!| Sometimes collisions don't work? I'm not sure why this happens.
     // TODO: Remove all of my Logs lol.
     // TODO: -> |PRIORITY| You can't actually lose the game yet lol.
     public BOGame(BOGameController controller, Context context, int x, int y) {
@@ -168,6 +168,11 @@ public class BOGame extends SurfaceView implements Runnable {
 
             case MotionEvent.ACTION_DOWN: //placed finger on screen
 
+                if(gameController.gameWonState) {
+                    gameController.gameWonState = false;
+                    startNewGame();
+                }
+
                 // unpause the game
                 gameController.pauseState = false;
 
@@ -175,6 +180,11 @@ public class BOGame extends SurfaceView implements Runnable {
                                                   // we have a new movement
                                                   // command
                 paddle.touched = motionEvent.getX();
+                if(fuckThisShit) {
+                    blocks.get(blocks.size() - 1).isDead = true;
+                    blocks.get(blocks.size() - 1).setCollider(new RectF(-1,-1,-1,-1));
+                    blocks.remove(blocks.size()-1);
+                }
                 break;
 
         }
@@ -313,16 +323,15 @@ public class BOGame extends SurfaceView implements Runnable {
             // Check to see if the player won
             boolean won = wonGame();
             if(won) {
+                gameController.gameWonState = true;
                 gameController.pauseState = true;
             }
 
-            // TODO: This doesn't work lol.
             if(gameController.pauseState) {
                 if (won) {
                     mCanvas.drawText("You won!!!",
                             mScreenX / 3, mScreenY / 2, mPaint);
                     Log.v("tag", "won");
-                    startNewGame();
                 } else {
                     mCanvas.drawText("Tap To Resume!",
                             mScreenX / 3, mScreenY / 2, mPaint);
@@ -447,8 +456,8 @@ public class BOGame extends SurfaceView implements Runnable {
         }
 
         // Right wall
-        if(ball.getCollider().right > mScreenX) {
-            ball.getCollider().right = mScreenX;
+        if(ball.getCollider().right > mScreenX - 1) {
+            ball.getCollider().right = mScreenX - 1;
             ball.reverseXVelocity();
         }
     }

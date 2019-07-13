@@ -86,6 +86,7 @@ public class BOGameController extends Activity {
     public volatile boolean gameRunningState = false; // Volatile implies the variable can be changed in threads
     public boolean pauseState = true;
     public boolean gameOverState = false;
+    public boolean gameWonState = false;
     public int score = 0;
 
 
