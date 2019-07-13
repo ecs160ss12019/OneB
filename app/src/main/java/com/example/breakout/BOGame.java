@@ -413,10 +413,13 @@ public class BOGame extends SurfaceView implements Runnable {
 
     }
 
+
+    //TODO: Add a side hitbox to the paddle.
     private void detectCollisions() {
         // Has our ball hit the paddle?
         if(RectF.intersects(paddle.getCollider(), ball.getCollider())) {
             // realistic bounce
+            ball.getCollider().bottom = paddle.getCollider().top + (float).01; // shhhhh. We're making it so the ball isn't constantly colliding
             ball.bounce(paddle.getCollider());
         }
 
@@ -433,26 +436,19 @@ public class BOGame extends SurfaceView implements Runnable {
 
         // Top wall
         if(ball.getCollider().top < 0) {
-            float diff = 0 - ball.getCollider().top ;
             ball.getCollider().top = 0;
-            ball.getCollider().bottom += diff;
             ball.reverseYVelocity();
         }
 
         // Left Wall
         if(ball.getCollider().left < 0) {
-
-            float diff = 0 - ball.getCollider().left;
             ball.getCollider().left = 0;
-            ball.getCollider().right += diff;
             ball.reverseXVelocity();
         }
 
         // Right wall
         if(ball.getCollider().right > mScreenX) {
-            float diff = mScreenX - ball.getCollider().right;
             ball.getCollider().right = mScreenX;
-            ball.getCollider().left -= diff;
             ball.reverseXVelocity();
         }
     }

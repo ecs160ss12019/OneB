@@ -81,10 +81,6 @@ public class BOBall {
 
     // handling the bounce logic
     void bounce(RectF paddleCollider) {
-        float paddleCenter = paddleCollider.left + (paddleCollider.width() / 2);
-        float ballCenter = collider.left + (ballWidth / 2);
-
-//        float relativeIntersect = (paddleCenter - ballCenter); // where did the ball hit on the paddle?
 
          // go back up the screen
         reverseYVelocity();
