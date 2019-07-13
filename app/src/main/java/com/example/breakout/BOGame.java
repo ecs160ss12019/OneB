@@ -1,9 +1,14 @@
 package com.example.breakout;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.media.MediaPlayer;
 import android.provider.MediaStore;
@@ -107,6 +112,7 @@ public class BOGame extends SurfaceView implements Runnable {
 
         // Initialize our game objects
         paddle = new BOPaddle(mScreenX, mScreenY);
+        paddle.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.pic); // initalize the sprite
         ball = new BOBall(mScreenX, paddle);
         blocks = new ArrayList<>();
 
@@ -360,7 +366,7 @@ public class BOGame extends SurfaceView implements Runnable {
         // and attempt to stop the thread
 
         // Make sure the game is running before pausing. Maybe
-        // it doesn't make sense to pause during a gameOver screen?
+        // it doesn't make sense to pause during a game_over screen?
         if(gameController.gameRunningState) {
 
             gameController.gameRunningState = false; // leave the running state
@@ -427,16 +433,26 @@ public class BOGame extends SurfaceView implements Runnable {
 
         // Top wall
         if(ball.getCollider().top < 0) {
+            float diff = 0 - ball.getCollider().top ;
+            ball.getCollider().top = 0;
+            ball.getCollider().bottom += diff;
             ball.reverseYVelocity();
         }
 
         // Left Wall
-        if(ball.getCollider().left <= 0) {
+        if(ball.getCollider().left < 0) {
+
+            float diff = 0 - ball.getCollider().left;
+            ball.getCollider().left = 0;
+            ball.getCollider().right += diff;
             ball.reverseXVelocity();
         }
 
         // Right wall
-        if(ball.getCollider().right >= mScreenX) {
+        if(ball.getCollider().right > mScreenX) {
+            float diff = mScreenX - ball.getCollider().right;
+            ball.getCollider().right = mScreenX;
+            ball.getCollider().left -= diff;
             ball.reverseXVelocity();
         }
     }

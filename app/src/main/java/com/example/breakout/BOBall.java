@@ -144,7 +144,7 @@ public class BOBall {
         // to make it harder
 
         // Magnitude of the velocity
-        speed = 320; // if you put this at 310 or lower the ball can get stuck at the top
+        speed = 500; // if you put this at 310 or lower the ball can get stuck at the top
         Random random = new Random();
         // Choose a random yVelocity component between appropriate bounds
         yVelocity = (float) -1 * (random.nextInt((int)Math.round(0.7*speed)) + ((float)0.3*speed));

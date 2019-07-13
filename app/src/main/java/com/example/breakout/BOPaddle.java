@@ -1,5 +1,7 @@
 package com.example.breakout;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -24,6 +26,8 @@ public class BOPaddle {
     public float touched; // public because BOGame needs to access it
                         // to set and im too lazy for a setter
 
+    public Bitmap sprite = null;
+
 
 
 
@@ -47,8 +51,10 @@ public class BOPaddle {
         float yPos = y - height;
 
         //initialize our collider to the middle of the screen
-        collider = new RectF(xPos, yPos, xPos + length, yPos + height);
+        collider = new RectF(xPos, yPos - 30, xPos + length, yPos + height - 10); // TODO: fixme. magic numbers here
         speed = screenX;
+
+
 
 
     }
@@ -84,7 +90,8 @@ public class BOPaddle {
 
 
     void draw(Canvas mCanvas, Paint mPaint) {
-        mCanvas.drawRect(collider, mPaint);
+        //mCanvas.drawRect(collider, mPaint);
+        mCanvas.drawBitmap(sprite, null, collider, null);
     }
 
     // getters and setters
@@ -97,5 +104,6 @@ public class BOPaddle {
     }
 
     float getHeight(){ return height; }
+
 
 }
