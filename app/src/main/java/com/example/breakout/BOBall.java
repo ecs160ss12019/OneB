@@ -149,6 +149,7 @@ public class BOBall {
         return collider;
     }
 
+    // Function to set the speed of the ball. Normally used once per game, at the beginning
     void setSpeed(float s) {
         this.speed = s;
 
@@ -156,22 +157,28 @@ public class BOBall {
         Random random = new Random();
         // Choose a random yVelocity component between appropriate bounds
         yVelocity = (float) -1 * (random.nextInt((int) Math.round(0.7 * speed)) + ((float) 0.3 * speed));
-        // Compute teh xVelocity based on desired magnitude
+        // Compute the xVelocity based on desired magnitude
         xVelocity = (float) (Math.sqrt(speed * speed - yVelocity * yVelocity));
         // Randomly make xVelocity negative or positive
         if (random.nextInt(100) > 50) {
             xVelocity *= -1;
         }
+        // Compute the angle between the xComponent and yComponent
         angle = (float)Math.atan(Math.abs(yVelocity)/Math.abs(xVelocity));
 
     }
 
+    // Getter to return current speed
     float getSpeed() {
-        return this.speed;
+        return speed;
     }
 
+    // Function to increment speed but maintain pre-existing direction
     void incrementSpeed(float num) {
+        // Ups the speed by an indicated number
         this.speed += num;
+
+        // Properly recomputes the components based on the initial angle
         this.yVelocity = -1 * speed * (float)Math.sin(angle);
         if (xVelocity < 0) {
             this.xVelocity = -speed * (float)Math.cos(angle);
