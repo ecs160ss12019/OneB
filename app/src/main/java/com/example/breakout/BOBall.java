@@ -85,13 +85,6 @@ public class BOBall {
 
     }
 
-    // handling the bounce logic
-    void bounce(RectF paddleCollider) {
-
-         // go back up the screen
-        reverseYVelocity();
-    }
-
 
     void blockBounce(RectF blockCollider) {
         /* handles collisions for blocks
@@ -146,17 +139,7 @@ public class BOBall {
         // You could even increase it as the game progresses
         // to make it harder
 
-        // Magnitude of the velocity
-        speed = 310; // if you put this at 310 or lower the ball can get stuck at the top
-        Random random = new Random();
-        // Choose a random yVelocity component between appropriate bounds
-        yVelocity = (float) -1 * (random.nextInt((int)Math.round(0.7*speed)) + ((float)0.3*speed));
-        // Compute teh xVelocity based on desired magnitude
-        xVelocity = (float) (Math.sqrt(speed*speed - yVelocity*yVelocity));
-        // Randomly make xVelocity negative or positive
-        if (random.nextInt(100) > 50) {
-            xVelocity *= -1;
-        }
+        setSpeed(310); // if you put this at 310 or lower the ball can get stuck at the top
     }
 
     // Getters and Setters
@@ -164,5 +147,24 @@ public class BOBall {
         return collider;
     }
 
+    void setSpeed(float s) {
+        speed = s;
+
+        // Magnitude of the velocity
+        Random random = new Random();
+        // Choose a random yVelocity component between appropriate bounds
+        yVelocity = (float) -1 * (random.nextInt((int) Math.round(0.7 * speed)) + ((float) 0.3 * speed));
+        // Compute teh xVelocity based on desired magnitude
+        xVelocity = (float) (Math.sqrt(speed * speed - yVelocity * yVelocity));
+        // Randomly make xVelocity negative or positive
+        if (random.nextInt(100) > 50) {
+            xVelocity *= -1;
+        }
+
+    }
+
+    float getSpeed() {
+        return speed;
+    }
 
 }

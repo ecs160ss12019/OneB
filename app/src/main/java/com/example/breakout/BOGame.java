@@ -397,6 +397,8 @@ public class BOGame extends SurfaceView implements Runnable {
                 14, debugStart + debugSize * 13, mPaint);
       //  mCanvas.drawText("ballPos: " + ball.getCollider().top + " " + ball.getCollider().left + " " + ball.getCollider().bottom + " " + ball.getCollider().right ,
         //        15, debugStart + debugSize * 14, mPaint);
+        mCanvas.drawText("speed: " + ball.getSpeed(),
+                15, debugStart + debugSize * 14, mPaint);
     }
 
     public void pause() {
@@ -458,7 +460,8 @@ public class BOGame extends SurfaceView implements Runnable {
         if(RectF.intersects(paddle.getCollider(), ball.getCollider())) {
             // realistic bounce
             ball.getCollider().bottom = paddle.getCollider().top + (float).01; // shhhhh. We're making it so the ball isn't constantly colliding
-            ball.bounce(paddle.getCollider());
+            ball.blockBounce(paddle.getCollider());
+            ball.setSpeed(ball.getSpeed()+50);
         }
 
         //handle walls
