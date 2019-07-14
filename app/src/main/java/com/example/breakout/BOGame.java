@@ -253,6 +253,9 @@ public class BOGame extends SurfaceView implements Runnable {
         // Reset the score
         gameController.score = 0;
 
+        //reset lives
+        gameController.lives = 3;
+
         // Set the state to gameRunning
         blocks.clear();
         ball.reset(mScreenX, mScreenY);
@@ -333,7 +336,6 @@ public class BOGame extends SurfaceView implements Runnable {
 
             // draw the blocks
             for(int i = 0; i < blocks.size(); i++) {
-                Log.d("IN DRAW: ", ""+ blocks.get(i).sprite);
                 blocks.get(i).draw(mCanvas, mPaint);
 
             }
@@ -467,8 +469,21 @@ public class BOGame extends SurfaceView implements Runnable {
         if(ball.getCollider().bottom >= mScreenY) {
             ball.reset(mScreenX, mScreenY);
 
-            // pause the game so player can get their bearings
-            gameController.pauseState = true;
+            gameController.lives--;
+            Log.d("Lives:", "" + gameController.lives);
+            if( gameController.lives == 0){
+                //gameController.lives--;
+                //out of lives, start the new game
+                startNewGame();
+                gameController.pauseState = true;
+                //TODO: Game over screen needs to be displayed after this commment
+            }
+            else{
+                //user just lost a life and the game isnt over in this part of the statement
+                // pause the game so player can get their bearings
+                gameController.pauseState = true;
+            }
+
 
         }
 
