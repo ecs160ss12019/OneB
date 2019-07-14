@@ -70,7 +70,7 @@ public class BOGame extends SurfaceView implements Runnable {
     private ArrayList<BOBlock> blocks;
 
     // For the music
-    private MediaPlayer media;
+    public MediaPlayer media;
 
     // Thread and Thread Handling
     private Thread gameThread = null;

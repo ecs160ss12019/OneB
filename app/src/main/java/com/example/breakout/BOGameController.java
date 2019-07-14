@@ -125,4 +125,24 @@ public class BOGameController extends Activity {
         Log.d("DEBUG: ", "CREATE");
         mBOGame.pause();
     }
+
+    long userInteractionTime = 0;
+
+    @Override
+    public void onUserInteraction() {
+        userInteractionTime = System.currentTimeMillis();
+        super.onUserInteraction();
+        Log.i("appname","Interaction");
+    }
+
+    @Override
+    public void onUserLeaveHint() {
+//        long uiDelta = (System.currentTimeMillis() - userInteractionTime);
+        super.onUserLeaveHint();
+//        if (uiDelta < 100) {
+//            Log.i("appname", "Home Key Pressed");
+            pauseState = true;
+            mBOGame.media.pause();
+//        }
+    }
 }
