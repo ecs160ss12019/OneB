@@ -88,6 +88,7 @@ public class BOGameController extends Activity {
     public boolean gameOverState = false;
     public boolean gameWonState = false;
     public int score = 0;
+    public int lives = 3;
 
 
 
