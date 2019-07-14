@@ -461,7 +461,7 @@ public class BOGame extends SurfaceView implements Runnable {
             // realistic bounce
             ball.getCollider().bottom = paddle.getCollider().top + (float).01; // shhhhh. We're making it so the ball isn't constantly colliding
             ball.blockBounce(paddle.getCollider());
-            ball.setSpeed(ball.getSpeed()+50);
+            ball.incrementSpeed(50);
         }
 
         //handle walls
@@ -473,11 +473,10 @@ public class BOGame extends SurfaceView implements Runnable {
             gameController.lives--;
             Log.d("Lives:", "" + gameController.lives);
             if( gameController.lives == 0){
-                //gameController.lives--;
                 //out of lives, start the new game
                 startNewGame();
                 gameController.pauseState = true;
-                //TODO: Game over screen needs to be displayed after this commment
+                //TODO: Game over screen needs to be displayed after this comment
             }
             else{
                 //user just lost a life and the game isnt over in this part of the statement

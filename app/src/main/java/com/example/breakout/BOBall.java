@@ -38,6 +38,7 @@ public class BOBall {
     private float yVelocity;
     private float ballWidth;
     private float ballHeight;
+    private float angle;
 
     private BOPaddle paddle; // pass a reference to the paddle so we can reset the ball to its position
     public Bitmap sprite = null;
@@ -148,7 +149,7 @@ public class BOBall {
     }
 
     void setSpeed(float s) {
-        speed = s;
+        this.speed = s;
 
         // Magnitude of the velocity
         Random random = new Random();
@@ -160,11 +161,23 @@ public class BOBall {
         if (random.nextInt(100) > 50) {
             xVelocity *= -1;
         }
+        angle = (float)Math.atan(Math.abs(yVelocity)/Math.abs(xVelocity));
 
     }
 
     float getSpeed() {
-        return speed;
+        return this.speed;
+    }
+
+    void incrementSpeed(float num) {
+        this.speed += num;
+        this.yVelocity = -1 * speed * (float)Math.sin(angle);
+        if (xVelocity < 0) {
+            this.xVelocity = -speed * (float)Math.cos(angle);
+        } else {
+            this.xVelocity = speed * (float)Math.cos(angle);
+        }
+
     }
 
 }
