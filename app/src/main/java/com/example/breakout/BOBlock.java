@@ -63,7 +63,7 @@ public class BOBlock {
 
     public boolean collided(BOBall ball) {
         /*
-        check to see if the ball has colldied with this object
+        check to see if the ball has collided with this object
         */
         if(RectF.intersects(collider, ball.getCollider())){
             // realistic bounce

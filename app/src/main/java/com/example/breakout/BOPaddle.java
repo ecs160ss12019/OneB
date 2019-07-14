@@ -45,7 +45,7 @@ public class BOPaddle {
         // by default we will have a height of 1/40th
         height = y / 40;
 
-        //TODO: check to see if any better configureation?
+        //TODO: check to see if any better configuration?
         xPos = screenX / 2;  // exact middle of our screen
         touched = xPos; //initialize our initial touch to the xpos
         float yPos = y - height;
@@ -53,8 +53,6 @@ public class BOPaddle {
         //initialize our collider to the middle of the screen
         collider = new RectF(xPos, yPos - 30, xPos + length, yPos + height - 10); // TODO: fixme. magic numbers here
         speed = screenX;
-
-
 
 
     }

@@ -173,7 +173,7 @@ public class BOGame extends SurfaceView implements Runnable {
                     startNewGame();
                 }
 
-                // unpause the game
+                // un-pause the game
                 gameController.pauseState = false;
 
                 paddle.setReachedPosition(false); // tell the paddle
@@ -198,7 +198,7 @@ public class BOGame extends SurfaceView implements Runnable {
         It will return nothing and take nothing as a parameter, but it modifies the blocks member.
          */
 
-        //TODO: -> |PRIORITY| Right now the blocks can possible be asymmertric depending on screen resolution
+        //TODO: -> |PRIORITY| Right now the blocks can possible be asymmetric depending on screen resolution
         // It will also just generate a bunch of blocks until it cannot go through the screen anymore
         // This means depending on the resolution we can have a different number of blocks
         // What we want is a fixed amount of blocks AND to have those blocks be a fixed distance away from
@@ -296,7 +296,7 @@ public class BOGame extends SurfaceView implements Runnable {
                 made interaction with other code a bit more difficult! Just a sidebar.
              */
 
-            // fill screen wwith solid color
+            // fill screen with solid color
             mCanvas.drawColor(Color.argb(255,26,128,182));
 
             // Choose a color to paint with
