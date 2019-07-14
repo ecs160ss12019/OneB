@@ -1,5 +1,6 @@
 package com.example.breakout;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -39,11 +40,12 @@ public class BOBall {
     private float ballHeight;
 
     private BOPaddle paddle; // pass a reference to the paddle so we can reset the ball to its position
+    public Bitmap sprite = null;
 
     BOBall(int screenX, BOPaddle p) {
         // standard constructor that always makes that ball
         // 1% of screen width
-        ballWidth = screenX / 100;
+        ballWidth = screenX / 50;
         ballHeight = ballWidth; // it's a perfect square ball
 
         collider = new RectF();
@@ -53,9 +55,13 @@ public class BOBall {
     }
 
 
+//    void draw(Canvas mCanvas, Paint mPaint) {
+//        // Draw the ball
+//        mCanvas.drawRect(collider, mPaint);
+//    }
+
     void draw(Canvas mCanvas, Paint mPaint) {
-        // Draw the ball
-        mCanvas.drawRect(collider, mPaint);
+        mCanvas.drawBitmap(sprite, null, collider, null);
     }
 
 
@@ -129,10 +135,11 @@ public class BOBall {
         // Initialise the four points of
         // the rectangle which defines the ball
         // Initialized so that it will always be ~ the center of our paddle.
+        //TODO: fix the top and bottom numbers so the ball doesnt float above the paddle
         collider.left = paddle.getCollider().left + ( paddle.getCollider().width() / 2);
-        collider.top = paddle.getCollider().top - paddle.getHeight();
+        collider.top = paddle.getCollider().top - paddle.getHeight() -30;
         collider.right = paddle.getCollider().left + ( paddle.getCollider().width() / 2) + ballWidth;
-        collider.bottom = paddle.getCollider().top + ballHeight - paddle.getHeight();
+        collider.bottom = paddle.getCollider().top + ballHeight - paddle.getHeight() -30;
 
         // How fast will the ball travel
         // You could vary this to suit

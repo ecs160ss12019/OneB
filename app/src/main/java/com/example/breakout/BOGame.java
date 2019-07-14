@@ -113,8 +113,9 @@ public class BOGame extends SurfaceView implements Runnable {
 
         // Initialize our game objects
         paddle = new BOPaddle(mScreenX, mScreenY);
-        paddle.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.pic); // initalize the sprite
+        paddle.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.pic); // initalize the sprit
         ball = new BOBall(mScreenX, paddle);
+        ball.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.ball);
         blocks = new ArrayList<>();
 
         // Start the game!
