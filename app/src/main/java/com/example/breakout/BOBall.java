@@ -130,10 +130,11 @@ public class BOBall {
         // the rectangle which defines the ball
         // Initialized so that it will always be ~ the center of our paddle.
         //TODO: fix the top and bottom numbers so the ball doesnt float above the paddle
-        collider.left = paddle.getCollider().left + ( paddle.getCollider().width() / 2);
-        collider.top = paddle.getCollider().top - paddle.getHeight() -30;
-        collider.right = paddle.getCollider().left + ( paddle.getCollider().width() / 2) + ballWidth;
-        collider.bottom = paddle.getCollider().top + ballHeight - paddle.getHeight() -30;
+        //TODO: make this better math
+        collider.left = paddle.getCollider().left + ( paddle.getCollider().width() / 2) - ballWidth/2;
+        collider.top = paddle.getCollider().top - paddle.getHeight() - ballHeight;
+        collider.right = paddle.getCollider().left + ( paddle.getCollider().width() / 2) + ballWidth - ballWidth/2;
+        collider.bottom = paddle.getCollider().top + ballHeight - paddle.getHeight() - ballHeight;
 
         // How fast will the ball travel
         // You could vary this to suit

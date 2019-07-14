@@ -27,6 +27,8 @@ public class BOBlock {
     // positions
     private float xPos;
     private float yPos;
+    private float origXPos;
+    private float origYPos;
 
     public Bitmap sprite;
 
@@ -38,6 +40,8 @@ public class BOBlock {
 
         xPos = x;
         yPos = y;
+        origXPos = x;
+        origYPos = y;
 
         this.gameController = gameController;
 
@@ -47,8 +51,18 @@ public class BOBlock {
 
     }
 
+    void resetBlock(){
+        xPos = origXPos;
+        yPos = origYPos;
+    }
+
     void draw(Canvas mCanvas, Paint mPaint) {
-        mCanvas.drawBitmap(sprite, null, collider, null);
+        if(sprite == null)
+        {
+            Log.e("ERR","Failed to decode resource - Sprite Block " );
+        }else {
+            mCanvas.drawBitmap(sprite, null, collider, null);
+        }
     }
 
     // This is if it collides with a regular block. In the future, add tougher blocks.

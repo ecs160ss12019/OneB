@@ -40,7 +40,7 @@ public class BOGame extends SurfaceView implements Runnable {
                                              // declaring something 'final
                                              // means it can be read, but not modified
 
-    private final boolean fuckThisShit = false; // If this is true, a touch will just delete blocks one by one :^). Useful when u dont want to actually play the gam
+    private final boolean fuckThisShit = true; // If this is true, a touch will just delete blocks one by one :^). Useful when u dont want to actually play the gam
 
     public BOGameController gameController; // stores a reference to our gameController
                                             // it's important this is accessible
@@ -169,6 +169,7 @@ public class BOGame extends SurfaceView implements Runnable {
             case MotionEvent.ACTION_DOWN: //placed finger on screen
 
                 if(gameController.gameWonState) {
+
                     gameController.gameWonState = false;
                     startNewGame();
                 }
@@ -224,11 +225,11 @@ public class BOGame extends SurfaceView implements Runnable {
         int numRows = 4; //controls the number of rows of blocks we want
 
 
-        while(numRows > 0) {
+        while (numRows > 0) {
             boolean canAddMore = true;
             float height = 0; // awkward scoping issue. We want to access the height of the block, but we dont declare a block object until the for loop.
-                              // fortunately the block height is always constant so we can just repeatly update the height value.
-                              // its low-key dumb and repetition of code, but hey we do what we gotta do.
+            // fortunately the block height is always constant so we can just repeatly update the height value.
+            // its low-key dumb and repetition of code, but hey we do what we gotta do.
 
             while (canAddMore) {
                 BOBlock temp = new BOBlock(mScreenX, mScreenY, curX + xMargin, curY + yMargin, gameController);
@@ -242,7 +243,7 @@ public class BOGame extends SurfaceView implements Runnable {
             }
             curY += (height + yMargin);
             curX = padding;
-            numRows --;
+            numRows--;
         }
 
 
@@ -258,7 +259,6 @@ public class BOGame extends SurfaceView implements Runnable {
         gameController.lives = 3;
 
         // Set the state to gameRunning
-        blocks.clear();
         ball.reset(mScreenX, mScreenY);
         gameController.gameRunningState = true;
         initializeBlocks();
