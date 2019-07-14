@@ -88,7 +88,6 @@ public class BOPaddle {
 
 
     void draw(Canvas mCanvas, Paint mPaint) {
-        //mCanvas.drawRect(collider, mPaint);
         mCanvas.drawBitmap(sprite, null, collider, null);
     }
 

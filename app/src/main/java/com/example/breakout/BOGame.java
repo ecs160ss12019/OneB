@@ -18,6 +18,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class BOGame extends SurfaceView implements Runnable {
     /*
@@ -115,8 +116,6 @@ public class BOGame extends SurfaceView implements Runnable {
         paddle.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.pic); // initalize the sprite
         ball = new BOBall(mScreenX, paddle);
         blocks = new ArrayList<>();
-
-
 
         // Start the game!
         startNewGame();
@@ -260,6 +259,31 @@ public class BOGame extends SurfaceView implements Runnable {
         gameController.gameRunningState = true;
         initializeBlocks();
 
+        // Creating RNG for purpose of randomizing block color
+        Random blockGen = new Random();
+
+        // Initializing the sprites of the blocks
+        for(int i = 0; i < blocks.size(); i++) {
+
+            int choice = blockGen.nextInt();
+            choice = Math.abs(choice); // make sure choice is always positive
+
+            int mod = choice % 5;
+
+        /*
+            if (mod == 0) {
+                blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.vanilla_caramel_choco);
+            }else if (mod == 1)
+                blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.strawberry_choco);
+            else if (mod == 2)
+                blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.matcha_choco);
+            else if (mod == 4)
+                blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.choco_brown);
+        */
+            blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.vanilla_caramel_choco);
+
+        }
+
     }
 
     private void draw() {
@@ -309,7 +333,9 @@ public class BOGame extends SurfaceView implements Runnable {
 
             // draw the blocks
             for(int i = 0; i < blocks.size(); i++) {
+                Log.d("IN DRAW: ", ""+ blocks.get(i).sprite);
                 blocks.get(i).draw(mCanvas, mPaint);
+
             }
 
             mPaint.setTextSize(fontSize);

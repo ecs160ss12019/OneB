@@ -1,5 +1,6 @@
 package com.example.breakout;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -27,12 +28,13 @@ public class BOBlock {
     private float xPos;
     private float yPos;
 
+    public Bitmap sprite;
 
     BOBlock(int xScreen, int yScreen, float x, float y, BOGameController gameController) {
         screenX = xScreen;
         screenY = yScreen;
         length = xScreen / 10;
-        height = yScreen / 20;
+        height = yScreen / 15;
 
         xPos = x;
         yPos = y;
@@ -41,11 +43,12 @@ public class BOBlock {
 
         collider = new RectF(xPos, yPos, xPos + length, yPos + height);
         isDead = false;
+        sprite = null;
 
     }
 
     void draw(Canvas mCanvas, Paint mPaint) {
-        mCanvas.drawRect(collider, mPaint);
+        mCanvas.drawBitmap(sprite, null, collider, null);
     }
 
     // This is if it collides with a regular block. In the future, add tougher blocks.
