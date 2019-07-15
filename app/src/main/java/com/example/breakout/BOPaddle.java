@@ -29,6 +29,7 @@ public class BOPaddle extends BOObject {
             on the screen, our bat needs to know where
             the screen is
          */
+
         // by default we will make the bat have a length of 1/8
         // by default we will have a height of 1/40th
         // by default the paddle should start in the middle of the screen (x/2) and floating a tiny bit above the bottom (bout 1/40 from bottom)

@@ -78,7 +78,6 @@ public class BOGame extends SurfaceView implements Runnable {
 
     // TODO: ALLOW USER TO PAUSE THE GAME. Maybe though a swipe?
     // TODO: Remove all of my Logs lol.
-    // TODO: -> |PRIORITY| You can't actually lose the game yet lol.
     public BOGame(BOGameController controller, Context context, int x, int y) {
         /*
             Standard constructor that takes a context (read GameController),
@@ -300,30 +299,6 @@ public class BOGame extends SurfaceView implements Runnable {
             // lock the canvas and ready to draw
             mCanvas = holder.lockCanvas();
 
-            /*
-                A sidebar and allow me to once again sell you on state machines.
-                Lets say you wanted to at the very start of a new game you
-                wanted to draw a message like "HEY Good luck!!".
-
-                We can't just have it draw that message every single time the draw
-                method is called, because we only want to do it once at the begiining!
-
-                A state machine is really handy in this regards because we have a state
-                called newGameState, therefore we could do something like
-
-                if(BOGameController.newGameState) {
-                    Draw our message!
-                }
-
-                I note that this is probably a solution most people would
-                probably have thought about, using a boolean and referencing it,
-                however think about where you personally would've put the
-                boolean, if you're anything like me you would've put it in this
-                class, however in doing so you also made a unique boolean variable
-                that you used only once (in this class), furthermore you've
-                made interaction with other code a bit more difficult! Just a sidebar.
-             */
-
             // fill screen with solid color
             mCanvas.drawColor(Color.argb(255,26,128,182));
 
@@ -424,8 +399,7 @@ public class BOGame extends SurfaceView implements Runnable {
                 Log.e("Error: ", "joining thread");
             }
         }
-        // ELSE? Maybe have tapping the screen do something else if at an alternative
-        // screen. DAMN LOOK AT THAT FLEXIBILITY :^)
+
     }
 
     public void resume() {

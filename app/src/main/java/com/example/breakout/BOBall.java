@@ -11,8 +11,6 @@ import java.util.Random;
 
 // ADAPTED FROM TEXTBOOK CODE: Chapter 9
 
-// TODO: Add randomness to the ball's bounces. Right now the ball bounces in a completely
-// predictable manner, maybe change its angle of bounce very slightly every time it hits something?
 
 public class BOBall extends BOObject{
     /*
