@@ -168,9 +168,10 @@ public class BOGame extends SurfaceView implements Runnable {
 
             case MotionEvent.ACTION_DOWN: //placed finger on screen
 
-                if(gameController.gameWonState) {
+                if(gameController.gameWonState || gameController.gameOverState) {
 
                     gameController.gameWonState = false;
+                    gameController.gameOverState = false;
                     startNewGame();
                 }
 
@@ -357,11 +358,17 @@ public class BOGame extends SurfaceView implements Runnable {
             }
 
             if(gameController.pauseState) {
-                if (won) {
+                if (won) { // You won the game!
                     mCanvas.drawText("You won!!!",
                             mScreenX / 3, mScreenY / 2, mPaint);
                     Log.v("tag", "won");
-                } else {
+                }
+                else if(gameController.lives == 0){ // No more lives
+                    gameController.gameOverState = true;
+                    mCanvas.drawText("You lose and you suck! ;)",
+                            mScreenX / 3, mScreenY / 2, mPaint);
+                }
+                else { // generic pause
                     mCanvas.drawText("Tap To Resume!",
                             mScreenX / 3, mScreenY / 2, mPaint);
                     Log.v("tag", "resume");
@@ -371,6 +378,7 @@ public class BOGame extends SurfaceView implements Runnable {
             int scoreSize = fontSize / 2;
             mPaint.setTextSize(scoreSize);
             mCanvas.drawText("Score: " + gameController.score,mScreenX / 55,mScreenY / 9, mPaint);
+            mCanvas.drawText("Lives: " + gameController.lives,mScreenX / 55,mScreenY / 20, mPaint);
 
             if(DEBUGGING) {
                 printDebuggingText();
@@ -472,17 +480,13 @@ public class BOGame extends SurfaceView implements Runnable {
 
             gameController.lives--;
             Log.d("Lives:", "" + gameController.lives);
-            if( gameController.lives == 0){
-                //out of lives, start the new game
-                startNewGame();
-                gameController.pauseState = true;
-                //TODO: Game over screen needs to be displayed after this comment
-            }
-            else{
-                //user just lost a life and the game isnt over in this part of the statement
-                // pause the game so player can get their bearings
-                gameController.pauseState = true;
-            }
+
+            //user just lost a life and the game isnt over in this part of the statement
+            // pause the game so player can get their bearings
+            gameController.pauseState = true;
+
+            // Phillip Note: I moved the code here into the draw() method in order to
+            // display game over text so that draw didnt just immdiately overwrite it
 
 
         }
@@ -500,8 +504,8 @@ public class BOGame extends SurfaceView implements Runnable {
         }
 
         // Right wall
-        if(ball.getCollider().right > mScreenX - 1) {
-            ball.getCollider().right = mScreenX - 1;
+        if(ball.getCollider().right > mScreenX) {
+            ball.getCollider().right = mScreenX + 10;
             ball.reverseXVelocity();
         }
     }

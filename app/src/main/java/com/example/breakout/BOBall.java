@@ -129,8 +129,7 @@ public class BOBall {
         // Initialise the four points of
         // the rectangle which defines the ball
         // Initialized so that it will always be ~ the center of our paddle.
-        //TODO: fix the top and bottom numbers so the ball doesnt float above the paddle
-        //TODO: make this better math
+
         collider.left = paddle.getCollider().left + ( paddle.getCollider().width() / 2) - ballWidth/2;
         collider.top = paddle.getCollider().top - paddle.getHeight() - ballHeight;
         collider.right = paddle.getCollider().left + ( paddle.getCollider().width() / 2) + ballWidth - ballWidth/2;
