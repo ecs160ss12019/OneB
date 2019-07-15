@@ -7,15 +7,11 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 
-public class BOPaddle {
+public class BOPaddle extends BOObject {
     /*
     This will handle all logic having to do with the paddle.
      */
 
-    private RectF collider;
-    private float length;
-    private float height;
-    private float xPos;
     private float speed;
     private int screenX;
     private boolean reachedPosition = true; // used to determine whether the
@@ -26,10 +22,6 @@ public class BOPaddle {
     public float touched; // public because BOGame needs to access it
                         // to set and im too lazy for a setter
 
-    public Bitmap sprite = null;
-
-
-
 
     BOPaddle(int x, int y) {
         /*
@@ -37,21 +29,16 @@ public class BOPaddle {
             on the screen, our bat needs to know where
             the screen is
          */
-        screenX = x;
-
         // by default we will make the bat have a length of 1/8
-        length = screenX / 8;
-
         // by default we will have a height of 1/40th
-        height = y / 40;
+        // by default the paddle should start in the middle of the screen (x/2) and floating a tiny bit above the bottom (bout 1/40 from bottom)
+        super(x / 8, y / 40, new Point( x /2 , y - (y / 40)));
 
-        //TODO: check to see if any better configuration?
-        xPos = screenX / 2;  // exact middle of our screen
-        touched = xPos; //initialize our initial touch to the xpos
-        float yPos = y - height;
+        screenX = x;
+        touched = getPos().x; //initialize our initial touch to the xpos
 
         //initialize our collider to the middle of the screen
-        collider = new RectF(xPos, yPos - 30, xPos + length, yPos + height - 10); // TODO: fixme. magic numbers here
+        collider = new RectF(getPos().x, getPos().y - 30, getPos().x + getLength(), getPos().y + getHeight() - 10); // TODO: fixme. magic numbers here
         speed = screenX;
 
 
@@ -61,30 +48,25 @@ public class BOPaddle {
     void update(long fps) {
 
 
-        if(reachedPosition) {
+        if(reachedPosition)
             return; // don't move
-        }
-        else if(touched < xPos + (collider.width() / 2)) { // go left towards the touched position
-            xPos = xPos - (speed / fps);
-            if (xPos + (collider.width() / 2) < touched) { // after an update we've exceeded our position
+        else if(touched < getPos().x + (collider.width() / 2)) { // go left towards the touched position
+            translateX(-(speed / fps));
+            if (getPos().x+ (collider.width() / 2) < touched) { // after an update we've exceeded our position
                 reachedPosition = true;
             }
         }
         else{ // go right towards position
-            xPos = xPos + (speed / fps);
-            if (xPos > touched) { // after an update we've exceeded our position
+            translateX((speed/fps));
+            if (getPos().x > touched) { // after an update we've exceeded our position
                 reachedPosition = true;
             }
         }
-
-
         // as with the ball, update the other points to keep our shape
-        collider.left = xPos;
-        collider.right = xPos + length;
-
+        collider.left = getPos().x;
+        collider.right = getPos().x + getLength();
 
     }
-
 
 
     void draw(Canvas mCanvas, Paint mPaint) {
@@ -95,12 +77,5 @@ public class BOPaddle {
     void setReachedPosition(boolean state) {
         reachedPosition = state;
     }
-
-    RectF getCollider() {
-        return collider;
-    }
-
-    float getHeight(){ return height; }
-
 
 }

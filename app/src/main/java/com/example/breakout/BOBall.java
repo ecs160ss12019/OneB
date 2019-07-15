@@ -14,7 +14,7 @@ import java.util.Random;
 // TODO: Add randomness to the ball's bounces. Right now the ball bounces in a completely
 // predictable manner, maybe change its angle of bounce very slightly every time it hits something?
 
-public class BOBall {
+public class BOBall extends BOObject{
     /*
     This class will handle the ball logic.
     Functions that go here directly involve the properties of the
@@ -22,47 +22,21 @@ public class BOBall {
     will need to be edited much, but maybe you can think of something I can't
      */
 
-    private RectF collider;
-    /*
-    Note: Really what a RectF is in game development is what we call a
-    'collider'. A collider essentially is a representation of our
-    object using a geometric shape (in unity you can have circle colliders too!)
-    They are used to interact with the level, you can think of the
-    collider as the actual 'body' of our game object. The coordinates
-    (top, left, right, and bottom) represent where our game object's 'body'
-    is locationed in the game space.
-     */
-
     private float xVelocity;
     private float speed;
     private float yVelocity;
-    private float ballWidth;
-    private float ballHeight;
     private float angle;
 
     private BOPaddle paddle; // pass a reference to the paddle so we can reset the ball to its position
-    public Bitmap sprite = null;
 
     BOBall(int screenX, BOPaddle p) {
         // standard constructor that always makes that ball
         // 1% of screen width
-        ballWidth = screenX / 50;
-        ballHeight = ballWidth; // it's a perfect square ball
+        super(screenX / 50, screenX / 50, new Point(0,0));
 
         collider = new RectF();
         paddle = p;
 
-
-    }
-
-
-//    void draw(Canvas mCanvas, Paint mPaint) {
-//        // Draw the ball
-//        mCanvas.drawRect(collider, mPaint);
-//    }
-
-    void draw(Canvas mCanvas, Paint mPaint) {
-        mCanvas.drawBitmap(sprite, null, collider, null);
     }
 
 
@@ -81,8 +55,8 @@ public class BOBall {
 
         // keep the collider the same size by matching up
         // the other two corners
-        collider.right = collider.left + ballWidth;
-        collider.bottom = collider.top + ballHeight;
+        collider.right = collider.left + getLength();
+        collider.bottom = collider.top + getHeight();
 
     }
 
@@ -95,7 +69,6 @@ public class BOBall {
         float right_left_difference = Math.abs(blockCollider.right - collider.left);
         float top_bottom_difference = Math.abs(blockCollider.top - collider.bottom);
         float bottom_top_difference = Math.abs(blockCollider.bottom - collider.top);
-
 
         // This is what I feel to be 'realistic' bounces
         if((left_right_difference < top_bottom_difference) && (left_right_difference < bottom_top_difference)) { // hit the left side
@@ -129,18 +102,17 @@ public class BOBall {
         // Initialise the four points of
         // the rectangle which defines the ball
         // Initialized so that it will always be ~ the center of our paddle.
-
-        collider.left = paddle.getCollider().left + ( paddle.getCollider().width() / 2) - ballWidth/2;
-        collider.top = paddle.getCollider().top - paddle.getHeight() - ballHeight;
-        collider.right = paddle.getCollider().left + ( paddle.getCollider().width() / 2) + ballWidth - ballWidth/2;
-        collider.bottom = paddle.getCollider().top + ballHeight - paddle.getHeight() - ballHeight;
+        collider.left = paddle.collider.left + ( paddle.collider.width() / 2) - getLength()/2;
+        collider.top = paddle.collider.top - paddle.getHeight() - getHeight();
+        collider.right = paddle.collider.left + ( paddle.collider.width() / 2) + getLength() - getLength()/2;
+        collider.bottom = paddle.collider.top + getHeight() - paddle.getHeight() - getHeight();
 
         // How fast will the ball travel
         // You could vary this to suit
         // You could even increase it as the game progresses
         // to make it harder
 
-        setSpeed(310); // if you put this at 310 or lower the ball can get stuck at the top
+        setSpeed(310); // if you put this at 310 or lower the ball can get stuck at the top also this is a magic number
     }
 
     // Getters and Setters
@@ -184,6 +156,8 @@ public class BOBall {
         } else {
             this.xVelocity = speed * (float)Math.cos(angle);
         }
+
+        // What a fcking baller. Using SIN AND COS?!?!
 
     }
 

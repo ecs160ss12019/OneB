@@ -184,7 +184,7 @@ public class BOGame extends SurfaceView implements Runnable {
                 paddle.touched = motionEvent.getX();
                 if(fuckThisShit) {
                     blocks.get(blocks.size() - 1).isDead = true;
-                    blocks.get(blocks.size() - 1).setCollider(new RectF(-1,-1,-1,-1));
+                    blocks.get(blocks.size() - 1).collider = (new RectF(-1,-1,-1,-1));
                     blocks.remove(blocks.size()-1);
                 }
                 break;
@@ -210,6 +210,8 @@ public class BOGame extends SurfaceView implements Runnable {
         // Step 2: within the space between the two paddings, what should the size of the blocks be in order to fit "x" blocks within our space. We must change the BOBlock constructor to
         // account for the size change.
         // Step 3: How much distance do we want for the height, since we must do this 'n' times where n is the number of rows we want
+
+        blocks.clear(); // reset our arraylist;
 
 
         // distance between blocks
@@ -283,7 +285,6 @@ public class BOGame extends SurfaceView implements Runnable {
                 blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.matcha_choco);
             else
                 blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.choco_brown);
-            //blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.vanilla_caramel_choco);
 
         }
 
@@ -401,7 +402,7 @@ public class BOGame extends SurfaceView implements Runnable {
                 13, debugStart + debugSize * 12, mPaint);
         mCanvas.drawText("pauseState: " + gameController.pauseState ,
                 14, debugStart + debugSize * 13, mPaint);
-      //  mCanvas.drawText("ballPos: " + ball.getCollider().top + " " + ball.getCollider().left + " " + ball.getCollider().bottom + " " + ball.getCollider().right ,
+      //  mCanvas.drawText("ballPos: " + ball.collider.top + " " + ball.collider.left + " " + ball.getCollider().bottom + " " + ball.getCollider().right ,
         //        15, debugStart + debugSize * 14, mPaint);
         mCanvas.drawText("speed: " + ball.getSpeed(),
                 15, debugStart + debugSize * 14, mPaint);
@@ -463,10 +464,10 @@ public class BOGame extends SurfaceView implements Runnable {
     //TODO: Add a side hitbox to the paddle.
     private void detectCollisions() {
         // Has our ball hit the paddle?
-        if(RectF.intersects(paddle.getCollider(), ball.getCollider())) {
+        if(RectF.intersects(paddle.collider, ball.getCollider())) {
             // realistic bounce
-            ball.getCollider().bottom = paddle.getCollider().top + (float).01; // shhhhh. We're making it so the ball isn't constantly colliding
-            ball.blockBounce(paddle.getCollider());
+            ball.getCollider().bottom = paddle.collider.top + (float).01; // shhhhh. We're making it so the ball isn't constantly colliding
+            ball.blockBounce(paddle.collider);
             ball.incrementSpeed(50);
         }
 
@@ -485,8 +486,6 @@ public class BOGame extends SurfaceView implements Runnable {
 
             // Phillip Note: I moved the code here into the draw() method in order to
             // display game over text so that draw didnt just immdiately overwrite it
-
-
         }
 
         // Top wall

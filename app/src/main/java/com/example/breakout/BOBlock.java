@@ -6,62 +6,27 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
 
-public class BOBlock {
+public class BOBlock extends BOObject{
     /*
     This will handle the blocks and the block logic
     including collisions and deletions
      */
 
-    private RectF collider;
-    private float length;
-    private float height;
     public boolean isDead; // check to see if the block has been destroyed
     //TODO: change me back to private later
 
     private BOGameController gameController;
 
-    // we want the positions to be relative to the screen
-    private int screenX;
-    private int screenY;
-
-    // positions
-    private float xPos;
-    private float yPos;
-    private float origXPos;
-    private float origYPos;
-
-    public Bitmap sprite;
-
     BOBlock(int xScreen, int yScreen, float x, float y, BOGameController gameController) {
-        screenX = xScreen;
-        screenY = yScreen;
-        length = xScreen / 10;
-        height = yScreen / 15;
 
-        xPos = x;
-        yPos = y;
-        origXPos = x;
-        origYPos = y;
+        super(xScreen / 10, yScreen / 15, new Point(x,y));
+
 
         this.gameController = gameController;
 
-        collider = new RectF(xPos, yPos, xPos + length, yPos + height);
+        collider = new RectF(getPos().x, getPos().y, getPos().x + getLength(), getPos().y + getHeight());
         isDead = false;
 
-    }
-
-    void resetBlock(){
-        xPos = origXPos;
-        yPos = origYPos;
-    }
-
-    void draw(Canvas mCanvas, Paint mPaint) {
-        if(sprite == null)
-        {
-            Log.e("ERR","Failed to decode resource - Sprite Block " );
-        }else {
-            mCanvas.drawBitmap(sprite, null, collider, null);
-        }
     }
 
     // This is if it collides with a regular block. In the future, add tougher blocks.
@@ -92,18 +57,6 @@ public class BOBlock {
     }
 
     // Getters and Setters
-    float getLength() {
-        return length;
-    }
-
-    float getHeight() {
-        return height;
-    }
-
-    void setCollider(RectF r ) { // mainly a debugging tool
-        collider = r;
-    }
-
     boolean getDeadStatus() {
         return isDead;
     }
