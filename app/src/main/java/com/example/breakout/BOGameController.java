@@ -70,7 +70,7 @@ public class BOGameController extends Activity {
         as someones whose done this, features mess with each other all the time.
         Anyways this is my long ass spheel about state machines. When doing your
         coding I highly encourage you to think about the game in terms like this.
-        It'll help organization / style alot (and looks a lot more professional!!)
+        It'll help organization / style a lot (and looks a lot more professional!!)
 
      */
 
@@ -99,7 +99,7 @@ public class BOGameController extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Code adapted from our java text.
+        // Code adapted from our Java text.
         // Comment here just to please Gabby ;)
 
         Display display = getWindowManager().getDefaultDisplay();
