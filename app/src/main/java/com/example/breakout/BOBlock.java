@@ -47,7 +47,6 @@ public class BOBlock {
 
         collider = new RectF(xPos, yPos, xPos + length, yPos + height);
         isDead = false;
-        sprite = null;
 
     }
 
@@ -76,6 +75,7 @@ public class BOBlock {
             gameController.score += 10;
 
         }
+
     }
 
     public boolean collided(BOBall ball) {

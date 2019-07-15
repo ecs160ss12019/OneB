@@ -275,17 +275,15 @@ public class BOGame extends SurfaceView implements Runnable {
 
             int mod = choice % 5;
 
-        /*
-            if (mod == 0) {
+            if (mod == 0)
                 blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.vanilla_caramel_choco);
-            }else if (mod == 1)
+            else if (mod == 1)
                 blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.strawberry_choco);
             else if (mod == 2)
                 blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.matcha_choco);
-            else if (mod == 4)
+            else
                 blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.choco_brown);
-        */
-            blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.vanilla_caramel_choco);
+            //blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.vanilla_caramel_choco);
 
         }
 
