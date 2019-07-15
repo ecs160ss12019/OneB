@@ -99,8 +99,8 @@ public class BOGame extends SurfaceView implements Runnable {
         mScreenY = y;
 
 
-        //TODO: Maybe there is a better configeration for our game?
-        //  Somebody play with these values
+        //TODO: Maybe there is a better configuration for our game?
+        // Somebody play with these values
 
         // By default we will use 5%(1/20th) of screen width for font size
         fontSize = mScreenX / 20;
@@ -262,12 +262,15 @@ public class BOGame extends SurfaceView implements Runnable {
         // Set the state to gameRunning
         ball.reset(mScreenX, mScreenY);
         gameController.gameRunningState = true;
-        initializeBlocks();
 
+        initializeBlocks();
+        initializeSprites();
+    }
+
+    private void initializeSprites() {
         // Creating RNG for purpose of randomizing block color
         Random blockGen = new Random();
 
-        // Initializing the sprites of the blocks
         for(int i = 0; i < blocks.size(); i++) {
 
             int choice = blockGen.nextInt();
@@ -283,10 +286,7 @@ public class BOGame extends SurfaceView implements Runnable {
                 blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.matcha_choco);
             else
                 blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.choco_brown);
-            //blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.vanilla_caramel_choco);
-
         }
-
     }
 
     private void draw() {
