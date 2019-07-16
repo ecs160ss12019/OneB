@@ -87,6 +87,7 @@ public class BOGameController extends Activity {
     public boolean pauseState = true;
     public boolean gameOverState = false;
     public boolean gameWonState = false;
+    public boolean waitingState = false; // We gotta clean up these states later
     public int score = 0;
     public int lives = 3;
 

@@ -40,7 +40,7 @@ public class BOGame extends SurfaceView implements Runnable {
                                              // declaring something 'final
                                              // means it can be read, but not modified
 
-    private final boolean fuckThisShit = false; // If this is true, a touch will just delete blocks one by one :^). Useful when u dont want to actually play the gam
+    private final boolean fuckThisShit = true; // If this is true, a touch will just delete blocks one by one :^). Useful when u dont want to actually play the gam
 
     public BOGameController gameController; // stores a reference to our gameController
                                             // it's important this is accessible
@@ -75,6 +75,9 @@ public class BOGame extends SurfaceView implements Runnable {
     // Thread and Thread Handling
     private Thread gameThread = null;
 
+    // Testing the timer
+    BOTimer timer = new BOTimer();
+    boolean won;
 
     // TODO: ALLOW USER TO PAUSE THE GAME. Maybe though a swipe?
     // TODO: Remove all of my Logs lol.
@@ -120,6 +123,8 @@ public class BOGame extends SurfaceView implements Runnable {
         // Start the game!
         startNewGame();
         Log.d("DEBUG: ", "BOGAME");
+
+
     }
 
     @Override
@@ -138,6 +143,9 @@ public class BOGame extends SurfaceView implements Runnable {
                 // we can see if there have
                 // been any collisions
                 detectCollisions();
+            }
+            else if(gameController.waitingState){ // just in case.
+                waitingUpdate();
             }
             // The movement has been handled and collisions
             // detected now we can draw the scene.
@@ -163,6 +171,10 @@ public class BOGame extends SurfaceView implements Runnable {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
 
+        if(!timer.completed) { //disable controls if we need to wait for a timer.
+            return false;
+        }
+
         switch(motionEvent.getAction() & MotionEvent.ACTION_MASK) {
 
             case MotionEvent.ACTION_DOWN: //placed finger on screen
@@ -171,7 +183,6 @@ public class BOGame extends SurfaceView implements Runnable {
 
                     gameController.gameWonState = false;
                     gameController.gameOverState = false;
-                    startNewGame();
                 }
 
                 // un-pause the game
@@ -325,7 +336,6 @@ public class BOGame extends SurfaceView implements Runnable {
                     (255, 0, 255, 0));
 
             // Check to see if the player won
-            boolean won = wonGame();
             if(won) {
                 gameController.gameWonState = true;
                 gameController.pauseState = true;
@@ -381,6 +391,11 @@ public class BOGame extends SurfaceView implements Runnable {
         //        15, debugStart + debugSize * 14, mPaint);
         mCanvas.drawText("speed: " + ball.getSpeed(),
                 15, debugStart + debugSize * 14, mPaint);
+
+        mCanvas.drawText("Completed: " + timer.completed,
+                16, debugStart + debugSize * 15, mPaint);
+        mCanvas.drawText("WOn: " + won,
+                17, debugStart + debugSize * 16, mPaint);
     }
 
     public void pause() {
@@ -389,6 +404,9 @@ public class BOGame extends SurfaceView implements Runnable {
 
         // Make sure the game is running before pausing. Maybe
         // it doesn't make sense to pause during a game_over screen?
+
+
+
         if(gameController.gameRunningState) {
 
             gameController.gameRunningState = false; // leave the running state
@@ -431,7 +449,18 @@ public class BOGame extends SurfaceView implements Runnable {
         {
             blocks.get(i).update(ball); // if collided with ball
         }
+        won = wonGame();
+    }
 
+    private void waitingUpdate() { // use this function if you want things to be checked and updated during a game pause
+        if(won && timer.completed) {
+            gameController.pauseState = false; // unpause briefly so the code can update
+            startNewGame();
+            gameController.pauseState = true; // Pause immediately after
+            Log.d("WON: ", "we Won!");
+            gameController.waitingState = false;
+            won = false;
+        }
     }
 
 
@@ -487,6 +516,8 @@ public class BOGame extends SurfaceView implements Runnable {
             if(blocks.get(i).getDeadStatus() == false)
                 return false;
         }
+        timer.run(5000L);
+        gameController.waitingState = true; // make the game wait
         return true;
     }
 }
