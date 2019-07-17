@@ -138,12 +138,8 @@ public class BOGameController extends Activity {
 
     @Override
     public void onUserLeaveHint() {
-//        long uiDelta = (System.currentTimeMillis() - userInteractionTime);
         super.onUserLeaveHint();
-//        if (uiDelta < 100) {
-//            Log.i("appname", "Home Key Pressed");
-            pauseState = true;
-            mBOGame.media.pause();
-//        }
+        pauseState = true;
+        mBOGame.media.pause();
     }
 }

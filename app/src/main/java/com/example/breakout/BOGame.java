@@ -40,7 +40,7 @@ public class BOGame extends SurfaceView implements Runnable {
                                              // declaring something 'final
                                              // means it can be read, but not modified
 
-    private final boolean fuckThisShit = true; // If this is true, a touch will just delete blocks one by one :^). Useful when u dont want to actually play the gam
+    private final boolean fuckThisShit = false; // If this is true, a touch will just delete blocks one by one :^). Useful when u dont want to actually play the gam
 
     public BOGameController gameController; // stores a reference to our gameController
                                             // it's important this is accessible

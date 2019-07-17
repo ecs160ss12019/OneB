@@ -148,7 +148,7 @@ public class BOBall extends BOObject{
         this.speed += num;
 
         // Properly recomputes the components based on the initial angle
-        this.yVelocity = -1 * speed * (float)Math.sin(angle);
+        this.yVelocity = -speed * (float)Math.sin(angle);
         if (xVelocity < 0) {
             this.xVelocity = -speed * (float)Math.cos(angle);
         } else {
