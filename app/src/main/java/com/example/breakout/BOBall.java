@@ -46,7 +46,7 @@ public class BOBall extends BOObject{
          this'll be any different
          */
 
-        //move that ball based on current fps
+        // move that ball based on current fps
 
         collider.left += (xVelocity / fps);
         collider.top += (yVelocity / fps);
@@ -155,7 +155,6 @@ public class BOBall extends BOObject{
             this.xVelocity = speed * (float)Math.cos(angle);
         }
 
-        // What a fcking baller. Using SIN AND COS?!?!
 
     }
 

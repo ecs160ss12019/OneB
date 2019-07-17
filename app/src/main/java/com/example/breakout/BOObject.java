@@ -8,8 +8,8 @@ import android.util.Log;
 
 public class BOObject {
     /*
-    The BOObject is an abtraction of our game objects.
-    Each gameobject should inherit from BOObject if it is an object that needs a position
+    The BOObject is an abstraction of our game objects.
+    Each game object should inherit from BOObject if it is an object that needs a position
     on the canvas
 
     Each BOObject should have a length(float), height(float), a position on the coordinate field (Point), a collider (RectF), and a sprite(Bitmap)
@@ -27,11 +27,21 @@ public class BOObject {
     private Point pos; // Note, here we are using our own custom Point object that can handle floats
 
 
+    BOObject() {
+          /*
+        Constructor that takes in a length (float) , a height (float) and a position coordination (Point obj)
+        and initializes it's members accordingly
+         */
+        length = 0;
+        height = 0;
+        pos = new Point(0,0);
+        sprite = null;
+    }
 
-    BOObject(float len, float hei, Point p) {
+   BOObject(float len, float hei, Point p) {
         /*
         Constructor that takes in a length (float) , a height (float) and a position coordination (Point obj)
-        and initalizes it's members accordingly
+        and initializes it's members accordingly
          */
         length = len;
         height = hei;

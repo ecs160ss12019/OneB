@@ -52,7 +52,7 @@ public class BOGame extends SurfaceView implements Runnable {
     private Canvas mCanvas;
     private Paint mPaint;
 
-    // Framerate calculations
+    // Frame-rate calculations
     private long FPS;
     private final int MILLIS_IN_SECONDS = 1000;
 
@@ -68,6 +68,8 @@ public class BOGame extends SurfaceView implements Runnable {
     private BOPaddle paddle;
     private BOBall ball;
     private ArrayList<BOBlock> blocks;
+
+    private BOLayout myLayout;
 
     // For the music
     public MediaPlayer media;
@@ -115,10 +117,15 @@ public class BOGame extends SurfaceView implements Runnable {
 
         // Initialize our game objects
         paddle = new BOPaddle(mScreenX, mScreenY);
-        paddle.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.pic); // initalize the sprit
+        paddle.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.pic); // initialize the sprit
         ball = new BOBall(mScreenX, paddle);
         ball.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.ball);
         blocks = new ArrayList<>();
+
+        // Initialize the layout
+        myLayout = new BOLayout(mScreenX, mScreenY);
+        myLayout.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.background);
+
 
         // Start the game!
         startNewGame();
@@ -221,7 +228,7 @@ public class BOGame extends SurfaceView implements Runnable {
         // account for the size change.
         // Step 3: How much distance do we want for the height, since we must do this 'n' times where n is the number of rows we want
 
-        blocks.clear(); // reset our arraylist;
+        blocks.clear(); // reset our array-list;
 
 
         // distance between blocks
@@ -268,7 +275,7 @@ public class BOGame extends SurfaceView implements Runnable {
         // Reset the score
         gameController.score = 0;
 
-        //reset lives
+        // Reset lives
         gameController.lives = 3;
 
         // Set the state to gameRunning
@@ -311,17 +318,23 @@ public class BOGame extends SurfaceView implements Runnable {
             mCanvas = holder.lockCanvas();
 
             // fill screen with solid color
-            mCanvas.drawColor(Color.argb(255,26,128,182));
+            //mCanvas.drawColor(Color.argb(255,26,128,182));
+
+            mCanvas.drawBitmap(myLayout.sprite, 0, 0, mPaint);
 
             // Choose a color to paint with
             mPaint.setColor(Color.argb
                     (255, 255, 255, 255));
 
+            // Draw in our Layout
+            myLayout.draw(mCanvas, mPaint);
+
             // Draw in our Game Objects
             ball.draw(mCanvas, mPaint);
             paddle.draw(mCanvas, mPaint);
 
-            // draw the blocks
+
+            // Draw the blocks
             for(int i = 0; i < blocks.size(); i++) {
                 blocks.get(i).draw(mCanvas, mPaint);
 
@@ -433,7 +446,7 @@ public class BOGame extends SurfaceView implements Runnable {
                 gameController.pauseState = true; //immediately pause yourself and wait for input ... ONLY IF THE BEGINING OF THE GAME
                 gameController.newGameState = false;
 
-                // This was a concurrancy bug that caused the ball to run off before the thread had time to draw it in and process it.
+                // This was a concurrency bug that caused the ball to run off before the thread had time to draw it in and process it.
                 // Also it messed up my attempts at a deliberate pause and resume since resuming the game unintentionally just paused it again right afterwards
             }
 
@@ -445,6 +458,7 @@ public class BOGame extends SurfaceView implements Runnable {
         // update paddle and ball
         ball.update(FPS);
         paddle.update(FPS);
+        myLayout.update(FPS);
         for(int i = 0; i < blocks.size(); i++)
         {
             blocks.get(i).update(ball); // if collided with ball
@@ -483,12 +497,12 @@ public class BOGame extends SurfaceView implements Runnable {
             gameController.lives--;
             Log.d("Lives:", "" + gameController.lives);
 
-            //user just lost a life and the game isnt over in this part of the statement
+            // user just lost a life and the game isn't over in this part of the statement
             // pause the game so player can get their bearings
             gameController.pauseState = true;
 
             // Phillip Note: I moved the code here into the draw() method in order to
-            // display game over text so that draw didnt just immdiately overwrite it
+            // display game over text so that draw didn't just immediately overwrite it
         }
 
         // Top wall
