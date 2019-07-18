@@ -140,11 +140,12 @@ public class GameRunningState extends State {
 
         // bottom wall
         if(gc.ball.getCollider().bottom >= gc.mScreenY) {
-            gc.ball.reset(gc.mScreenX, gc.mScreenY);
+
 
             gc.lives--;
             Log.d("Lives:", "" + gc.lives);
 
+            gc.context = new GameWaitingState(gc);
             // user just lost a life and the game isn't over in this part of the statement
             // pause the game so player can get their bearings
 

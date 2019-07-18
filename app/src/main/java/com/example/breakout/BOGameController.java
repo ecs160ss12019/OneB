@@ -3,6 +3,7 @@ package com.example.breakout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Typeface;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.Display;
 import android.widget.TextView;
 
+import com.example.breakout.States.GameInitState;
 import com.example.breakout.States.GamePauseState;
 import com.example.breakout.States.State;
 
@@ -126,6 +128,11 @@ public class BOGameController extends Activity {
 
     // Context controller
     public State context;
+    public Context resources; // allows us to grab resources from the
+                              // drawables folder without needing to do it in BOGame
+                              // lets objects initialize sprites essentially.
+
+    public boolean firstStart = true; // TODO: Temp, once we get our GameTitleState working, we can remove this
 
 
 
@@ -142,6 +149,8 @@ public class BOGameController extends Activity {
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
+        resources = this; // set the resources so other classes can grab them.
+
 
         mBOGame = new BOGame(this, this, size.x, size.y);
 
@@ -155,8 +164,7 @@ public class BOGameController extends Activity {
 
         Log.d("DEBUG: ", "CREATE");
 
-        context = new GamePauseState(this); // start the game paused. Probably want some init state or this could lead to a game start screen!
-
+        context = new GameInitState(this);
     }
 
     @Override

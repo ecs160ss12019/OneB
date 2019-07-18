@@ -7,7 +7,7 @@ public class BOTimer {
     Timer t;
     public boolean completed;
 
-    BOTimer() {
+    public BOTimer() {
         t = new Timer();
         completed = true;
     }

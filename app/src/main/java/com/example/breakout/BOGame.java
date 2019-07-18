@@ -123,7 +123,6 @@ public class BOGame extends SurfaceView implements Runnable {
         // set up the fonts
         Typeface tf = ResourcesCompat.getFont(context, R.font.lobster);
         mPaint.setTypeface(tf);
-
     }
 
     @Override
@@ -172,7 +171,7 @@ public class BOGame extends SurfaceView implements Runnable {
         gc.lives = 3;
 
         // Set the state to gameRunning
-        gc.ball.reset(gc.mScreenX, gc.mScreenY);
+        gc.ball.reset();
         initializeBlocks(); // create the block objects
         randomlyAssignBlocks(); // give them random sprites
 

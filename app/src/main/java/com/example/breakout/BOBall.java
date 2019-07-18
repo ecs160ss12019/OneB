@@ -96,7 +96,7 @@ public class BOBall extends BOObject{
         xVelocity = -xVelocity;
     }
 
-    public void reset(int x, int y){
+    public void reset(){
         // Initialise the four points of
         // the rectangle which defines the ball
         // Initialized so that it will always be ~ the center of our paddle.

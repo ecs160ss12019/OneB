@@ -11,6 +11,7 @@ public class GamePauseState extends State {
 
     public GamePauseState(BOGameController gc) {
         super(gc);
+
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
@@ -31,6 +32,11 @@ public class GamePauseState extends State {
         switch(motionEvent.getAction() & MotionEvent.ACTION_MASK) {
 
             case MotionEvent.ACTION_DOWN: //placed finger on screen
+                if(gc.firstStart){
+                    gc.firstStart = false;
+                    gc.context = new GameWaitingState(gc); // TODO: temp, once we get our gametitlestate working we can remove.
+                    return true;
+                }
                 gc.context = new GameRunningState(gc);
 
         }
