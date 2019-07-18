@@ -46,7 +46,7 @@ public class BOPaddle extends BOObject {
     }
 
     // Update
-    void update(long fps) {
+    public void update(long fps) {
 
 
         if(reachedPosition)
@@ -70,12 +70,12 @@ public class BOPaddle extends BOObject {
     }
 
 
-    void draw(Canvas mCanvas, Paint mPaint) {
+    public void draw(Canvas mCanvas, Paint mPaint) {
         mCanvas.drawBitmap(sprite, null, collider, null);
     }
 
     // getters and setters
-    void setReachedPosition(boolean state) {
+    public void setReachedPosition(boolean state) {
         reachedPosition = state;
     }
 

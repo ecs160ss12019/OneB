@@ -30,7 +30,7 @@ public class BOBlock extends BOObject{
     }
 
     // This is if it collides with a regular block. In the future, add tougher blocks.
-    void update(BOBall ball) {
+    public void update(BOBall ball) {
         if(collided(ball))
         {
             // We're going to lazy delete this block. Since this app isn't super memory
@@ -57,7 +57,7 @@ public class BOBlock extends BOObject{
     }
 
     // Getters and Setters
-    boolean getDeadStatus() {
+    public boolean getDeadStatus() {
         return isDead;
     }
 
