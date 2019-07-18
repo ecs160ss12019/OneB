@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BreakOUT</string>
+    <string name="pauses_game">pauses game</string>
 </resources>
