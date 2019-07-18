@@ -83,6 +83,8 @@ public class BOGame extends SurfaceView implements Runnable {
     BOTimer timer = new BOTimer();
     boolean won;
 
+    BOMenu menu;
+
     // TODO: ALLOW USER TO PAUSE THE GAME. Maybe though a swipe?
     // TODO: Remove all of my Logs lol.
     public BOGame(BOGameController controller, Context context, int x, int y) {
@@ -132,7 +134,8 @@ public class BOGame extends SurfaceView implements Runnable {
         myLayout = new BOLayout(mScreenX, mScreenY);
         myLayout.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.background);
 
-
+        menu = new BOMenu(mScreenX, mScreenY);
+        menu.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.menu);
         // Start the game!
         startNewGame();
         Log.d("DEBUG: ", "BOGAME");
@@ -340,6 +343,8 @@ public class BOGame extends SurfaceView implements Runnable {
                 blocks.get(i).draw(mCanvas, mPaint);
 
             }
+            menu.draw(mCanvas, mPaint);
+
 
             mPaint.setTextSize(fontSize);
 
@@ -379,6 +384,7 @@ public class BOGame extends SurfaceView implements Runnable {
 
                 }
             }
+
             int scoreSize = fontSize / 2;
             mPaint.setTextSize(scoreSize);
             mCanvas.drawText("Score: " + gameController.score,mScreenX / 55,mScreenY / 9, mPaint);
