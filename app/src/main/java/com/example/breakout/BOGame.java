@@ -1,5 +1,7 @@
 package com.example.breakout;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,8 +19,13 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.Random;
+
+import static android.content.Context.ACCOUNT_SERVICE;
 
 public class BOGame extends SurfaceView implements Runnable {
     /*
@@ -83,6 +90,9 @@ public class BOGame extends SurfaceView implements Runnable {
     BOTimer timer = new BOTimer();
     boolean won;
 
+//    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+//    DatabaseReference myRef = database.getReference("message");
+
     // TODO: ALLOW USER TO PAUSE THE GAME. Maybe though a swipe?
     // TODO: Remove all of my Logs lol.
     public BOGame(BOGameController controller, Context context, int x, int y) {
@@ -136,6 +146,20 @@ public class BOGame extends SurfaceView implements Runnable {
         // Start the game!
         startNewGame();
         Log.d("DEBUG: ", "BOGAME");
+
+
+//        AccountManager manager = (AccountManager) context.getSystemService(ACCOUNT_SERVICE);
+//        Account[] list = manager.getAccounts();
+//        String gmail = null;
+//
+//        for(Account account: list) {
+//            if(account.type.equalsIgnoreCase("com.google"))
+//            {
+//                gmail = account.name;
+//                myRef.setValue(gmail);
+//                break;
+//            }
+//        }
 
 
     }
