@@ -36,7 +36,7 @@ public class BOGame extends SurfaceView implements Runnable {
     */
 
     // Actual Members
-    private final boolean DEBUGGING = true;  // in case you cared / wondered
+    private final boolean DEBUGGING = false;  // in case you cared / wondered
                                              // declaring something 'final
                                              // means it can be read, but not modified
 
@@ -73,6 +73,8 @@ public class BOGame extends SurfaceView implements Runnable {
 
     // For the music
     public MediaPlayer media;
+    public MediaPlayer media_won;
+    public MediaPlayer media_lost;
 
     // Thread and Thread Handling
     private Thread gameThread = null;
@@ -95,6 +97,10 @@ public class BOGame extends SurfaceView implements Runnable {
         // Starts playing the music over the gameplay and loops it
         // We should consider only putting music on menu screen
         media = MediaPlayer.create(context, R.raw.game_soundtrack);
+
+        media_won = MediaPlayer.create(context, R.raw.you_won);
+
+        media_lost = MediaPlayer.create(context, R.raw.game_over);
 
         gameController = controller;
 
@@ -270,6 +276,7 @@ public class BOGame extends SurfaceView implements Runnable {
     }
 
     private void startNewGame() {
+        media.start();
         // Reset our game objects
 
         // Reset the score
@@ -346,6 +353,8 @@ public class BOGame extends SurfaceView implements Runnable {
             if(won) {
                 gameController.gameWonState = true;
                 gameController.pauseState = true;
+                media.stop();
+                media_won.start();
             }
 
             if(gameController.pauseState) {
@@ -356,6 +365,8 @@ public class BOGame extends SurfaceView implements Runnable {
                 }
                 else if(gameController.lives == 0){ // No more lives
                     gameController.gameOverState = true;
+                    media.stop();
+                    media_lost.start();
                     mCanvas.drawText("You lose and you suck! ;)",
                             mScreenX / 3, mScreenY / 2, mPaint);
                     startNewGame();
