@@ -70,6 +70,7 @@ public class BOGame extends SurfaceView implements Runnable {
     private ArrayList<BOBlock> blocks;
 
     private BOLayout myLayout;
+    private BOLayout gameOver;
 
     // For the music
     public MediaPlayer media;
@@ -131,6 +132,10 @@ public class BOGame extends SurfaceView implements Runnable {
         // Initialize the layout
         myLayout = new BOLayout(mScreenX, mScreenY);
         myLayout.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.background);
+
+        gameOver = new BOLayout(mScreenX, mScreenY);
+        gameOver.collider = new RectF(mScreenX/2 - 200,mScreenY/2 - 200, mScreenX, mScreenY);
+        gameOver.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.game_over);
 
 
         // Start the game!
@@ -367,10 +372,9 @@ public class BOGame extends SurfaceView implements Runnable {
                     gameController.gameOverState = true;
                     media.stop();
                     media_lost.start();
-                    mCanvas.drawText("You lose and you suck! ;)",
-                            mScreenX / 3, mScreenY / 2, mPaint);
-                    startNewGame();
-                    gameController.pauseState = true;
+                    gameOver.draw(mCanvas,mPaint);
+                    timer.run(3000);
+                    gameController.waitingState = true;
                 }
                 else { // generic pause
                     mCanvas.drawText("Tap To Resume!",
@@ -481,6 +485,12 @@ public class BOGame extends SurfaceView implements Runnable {
             Log.d("WON: ", "we Won!");
             gameController.waitingState = false;
             won = false;
+        }
+        else if(timer.completed) {
+            gameController.pauseState = false; // unpause briefly so the code can update
+            startNewGame();
+            gameController.pauseState = true; // Pause immediately after
+            gameController.waitingState = false;
         }
     }
 
