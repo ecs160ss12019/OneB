@@ -40,7 +40,7 @@ public class BOGame extends SurfaceView implements Runnable {
                                              // declaring something 'final
                                              // means it can be read, but not modified
 
-    private final boolean fuckThisShit = false; // If this is true, a touch will just delete blocks one by one :^). Useful when u dont want to actually play the gam
+    private final boolean fuckThisShit = true; // If this is true, a touch will just delete blocks one by one :^). Useful when u dont want to actually play the gam
 
     public BOGameController gameController; // stores a reference to our gameController
                                             // it's important this is accessible
@@ -154,6 +154,7 @@ public class BOGame extends SurfaceView implements Runnable {
                 update();
                 media.start();
                 media.setLooping(true);
+
                 // Now the bat and ball are in
                 // their new positions
                 // we can see if there have
@@ -279,7 +280,6 @@ public class BOGame extends SurfaceView implements Runnable {
     }
 
     private void startNewGame() {
-        media.start();
         // Reset our game objects
 
         // Reset the score
@@ -358,7 +358,7 @@ public class BOGame extends SurfaceView implements Runnable {
             if(won) {
                 gameController.gameWonState = true;
                 gameController.pauseState = true;
-                media.stop();
+                media.pause();
                 media_won.start();
             }
 
@@ -370,10 +370,11 @@ public class BOGame extends SurfaceView implements Runnable {
                 }
                 else if(gameController.lives == 0){ // No more lives
                     gameController.gameOverState = true;
-                    media.stop();
+                    media.pause();
                     media_lost.start();
                     mCanvas.drawText("You lose and you suck! ;)",
                             mScreenX / 3, mScreenY / 2, mPaint);
+                    startNewGame();
                     startNewGame();
                     gameController.pauseState = true;
                 }
@@ -543,7 +544,7 @@ public class BOGame extends SurfaceView implements Runnable {
             if(blocks.get(i).getDeadStatus() == false)
                 return false;
         }
-        timer.run(5000L);
+        timer.run(3000L);
         gameController.waitingState = true; // make the game wait
         return true;
     }
