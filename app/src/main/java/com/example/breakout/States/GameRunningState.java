@@ -8,10 +8,10 @@ import android.graphics.Typeface;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import com.example.breakout.BOGame;
 import com.example.breakout.BOGameController;
 
 public class GameRunningState extends State {
-
 
 
     public GameRunningState(BOGameController gc) {
@@ -117,6 +117,10 @@ public class GameRunningState extends State {
         }
     }
 
+    public void drawGameOver(Canvas mCanvas, Paint mPaint){
+        gc.gameOver.draw(mCanvas, mPaint);
+    }
+
     private boolean wonGame() {
         for(int i = 0; i < gc.blocks.size(); i++)
         {
@@ -141,16 +145,21 @@ public class GameRunningState extends State {
         // bottom wall
         if(gc.ball.getCollider().bottom >= gc.mScreenY) {
 
+            if (gc.lives > 0) {
+                gc.lives--;
+                Log.d("Lives:", "" + gc.lives);
 
-            gc.lives--;
-            Log.d("Lives:", "" + gc.lives);
+                gc.context = new GameWaitingState(gc);
+                // user just lost a life and the game isn't over in this part of the statement
+                // pause the game so player can get their bearings
 
-            gc.context = new GameWaitingState(gc);
-            // user just lost a life and the game isn't over in this part of the statement
-            // pause the game so player can get their bearings
+                // Phillip Note: I moved the code here into the draw() method in order to
+                // display game over text so that draw didn't just immediately overwrite it
 
-            // Phillip Note: I moved the code here into the draw() method in order to
-            // display game over text so that draw didn't just immediately overwrite it
+            } else {
+               gc.context = new GameOverState(gc);
+
+            }
         }
 
         // Top wall
