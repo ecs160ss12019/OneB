@@ -30,3 +30,14 @@ the Dr. Posnett as an entrepreneur, he makes up half the DJ-duo called
 GitHub Repository: https://github.com/ecs160ss12019/OneB
 
 Link to CRC: <https://github.com/ecs160ss12019/OneB/blob/master/CRC.md>
+
+Works Cited:
+
+For the Game Over Screen, which was edited by Gabriella
+https://www.nicepng.com/maxp/u2w7r5o0o0q8y3y3/
+
+For all the Dessert Assets, which was edited by Gabriella
+https://vectorpixelstar.itch.io/food
+
+For the Dessert Background, which was edited by Gabriella
+https://free-game-assets.itch.io/free-parallax-2d-backgrounds?download
