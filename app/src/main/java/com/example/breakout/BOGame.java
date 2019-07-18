@@ -1,7 +1,5 @@
 package com.example.breakout;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,13 +17,8 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
 import java.util.Random;
-
-import static android.content.Context.ACCOUNT_SERVICE;
 
 public class BOGame extends SurfaceView implements Runnable {
     /*
@@ -77,6 +70,7 @@ public class BOGame extends SurfaceView implements Runnable {
     private ArrayList<BOBlock> blocks;
 
     private BOLayout myLayout;
+    private BOLayout gameOver;
 
     // For the music
     public MediaPlayer media;
@@ -92,6 +86,9 @@ public class BOGame extends SurfaceView implements Runnable {
 
 //    private FirebaseDatabase database = FirebaseDatabase.getInstance();
 //    DatabaseReference myRef = database.getReference("message");
+
+    BOMenu menu;
+    BOMenuButton pauseButton;
 
     // TODO: ALLOW USER TO PAUSE THE GAME. Maybe though a swipe?
     // TODO: Remove all of my Logs lol.
@@ -142,7 +139,15 @@ public class BOGame extends SurfaceView implements Runnable {
         myLayout = new BOLayout(mScreenX, mScreenY);
         myLayout.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.background);
 
+        gameOver = new BOLayout(mScreenX, mScreenY);
+        gameOver.collider = new RectF(mScreenX/2 - 200,mScreenY/2 - 200, mScreenX, mScreenY);
+        gameOver.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.game_over);
 
+        menu = new BOMenu(mScreenX, mScreenY);
+        menu.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.menu);
+
+        pauseButton = new BOMenuButton(mScreenX, mScreenY);
+        pauseButton.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.pause);
         // Start the game!
         startNewGame();
         Log.d("DEBUG: ", "BOGAME");
@@ -223,19 +228,26 @@ public class BOGame extends SurfaceView implements Runnable {
                     gameController.gameOverState = false;
                 }
 
-                // un-pause the game
-                gameController.pauseState = false;
-
-                paddle.setReachedPosition(false); // tell the paddle
-                                                  // we have a new movement
-                                                  // command
-                paddle.touched = motionEvent.getX();
-                if(fuckThisShit) {
-                    blocks.get(blocks.size() - 1).isDead = true;
-                    blocks.get(blocks.size() - 1).collider = (new RectF(-1,-1,-1,-1));
-                    blocks.remove(blocks.size()-1);
+                if(motionEvent.getX() > pauseButton.collider.left && motionEvent.getX() < pauseButton.collider.right && motionEvent.getY() < pauseButton.collider.bottom
+                 && motionEvent.getY() > pauseButton.collider.top) {
+                    gameController.pauseState = true;
                 }
-                break;
+                else {
+
+                        // un-pause the game
+                        gameController.pauseState = false;
+
+                        paddle.setReachedPosition(false); // tell the paddle
+                        // we have a new movement
+                        // command
+                        paddle.touched = motionEvent.getX();
+                            if (fuckThisShit) {
+                                blocks.get(blocks.size() - 1).isDead = true;
+                                blocks.get(blocks.size() - 1).collider = (new RectF(-1, -1, -1, -1));
+                                blocks.remove(blocks.size() - 1);
+                            }
+                    }
+                    break;
 
         }
         return true;
@@ -364,6 +376,8 @@ public class BOGame extends SurfaceView implements Runnable {
                 blocks.get(i).draw(mCanvas, mPaint);
 
             }
+            pauseButton.draw(mCanvas, mPaint);
+
 
             mPaint.setTextSize(fontSize);
 
@@ -391,19 +405,20 @@ public class BOGame extends SurfaceView implements Runnable {
                     gameController.gameOverState = true;
                     media.pause();
                     media_lost.start();
-                    mCanvas.drawText("You lose and you suck! ;)",
-                            mScreenX / 3, mScreenY / 2, mPaint);
-                    startNewGame();
-                    startNewGame();
-                    gameController.pauseState = true;
+
+                    gameOver.draw(mCanvas,mPaint);
+                    timer.run(3000);
+                    gameController.waitingState = true;
+
                 }
                 else { // generic pause
-                    mCanvas.drawText("Tap To Resume!",
-                            mScreenX / 3, mScreenY / 2, mPaint);
+                    menu.draw(mCanvas, mPaint);
+
                     Log.v("tag", "resume");
 
                 }
             }
+
             int scoreSize = fontSize / 2;
             mPaint.setTextSize(scoreSize);
             mCanvas.drawText("Score: " + gameController.score,mScreenX / 55,mScreenY / 9, mPaint);
@@ -496,6 +511,7 @@ public class BOGame extends SurfaceView implements Runnable {
             blocks.get(i).update(ball); // if collided with ball
         }
         won = wonGame();
+
     }
 
     private void waitingUpdate() { // use this function if you want things to be checked and updated during a game pause
@@ -506,6 +522,12 @@ public class BOGame extends SurfaceView implements Runnable {
             Log.d("WON: ", "we Won!");
             gameController.waitingState = false;
             won = false;
+        }
+        else if(timer.completed) {
+            gameController.pauseState = false; // unpause briefly so the code can update
+            startNewGame();
+            gameController.pauseState = true; // Pause immediately after
+            gameController.waitingState = false;
         }
     }
 
