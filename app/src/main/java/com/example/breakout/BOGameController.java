@@ -3,10 +3,21 @@ package com.example.breakout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
+import android.widget.TextView;
+
+import com.example.breakout.States.GameInitState;
+import com.example.breakout.States.GamePauseState;
+import com.example.breakout.States.State;
+
+import java.util.ArrayList;
 
 public class BOGameController extends Activity {
     /*
@@ -80,16 +91,48 @@ public class BOGameController extends Activity {
                             // shares it's name with a class, add an 'm' in front
                             // of it
 
-    // STATES
-    public boolean createState = true;
-    public boolean newGameState = true;
-    public volatile boolean gameRunningState = false; // Volatile implies the variable can be changed in threads
-    public boolean pauseState = true;
-    public boolean gameOverState = false;
-    public boolean gameWonState = false;
-    public boolean waitingState = false; // We gotta clean up these states later
     public int score = 0;
     public int lives = 3;
+
+    // Frame-rate calculations
+    public long FPS;
+    public final int MILLIS_IN_SECONDS = 1000;
+
+    // Hold resolution of the screen
+    public int mScreenX;
+    public int mScreenY;
+
+    // Holds text size
+    public int fontSize;
+    public int fontMargin;
+
+    // GameObjects
+    public BOPaddle paddle;
+    public BOBall ball;
+    public ArrayList<BOBlock> blocks;
+
+    public BOLayout myLayout;
+    public BOLayout gameOver;
+
+    // For the music
+    public MediaPlayer media;
+    public MediaPlayer media_won;
+    public MediaPlayer media_lost;
+
+    // Testing the timer
+    public BOTimer timer = new BOTimer();
+    public boolean won;
+
+    public BOMenu menu;
+    public BOMenuButton pauseButton;
+
+    // Context controller
+    public State context;
+    public Context resources; // allows us to grab resources from the
+                              // drawables folder without needing to do it in BOGame
+                              // lets objects initialize sprites essentially.
+
+    public boolean firstStart = true; // TODO: Temp, once we get our GameTitleState working, we can remove this
 
 
 
@@ -106,12 +149,22 @@ public class BOGameController extends Activity {
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
+        resources = this; // set the resources so other classes can grab them.
+
 
         mBOGame = new BOGame(this, this, size.x, size.y);
+
+        //initailize sound effects
+        media = MediaPlayer.create(this, R.raw.game_soundtrack);
+
+        media_won = MediaPlayer.create(this, R.raw.you_won);
+
+        media_lost = MediaPlayer.create(this, R.raw.game_over);
         setContentView(mBOGame);
-        createState = false;
+
         Log.d("DEBUG: ", "CREATE");
 
+        context = new GameInitState(this);
     }
 
     @Override
@@ -136,10 +189,12 @@ public class BOGameController extends Activity {
         Log.i("appname","Interaction");
     }
 
+    /*
     @Override
     public void onUserLeaveHint() {
         super.onUserLeaveHint();
         pauseState = true;
         mBOGame.media.pause();
     }
+    */
 }

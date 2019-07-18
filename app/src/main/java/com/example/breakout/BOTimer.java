@@ -7,12 +7,12 @@ public class BOTimer {
     Timer t;
     public boolean completed;
 
-    BOTimer() {
+    public BOTimer() {
         t = new Timer();
         completed = true;
     }
 
-    void run(long time) {
+    public void run(long time) {
         /*
             Will start a timer that runs for -time- seconds. On completion, it will set
             completed (bool) to true

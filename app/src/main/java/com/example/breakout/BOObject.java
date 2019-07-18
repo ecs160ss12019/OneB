@@ -70,7 +70,7 @@ public class BOObject {
         pos.x += value;
     }
 
-    void draw(Canvas mCanvas, Paint mPaint) {
+    public void draw(Canvas mCanvas, Paint mPaint) {
         if(sprite == null)
         {
             Log.e("ERR","Failed to decode resource - Sprite Block " );

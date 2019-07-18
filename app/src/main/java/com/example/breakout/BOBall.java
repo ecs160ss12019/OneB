@@ -39,7 +39,7 @@ public class BOBall extends BOObject{
 
 
     // Update
-    void update(long fps) {
+    public void update(long fps) {
         /*
          update() will be called repeatedly every frame
          usually update functions handle movement, and I don't suppose
@@ -59,7 +59,7 @@ public class BOBall extends BOObject{
     }
 
 
-    void blockBounce(RectF blockCollider) {
+    public void blockBounce(RectF blockCollider) {
         /* handles collisions for blocks
 
          */
@@ -88,15 +88,15 @@ public class BOBall extends BOObject{
 
 
     // reverse direction of travel due to collision
-    void reverseYVelocity() {
+    public void reverseYVelocity() {
         yVelocity = -yVelocity;
     }
 
-    void reverseXVelocity() {
+    public void reverseXVelocity() {
         xVelocity = -xVelocity;
     }
 
-    void reset(int x, int y){
+    public void reset(){
         // Initialise the four points of
         // the rectangle which defines the ball
         // Initialized so that it will always be ~ the center of our paddle.
@@ -114,12 +114,12 @@ public class BOBall extends BOObject{
     }
 
     // Getters and Setters
-    RectF getCollider() {
+    public RectF getCollider() {
         return collider;
     }
 
     // Function to set the speed of the ball. Normally used once per game, at the beginning
-    void setSpeed(float s) {
+    public void setSpeed(float s) {
         this.speed = s;
 
         // Magnitude of the velocity
@@ -138,12 +138,12 @@ public class BOBall extends BOObject{
     }
 
     // Getter to return current speed
-    float getSpeed() {
+    public float getSpeed() {
         return speed;
     }
 
     // Function to increment speed but maintain pre-existing direction
-    void incrementSpeed(float num) {
+    public void incrementSpeed(float num) {
         // Ups the speed by an indicated number
         this.speed += num;
 

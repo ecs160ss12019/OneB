@@ -12,13 +12,10 @@ public class BOMenuButton extends BOObject {
     BOMenuButton(int screenWidth, int screenHeight) {
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
-        this.pauseWidth = this.screenWidth / (float)8;
-        this.pauseHeight = this.screenHeight / (float)8;
+        this.pauseWidth = this.screenWidth / (float)16;
+        this.pauseHeight = this.screenWidth / (float)16; // to make it sqaure
 
-        Log.d("MENU: ", ""+this.pauseWidth);
-        Log.d("MENU: ", ""+this.screenWidth);
-        Log.d("MENU: ", ""+this.screenWidth);
-        collider = new RectF( (screenWidth) - (screenWidth/8), screenHeight/16, (screenWidth) - (screenWidth/8) + pauseWidth, screenHeight/16 + pauseHeight);
+        collider = new RectF( (screenWidth) - (screenWidth/10), screenHeight/16, (screenWidth) - (screenWidth/10) + pauseWidth, screenHeight/16 + pauseHeight);
     }
 
 
