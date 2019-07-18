@@ -317,17 +317,11 @@ public class BOGame extends SurfaceView implements Runnable {
             // lock the canvas and ready to draw
             mCanvas = holder.lockCanvas();
 
-            // fill screen with solid color
-            //mCanvas.drawColor(Color.argb(255,26,128,182));
-
-            mCanvas.drawBitmap(myLayout.sprite, 0, 0, mPaint);
-
+            // Order matters. This should be drawn before the ball and paddle.
+            myLayout.draw(mCanvas, mPaint);
             // Choose a color to paint with
             mPaint.setColor(Color.argb
                     (255, 255, 255, 255));
-
-            // Draw in our Layout
-            myLayout.draw(mCanvas, mPaint);
 
             // Draw in our Game Objects
             ball.draw(mCanvas, mPaint);
@@ -364,6 +358,8 @@ public class BOGame extends SurfaceView implements Runnable {
                     gameController.gameOverState = true;
                     mCanvas.drawText("You lose and you suck! ;)",
                             mScreenX / 3, mScreenY / 2, mPaint);
+                    startNewGame();
+                    gameController.pauseState = true;
                 }
                 else { // generic pause
                     mCanvas.drawText("Tap To Resume!",
@@ -458,7 +454,7 @@ public class BOGame extends SurfaceView implements Runnable {
         // update paddle and ball
         ball.update(FPS);
         paddle.update(FPS);
-        myLayout.update(FPS);
+
         for(int i = 0; i < blocks.size(); i++)
         {
             blocks.get(i).update(ball); // if collided with ball

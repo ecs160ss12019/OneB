@@ -9,17 +9,7 @@ public class BOLayout extends BOObject {
         // fill up the screen
         super(screenX, screenY, new Point(0,0));
 
-        collider = new RectF();
+        collider = new RectF(0,0, screenX, screenY);
     }
-
-    // Update
-    void update(long fps) {
-        /*
-         update() will be called repeatedly every frame
-
-         */
-
-    }
-
 
 }
