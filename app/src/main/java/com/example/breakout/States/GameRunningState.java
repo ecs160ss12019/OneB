@@ -167,8 +167,7 @@ public class GameRunningState extends State {
 
         // Right wall
         if(gc.ball.getCollider().right > gc.mScreenX) {
-            gc.ball.getCollider().left = gc.ball.getCollider().left -1;
-            gc.ball.getCollider().right = gc.mScreenX - 1;
+            gc.ball.getCollider().right = gc.mScreenX + 10;
             gc.ball.reverseXVelocity();
         }
     }
