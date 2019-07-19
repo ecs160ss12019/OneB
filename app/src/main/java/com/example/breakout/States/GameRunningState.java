@@ -99,8 +99,8 @@ public class GameRunningState extends State {
          */
         // Check to see if the player won
         if(gc.won) {
-            gc.media.pause();
-            gc.media_won.start();
+            gc.context = new GameWonState(gc);
+            gc.won = false; 
         }
     }
 
@@ -156,7 +156,8 @@ public class GameRunningState extends State {
                 // Phillip Note: I moved the code here into the draw() method in order to
                 // display game over text so that draw didn't just immediately overwrite it
 
-            } else {
+            }
+            if(gc.lives == 0){ // Fun scoping issue.
                gc.context = new GameOverState(gc);
 
             }

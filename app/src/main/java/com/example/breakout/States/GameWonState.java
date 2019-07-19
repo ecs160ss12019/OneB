@@ -1,20 +1,28 @@
 package com.example.breakout.States;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import com.example.breakout.BOGameController;
+import com.example.breakout.BOLayout;
+import com.example.breakout.R;
 
 public class GameWonState extends State {
 
+    BOLayout winScreen;
     public GameWonState(BOGameController gc) {
         super(gc);
+        winScreen = new BOLayout(gc.mScreenX, gc.mScreenY);
+        winScreen.sprite = BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.ball); // temp
 
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
         // draw the New Game menu if in won state
+        gc.media.pause();
+        gc.media_won.start();
         gc.myLayout.draw(mCanvas, mPaint); // draw the background over the blocks.
         gc.menu.draw(mCanvas, mPaint);
     }
@@ -31,12 +39,14 @@ public class GameWonState extends State {
         switch(motionEvent.getAction() & MotionEvent.ACTION_MASK) {
 
             case MotionEvent.ACTION_DOWN: //placed finger on screen
-                if(gc.firstStart){
-                    gc.firstStart = false;
-                    gc.context = new GameWaitingState(gc); // TODO: temp, once we get our gametitlestate working we can remove.
-                    return true;
-                }
-                gc.context = new GameRunningState(gc);
+                gc.media.seekTo(0); // this will make it so the song plays from the begining.
+                gc.media.start(); // restart the music
+                gc.lives = 3; // reset the lives
+                gc.mBOGame.startNewGame(); // god damn.
+
+
+                gc.context = new GameWaitingState(gc);
+
 
         }
         return true;
