@@ -5,6 +5,8 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import com.example.breakout.BOGameController;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class GameOverState extends State {
 
@@ -12,6 +14,14 @@ public class GameOverState extends State {
         super(gc);
         gc.media.pause(); // don't stop it because then we run into syncing issues
         gc.media_lost.start();
+
+
+        // Write the high score to the database
+        //TODO: write high score, not every score... get user name/email to use as path
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("micheleter");
+
+        myRef.setValue(gc.score);
 
     }
 

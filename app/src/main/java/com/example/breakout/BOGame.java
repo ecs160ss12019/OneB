@@ -78,12 +78,6 @@ public class BOGame extends SurfaceView implements Runnable {
         // Starts playing the music over the gameplay and loops it
         // We should consider only putting music on menu screen
 
-        // Write a message to the database
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference myRef = database.getReference("micheleter");
-//
-//        myRef.setValue(210);
-
         gc = controller;
 
         // initialize our screen size
@@ -216,7 +210,7 @@ public class BOGame extends SurfaceView implements Runnable {
 
         mCanvas.drawText("Completed: " + gc.timer.completed,
                 16, debugStart + debugSize * 15, mPaint);
-        mCanvas.drawText("WOn: " + gc.won,
+        mCanvas.drawText("Won: " + gc.won,
                 17, debugStart + debugSize * 16, mPaint);
     }
 
