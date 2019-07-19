@@ -108,7 +108,7 @@ public class BOGame extends SurfaceView implements Runnable {
         gc.myLayout.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.background);
 
         gc.gameOver = new BOLayout(gc.mScreenX, gc.mScreenY);
-        gc.gameOver.collider = new RectF(gc.mScreenX/2 - 200,gc.mScreenY/2 - 200, gc.mScreenX, gc.mScreenY);
+        gc.gameOver.collider = new RectF((gc.mScreenX/2 - gc.mScreenX/4),(gc.mScreenY/2 - gc.mScreenY / 4), (gc.mScreenX/2 + gc.mScreenX/4) , (gc.mScreenY/2 + gc.mScreenY / 4)); // this should place it ~ center of screen.
         gc.gameOver.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.game_over);
 
         gc.menu = new BOMenu(gc.mScreenX, gc.mScreenY);
@@ -150,6 +150,9 @@ public class BOGame extends SurfaceView implements Runnable {
                 // mBat and mBall next frame/loop
                 gc.FPS = gc.MILLIS_IN_SECONDS / timeThisFrame;
             }
+            if(gc.lives == 0) { // listen for lives == 0
+                startNewGame();
+            }
         }
 
     }
@@ -161,14 +164,11 @@ public class BOGame extends SurfaceView implements Runnable {
         return gc.context.onTouchEvent(motionEvent);
     }
 
-    private void startNewGame() {
+    public void startNewGame() {
         // Reset our game objects
 
         // Reset the score
         gc.score = 0;
-
-        // Reset lives
-        gc.lives = 3;
 
         // Set the state to gameRunning
         gc.ball.reset();

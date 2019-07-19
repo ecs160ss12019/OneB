@@ -87,7 +87,7 @@ public class BOGameController extends Activity {
 
 
     // Actual member declarations
-    private BOGame mBOGame; // Let's keep the book's style and if a variable
+    public BOGame mBOGame; // Let's keep the book's style and if a variable
                             // shares it's name with a class, add an 'm' in front
                             // of it
 
