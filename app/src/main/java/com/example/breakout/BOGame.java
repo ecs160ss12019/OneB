@@ -22,6 +22,8 @@ import android.view.SurfaceView;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.example.breakout.States.GameRunningState;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -76,6 +78,11 @@ public class BOGame extends SurfaceView implements Runnable {
         // Starts playing the music over the gameplay and loops it
         // We should consider only putting music on menu screen
 
+        // Write a message to the database
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("micheleter");
+//
+//        myRef.setValue(210);
 
         gc = controller;
 
