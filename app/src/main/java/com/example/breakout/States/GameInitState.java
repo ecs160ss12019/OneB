@@ -1,5 +1,7 @@
 package com.example.breakout.States;
 
+import android.Manifest;
+import android.app.Activity;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,6 +13,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import com.example.breakout.BOGame;
 import com.example.breakout.BOGameController;
 import com.example.breakout.BOLayout;
 import com.example.breakout.BOTimer;
@@ -56,6 +62,7 @@ public class GameInitState extends State {
 
     public GameInitState(BOGameController gc) {
         super(gc);
+
         //gc.timer.run(5000L);
         t2 = new BOTimer();
 

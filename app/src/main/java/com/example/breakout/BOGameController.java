@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.example.breakout.States.GameInitState;
 import com.example.breakout.States.GamePauseState;
 import com.example.breakout.States.State;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -125,6 +127,10 @@ public class BOGameController extends Activity {
 
     public BOMenu menu;
     public BOMenuButton pauseButton;
+
+    // Database connection
+    public FirebaseDatabase database = FirebaseDatabase.getInstance();
+    public DatabaseReference myRef;
 
     // Context controller
     public State context;
