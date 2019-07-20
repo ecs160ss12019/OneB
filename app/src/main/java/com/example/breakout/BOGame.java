@@ -22,6 +22,8 @@ import android.view.SurfaceView;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.example.breakout.States.GameRunningState;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -75,7 +77,6 @@ public class BOGame extends SurfaceView implements Runnable {
 
         // Starts playing the music over the gameplay and loops it
         // We should consider only putting music on menu screen
-
 
         gc = controller;
 
@@ -209,7 +210,7 @@ public class BOGame extends SurfaceView implements Runnable {
 
         mCanvas.drawText("Completed: " + gc.timer.completed,
                 16, debugStart + debugSize * 15, mPaint);
-        mCanvas.drawText("WOn: " + gc.won,
+        mCanvas.drawText("Won: " + gc.won,
                 17, debugStart + debugSize * 16, mPaint);
     }
 

@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import com.example.breakout.BOBall;
 import com.example.breakout.BOGame;
 import com.example.breakout.BOGameController;
 
@@ -53,7 +54,7 @@ public class GameRunningState extends State {
         // their new positions
         // we can see if there have
         // been any collisions
-        detectCollisions();
+        detectCollisions(gc.ball);
 
     }
 
@@ -131,19 +132,19 @@ public class GameRunningState extends State {
     }
 
     //TODO: Add a side hitbox to the paddle. Also refractor me
-    private void detectCollisions() {
+    private void detectCollisions(BOBall ball) {
         // Has our ball hit the paddle?
-        if(RectF.intersects(gc.paddle.collider, gc.ball.getCollider())) {
+        if(RectF.intersects(gc.paddle.collider, ball.getCollider())) {
             // realistic bounce
-            gc.ball.getCollider().bottom = gc.paddle.collider.top + (float).01; // shhhhh. We're making it so the ball isn't constantly colliding
-            gc.ball.blockBounce(gc.paddle.collider);
-            gc.ball.incrementSpeed(50);
+            ball.getCollider().bottom = gc.paddle.collider.top + (float).01; // shhhhh. We're making it so the ball isn't constantly colliding
+            ball.blockBounce(gc.paddle.collider);
+            ball.incrementSpeed(50);
         }
 
         //handle walls
 
         // bottom wall
-        if(gc.ball.getCollider().bottom >= gc.mScreenY) {
+        if(ball.getCollider().bottom >= gc.mScreenY) {
 
             if (gc.lives > 0) {
                 gc.lives--;
@@ -158,27 +159,27 @@ public class GameRunningState extends State {
 
             }
             if(gc.lives == 0){ // Fun scoping issue.
-               gc.context = new GameOverState(gc);
+                gc.context = new GameOverState(gc);
 
             }
         }
 
         // Top wall
-        if(gc.ball.getCollider().top < 0) {
-            gc.ball.getCollider().top = 0;
-            gc.ball.reverseYVelocity();
+        if(ball.getCollider().top < 0) {
+            ball.getCollider().top = 0;
+            ball.reverseYVelocity();
         }
 
         // Left Wall
-        if(gc.ball.getCollider().left < 0) {
-            gc.ball.getCollider().left = 0;
-            gc.ball.reverseXVelocity();
+        if(ball.getCollider().left < 0) {
+            ball.getCollider().left = 0;
+            ball.reverseXVelocity();
         }
 
         // Right wall
-        if(gc.ball.getCollider().right > gc.mScreenX) {
-            gc.ball.getCollider().right = gc.mScreenX + 10;
-            gc.ball.reverseXVelocity();
+        if(ball.getCollider().right > gc.mScreenX) {
+            ball.getCollider().right = gc.mScreenX + 10;
+            ball.reverseXVelocity();
         }
     }
 }
