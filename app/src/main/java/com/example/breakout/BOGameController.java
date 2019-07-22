@@ -195,12 +195,11 @@ public class BOGameController extends Activity {
         Log.i("appname","Interaction");
     }
 
-    /*
+
     @Override
     public void onUserLeaveHint() {
         super.onUserLeaveHint();
-        pauseState = true;
-        mBOGame.media.pause();
+        media.pause();
     }
-    */
+
 }
