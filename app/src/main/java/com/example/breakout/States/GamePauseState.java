@@ -1,6 +1,7 @@
 package com.example.breakout.States;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.MotionEvent;
@@ -11,10 +12,13 @@ import com.example.breakout.BOMenuButton;
 public class GamePauseState extends State {
 
     BOMenuButton resumeButton;
+    BOMenuButton restartButton;
 
     public GamePauseState(BOGameController gc) {
         super(gc);
         resumeButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "Resume", gc);
+        restartButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "Restart", gc);
+
 
     }
 
@@ -22,7 +26,16 @@ public class GamePauseState extends State {
         // draw the pause menu if pause state and running
         gc.myLayout.draw(mCanvas, mPaint); // draw the background over the blocks.
         gc.menu.draw(mCanvas, mPaint);
+
+        //draw the resume button
+        mPaint.setColor(Color.argb(255,222,113,144));
         mCanvas.drawRect(resumeButton.collider, mPaint);
+        resumeButton.drawText(mCanvas, mPaint);
+
+        //draw the restart button
+//        mCanvas.drawRect(restartButton.collider, mPaint);
+//        restartButton.drawText(mCanvas, mPaint);
+
     }
 
     public void run() {
