@@ -7,8 +7,8 @@ public class BOMenu extends BOObject {
 
     int screenWidth;
     int screenHeight;
-    float menuWidth;
-    float menuHeight;
+    public float menuWidth;
+    public float menuHeight;
 
     BOMenu(int screenWidth, int screenHeight) {
         this.screenWidth = screenWidth;
