@@ -1,20 +1,14 @@
 package com.example.breakout;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Paint;
 import android.graphics.Point;
-import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
-import android.widget.TextView;
 
 import com.example.breakout.States.GameInitState;
-import com.example.breakout.States.GamePauseState;
 import com.example.breakout.States.State;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -126,7 +120,7 @@ public class BOGameController extends Activity {
     public boolean won;
 
     public BOMenu menu;
-    public BOMenuButton pauseButton;
+    public BOPauseButton pauseButton;
 
     // Database connection
     public FirebaseDatabase database = FirebaseDatabase.getInstance();
