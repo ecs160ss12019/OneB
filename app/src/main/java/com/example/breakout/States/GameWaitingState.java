@@ -39,10 +39,15 @@ public class GameWaitingState extends State{
 
             case MotionEvent.ACTION_DOWN: //placed finger on screen
 
+                //TODO: this needs to be fixed so that a new game is started once the player beats all the levels
+                //also this part is probably completely wrong
                 //go to the next level in the level array here
-
-                gc.context = gc.levels[gc.currentLevel - 1]; //new Level1State(gc); // go to running state
-
+                if(gc.currentLevel != gc.levels.length) {
+                    gc.context = gc.levels[gc.currentLevel - 1]; //new Level1State(gc); // go to running state
+                }
+                else{
+                    gc.context = new Level1State(gc)
+                }
                 break;
         }
         return true;
