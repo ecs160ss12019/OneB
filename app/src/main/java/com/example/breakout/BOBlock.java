@@ -1,10 +1,13 @@
 package com.example.breakout;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
+
+import java.util.Random;
 
 public class BOBlock extends BOObject{
     /*
@@ -14,6 +17,8 @@ public class BOBlock extends BOObject{
 
     public boolean isDead; // check to see if the block has been destroyed
     //TODO: change me back to private later
+
+    public boolean hasPowerup;
 
     private BOGameController gameController;
 
@@ -26,6 +31,8 @@ public class BOBlock extends BOObject{
 
         collider = new RectF(getPos().x, getPos().y, getPos().x + getLength(), getPos().y + getHeight());
         isDead = false;
+        hasPowerup = false;
+
 
     }
 
