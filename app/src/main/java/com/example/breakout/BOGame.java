@@ -124,6 +124,7 @@ public class BOGame extends SurfaceView implements Runnable {
         // set up the fonts
         Typeface tf = ResourcesCompat.getFont(context, R.font.lobster);
         mPaint.setTypeface(tf);
+
     }
 
     @Override
@@ -167,6 +168,8 @@ public class BOGame extends SurfaceView implements Runnable {
 
     public void startNewGame() {
         // Reset our game objects
+        gc.blocks.clear();
+
 
         // Reset the score
         gc.score = 0;
@@ -253,13 +256,16 @@ public class BOGame extends SurfaceView implements Runnable {
         // Initializing the sprites of the blocks
         for(int i = 0; i < gc.blocks.size(); i++) {
 
+            if (gc.blocks.get(i).hasPowerup) {
+                continue;
+            }
             int choice = blockGen.nextInt();
             choice = Math.abs(choice); // make sure choice is always positive
 
             int mod = choice % 5;
 
             if (mod == 0)
-                gc.blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.vanilla_caramel_choco);
+                gc.blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.strawberry_choco);
             else if (mod == 1)
                 gc.blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.strawberry_choco);
             else if (mod == 2)

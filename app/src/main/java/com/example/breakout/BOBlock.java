@@ -1,10 +1,13 @@
 package com.example.breakout;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
+
+import java.util.Random;
 
 public class BOBlock extends BOObject{
     /*
@@ -14,6 +17,8 @@ public class BOBlock extends BOObject{
 
     public boolean isDead; // check to see if the block has been destroyed
     //TODO: change me back to private later
+
+    public boolean hasPowerup;
 
     private BOGameController gameController;
 
@@ -26,7 +31,23 @@ public class BOBlock extends BOObject{
 
         collider = new RectF(getPos().x, getPos().y, getPos().x + getLength(), getPos().y + getHeight());
         isDead = false;
+        hasPowerup = false;
 
+        Log.d("powerup: ", "" + gameController.powerups);
+        Log.d("level: ", "" + gameController.level);
+        while (gameController.powerups < gameController.level){
+
+            Random chance = new Random();
+            int chanceNum = chance.nextInt();
+            int realChance = Math.abs(chanceNum % 2);
+            Log.d("Real Chance: ", "" + realChance);
+            if (realChance == 1){
+                Log.d("DEBUG: ", "Called Power-ups.");
+                hasPowerup = true;
+                gameController.powerups++;
+                sprite = BitmapFactory.decodeResource(gameController.resources.getResources(), R.drawable.vanilla_caramel_choco);
+            }
+        }
     }
 
     // This is if it collides with a regular block. In the future, add tougher blocks.

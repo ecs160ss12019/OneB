@@ -17,6 +17,7 @@ public class GameWonState extends State {
         winScreen = new BOLayout(gc.mScreenX, gc.mScreenY);
         winScreen.sprite = BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.ball); // temp
 
+
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
@@ -42,12 +43,10 @@ public class GameWonState extends State {
                 gc.media.seekTo(0); // this will make it so the song plays from the begining.
                 gc.media.start(); // restart the music
                 gc.lives = 3; // reset the lives
+                gc.level++; // increase the level
+                gc.powerups = 0; // reset power-ups for game logic.
                 gc.mBOGame.startNewGame(); // god damn.
-
-
                 gc.context = new GameWaitingState(gc);
-
-
         }
         return true;
     }

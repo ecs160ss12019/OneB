@@ -108,6 +108,9 @@ public class BOGameController extends Activity {
     public int fontSize;
     public int fontMargin;
 
+    public int level;
+    public int powerups;
+
     // GameObjects
     public BOPaddle paddle;
     public BOBall ball;
@@ -157,10 +160,15 @@ public class BOGameController extends Activity {
         display.getSize(size);
         resources = this; // set the resources so other classes can grab them.
 
+        // These must be before mBOGame. Otherwise the blocks are already instantiated.
+        level = 1;
+        powerups = 0;
 
         mBOGame = new BOGame(this, this, size.x, size.y);
 
-        //initailize sound effects
+
+
+        //initialize sound effects
         media = MediaPlayer.create(this, R.raw.game_soundtrack);
 
         media_won = MediaPlayer.create(this, R.raw.you_won);
