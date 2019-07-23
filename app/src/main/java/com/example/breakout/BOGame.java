@@ -44,8 +44,8 @@ public class BOGame extends SurfaceView implements Runnable {
     private SurfaceHolder holder; // So I didn't add 'm' here because
                                     // the name of the variable
                                   // is not the same as the class. take note
-    private Canvas mCanvas;
-    private Paint mPaint;
+    public Canvas mCanvas;
+    public Paint mPaint;
 
     // Thread and Thread Handling
     private Thread gameThread = null;
@@ -91,6 +91,7 @@ public class BOGame extends SurfaceView implements Runnable {
         gc.paddle.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.pic); // initialize the sprit
         gc.ball = new BOBall(gc.mScreenX, gc.paddle);
         gc.ball.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.ball);
+
         gc.blocks = new ArrayList<>();
 
         // Initialize the layout

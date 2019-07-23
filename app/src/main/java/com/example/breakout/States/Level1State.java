@@ -30,6 +30,9 @@ public class Level1State extends State{
         gc.pauseButton.draw(mCanvas, mPaint);
         drawGameObjects(mCanvas, mPaint);
 
+        if(gc.doubleBallPowerUp)
+            gc.ball2.draw(mCanvas, mPaint);
+
         mPaint.setTextSize(gc.fontSize);
         checkWon();
 
@@ -53,16 +56,24 @@ public class Level1State extends State{
         // we can see if there have
         // been any collisions
         detectCollisions(gc.ball);
-
+        if(gc.ball2 != null) {
+            detectCollisions(gc.ball2);
+        }
     }
 
     public void update() {
         gc.ball.update(gc.FPS);
         gc.paddle.update(gc.FPS);
 
+        if(gc.doubleBallPowerUp)
+            gc.ball2.update(gc.FPS);
+
+
         for(int i = 0; i < gc.blocks.size(); i++)
         {
             gc.blocks.get(i).update(gc.ball); // if collided with ball
+            if(gc.doubleBallPowerUp)
+                gc.blocks.get(i).update(gc.ball2);
         }
         gc.won = wonGame();
     }
