@@ -86,7 +86,7 @@ public class Level1State extends State{
                     gc.paddle.touched = motionEvent.getX();
 
                     // PowerUp Debugging Method
-                    gc.context = new GameWonState(gc);
+//                    gc.context = new GameWonState(gc);
 
                 }
 
@@ -145,7 +145,7 @@ public class Level1State extends State{
             ball.incrementSpeed(50);
         }
 
-        //handle walls
+        // handle walls
 
         // bottom wall
         if(ball.getCollider().bottom >= gc.mScreenY) {

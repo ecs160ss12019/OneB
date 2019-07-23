@@ -321,8 +321,12 @@ public class BOGame extends SurfaceView implements Runnable {
             Random chance = new Random();
             int pickedBlock = chance.nextInt(num_blocks);
 
-            Log.d("Selected Block: ", "" + pickedBlock);
+            while (gc.blocks.get(pickedBlock).hasPowerup == true){
+                pickedBlock = chance.nextInt(num_blocks);
+                Log.d("Duplicate. New Block: ", "" + pickedBlock);
+            } // checking for duplicates
 
+            Log.d("Selected Block: ", "" + pickedBlock);
             gc.blocks.get(pickedBlock).hasPowerup = true;
             gc.powerups++;
             gc.blocks.get(pickedBlock).sprite = BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.vanilla_caramel_choco);
