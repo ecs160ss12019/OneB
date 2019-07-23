@@ -44,6 +44,7 @@ public class GameWonState extends State {
                 gc.media.start(); // restart the music
                 gc.lives = 3; // reset the lives
                 gc.level++; // increase the level
+                gc.currentLevel++; // combine with above statement later.
                 gc.powerups = 0; // reset power-ups for game logic.
                 gc.mBOGame.startNewGame(); // god damn.
                 gc.context = new GameWaitingState(gc);

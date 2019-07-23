@@ -101,7 +101,8 @@ public class GameRunningState extends State {
         // Check to see if the player won
         if(gc.won) {
             gc.context = new GameWonState(gc);
-            gc.won = false; 
+            gc.won = false;
+
         }
     }
 
