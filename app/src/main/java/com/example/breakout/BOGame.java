@@ -1,29 +1,17 @@
 package com.example.breakout;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
-import android.media.MediaPlayer;
-import android.os.Build;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import androidx.core.content.res.ResourcesCompat;
-
-import com.example.breakout.States.GameRunningState;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -115,7 +103,7 @@ public class BOGame extends SurfaceView implements Runnable {
         gc.menu = new BOMenu(gc.mScreenX, gc.mScreenY);
         gc.menu.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.menu);
 
-        gc.pauseButton = new BOMenuButton(gc.mScreenX, gc.mScreenY);
+        gc.pauseButton = new BOPauseButton(gc.mScreenX, gc.mScreenY);
         gc.pauseButton.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.pause);
         // Start the game!
         startNewGame();
