@@ -7,8 +7,8 @@ public class BOMenu extends BOObject {
 
     int screenWidth;
     int screenHeight;
-    float menuWidth;
-    float menuHeight;
+    public float menuWidth;
+    public float menuHeight;
 
     BOMenu(int screenWidth, int screenHeight) {
         this.screenWidth = screenWidth;
@@ -19,6 +19,6 @@ public class BOMenu extends BOObject {
         Log.d("MENU: ", ""+this.menuWidth);
         Log.d("MENU: ", ""+this.screenWidth);
         Log.d("MENU: ", ""+this.screenWidth);
-        collider = new RectF( (screenWidth/2) - (menuWidth/2) ,(screenHeight/2) - (menuHeight/2),(screenWidth/2) + (menuWidth/2),(screenHeight/2) + (menuHeight/2) );
+        collider = new RectF( (screenWidth/2) - (menuWidth/3) ,(screenHeight/2) - ((float)(menuHeight/1.5)),(screenWidth/2) + (menuWidth/3),(screenHeight/2) + ((float)(menuHeight/1.5)) );
     }
 }

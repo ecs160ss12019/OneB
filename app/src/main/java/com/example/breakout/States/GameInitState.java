@@ -88,7 +88,7 @@ public class GameInitState extends State {
 
     public void run() {
         if(t3.completed && fadeOut)
-            gc.context = new GamePauseState(gc);
+            gc.context = new GameWaitingState(gc);
 
         if(fadeIn && gc.timer.completed && !fadeOut) {
             if(t2.completed) {
