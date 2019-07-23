@@ -14,6 +14,7 @@ import android.view.SurfaceView;
 import androidx.core.content.res.ResourcesCompat;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class BOGame extends SurfaceView implements Runnable {
@@ -112,6 +113,7 @@ public class BOGame extends SurfaceView implements Runnable {
         // set up the fonts
         Typeface tf = ResourcesCompat.getFont(context, R.font.lobster);
         mPaint.setTypeface(tf);
+
     }
 
     @Override
@@ -155,6 +157,8 @@ public class BOGame extends SurfaceView implements Runnable {
 
     public void startNewGame() {
         // Reset our game objects
+        gc.blocks.clear();
+
 
         //only reset the score if we started back on the first level
         if(gc.currentLevel != 1) {
@@ -166,7 +170,7 @@ public class BOGame extends SurfaceView implements Runnable {
         gc.ball.reset();
         initializeBlocks(); // create the block objects
         randomlyAssignBlocks(); // give them random sprites
-
+        //Collections.shuffle(gc.blocks); // shuffle the blocks!
     }
 
 
@@ -245,13 +249,16 @@ public class BOGame extends SurfaceView implements Runnable {
         // Initializing the sprites of the blocks
         for(int i = 0; i < gc.blocks.size(); i++) {
 
+            if (gc.blocks.get(i).hasPowerup) {
+                continue;
+            }
             int choice = blockGen.nextInt();
             choice = Math.abs(choice); // make sure choice is always positive
 
             int mod = choice % 5;
 
             if (mod == 0)
-                gc.blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.vanilla_caramel_choco);
+                gc.blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.strawberry_choco);
             else if (mod == 1)
                 gc.blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.strawberry_choco);
             else if (mod == 2)
@@ -281,7 +288,7 @@ public class BOGame extends SurfaceView implements Runnable {
 
         float curX = padding;
         float curY = 0;
-
+        int num_blocks = 0;
 
         int numRows = 4; //controls the number of rows of blocks we want
 
@@ -295,6 +302,7 @@ public class BOGame extends SurfaceView implements Runnable {
             while (canAddMore) {
                 BOBlock temp = new BOBlock(gc.mScreenX, gc.mScreenY, curX + xMargin, curY + yMargin, gc);
                 gc.blocks.add(temp);
+                num_blocks += 1;
                 height = temp.getHeight();
                 curX += (temp.getLength() + xMargin);
 
@@ -307,11 +315,17 @@ public class BOGame extends SurfaceView implements Runnable {
             numRows--;
         }
 
+        Log.d("Amount of Power Ups: ", "" + gc.powerups);
+        Log.d("Level Number: ", "" + gc.level);
+        while (gc.powerups < gc.level){
+            Random chance = new Random();
+            int pickedBlock = chance.nextInt(num_blocks);
 
+            Log.d("Selected Block: ", "" + pickedBlock);
+
+            gc.blocks.get(pickedBlock).hasPowerup = true;
+            gc.powerups++;
+            gc.blocks.get(pickedBlock).sprite = BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.vanilla_caramel_choco);
+        }
     }
-
-
-
-
-
 }

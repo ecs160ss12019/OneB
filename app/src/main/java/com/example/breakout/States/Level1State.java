@@ -76,6 +76,7 @@ public class Level1State extends State{
                 if(motionEvent.getX() > gc.pauseButton.collider.left && motionEvent.getX() < gc.pauseButton.collider.right && motionEvent.getY() < gc.pauseButton.collider.bottom
                         && motionEvent.getY() > gc.pauseButton.collider.top) {
                     gc.context = new GamePauseState(gc);
+
                 }
                 else {
 
@@ -83,6 +84,10 @@ public class Level1State extends State{
                     // we have a new movement
                     // command
                     gc.paddle.touched = motionEvent.getX();
+
+                    // PowerUp Debugging Method
+                    gc.context = new GameWonState(gc);
+
                 }
 
                 break;
