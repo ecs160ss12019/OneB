@@ -162,6 +162,10 @@ public class Level1State extends State{
         if(ball.getCollider().bottom >= gc.mScreenY) {
 
             if (gc.lives > 0) {
+                // Make the PowerUp ball disappear
+                gc.doubleBallPowerUp = false;
+                gc.ball2 = null;
+
                 gc.lives--;
                 Log.d("Lives:", "" + gc.lives);
 
