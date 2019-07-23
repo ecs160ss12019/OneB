@@ -14,14 +14,15 @@ public class BOMenuButton extends BOObject {
     float yPosition;
     String text;
 
-    public BOMenuButton(int screenWidth, int screenHeight, String text, BOGameController gc) {
+    public BOMenuButton(int screenWidth, int screenHeight, String text, BOGameController gc, float top) {
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
         this.buttonWidth = this.screenWidth / (float)1.75;
         this.buttonHeight = this.screenHeight / (float)7.5;
         this.text = text;
 
-        collider = new RectF( gc.menu.collider.left, gc.menu.collider.top + gc.menu.menuHeight/4, gc.menu.collider.right, (gc.menu.collider.top + gc.menu.menuHeight/4) + buttonHeight);
+        collider = new RectF( gc.menu.collider.left, top + gc.menu.menuHeight/4, gc.menu.collider.right, (top + gc.menu.menuHeight/4) + buttonHeight);
+
 
 
 
@@ -32,5 +33,12 @@ public class BOMenuButton extends BOObject {
         mPaint.setColor(Color.argb(255,255,255,255));
 
         mCanvas.drawText(text, collider.left +  collider.width()/(float)3.75 , collider.bottom - (collider.height()/(float)6.5), mPaint);
+    }
+
+    public void draw(Canvas mCanvas, Paint mPaint) {
+        mPaint.setColor(Color.argb(255,222,113,144));
+        mCanvas.drawRect(collider, mPaint);
+        drawText(mCanvas, mPaint);
+
     }
 }

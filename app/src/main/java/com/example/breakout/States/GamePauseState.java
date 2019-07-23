@@ -16,8 +16,8 @@ public class GamePauseState extends State {
 
     public GamePauseState(BOGameController gc) {
         super(gc);
-        resumeButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "Resume", gc);
-        restartButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "Restart", gc);
+        resumeButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "Resume", gc, gc.menu.collider.top);
+        restartButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "Restart", gc, (gc.menu.collider.top + gc.mScreenY/(float)7.5));
 
 
     }
@@ -28,13 +28,9 @@ public class GamePauseState extends State {
         gc.menu.draw(mCanvas, mPaint);
 
         //draw the resume button
-        mPaint.setColor(Color.argb(255,222,113,144));
-        mCanvas.drawRect(resumeButton.collider, mPaint);
-        resumeButton.drawText(mCanvas, mPaint);
-
+        resumeButton.draw(mCanvas, mPaint);
         //draw the restart button
-//        mCanvas.drawRect(restartButton.collider, mPaint);
-//        restartButton.drawText(mCanvas, mPaint);
+        restartButton.draw(mCanvas, mPaint);
 
     }
 
@@ -50,12 +46,10 @@ public class GamePauseState extends State {
         switch(motionEvent.getAction() & MotionEvent.ACTION_MASK) {
 
             case MotionEvent.ACTION_DOWN: //placed finger on screen
-                if(gc.firstStart){
-                    gc.firstStart = false;
-                    gc.context = new GameWaitingState(gc); // TODO: temp, once we get our gametitlestate working we can remove.
-                    return true;
+                if (motionEvent.getX() > resumeButton.collider.left && motionEvent.getX() < resumeButton.collider.right && motionEvent.getY() < resumeButton.collider.bottom
+                        && motionEvent.getY() > resumeButton.collider.top) {
+                    gc.context = new GameRunningState(gc);
                 }
-                gc.context = new GameRunningState(gc);
 
         }
         return true;
