@@ -33,21 +33,7 @@ public class BOBlock extends BOObject{
         isDead = false;
         hasPowerup = false;
 
-        Log.d("powerup: ", "" + gameController.powerups);
-        Log.d("level: ", "" + gameController.level);
-        while (gameController.powerups < gameController.level){
 
-            Random chance = new Random();
-            int chanceNum = chance.nextInt();
-            int realChance = Math.abs(chanceNum % 2);
-            Log.d("Real Chance: ", "" + realChance);
-            if (realChance == 1){
-                Log.d("DEBUG: ", "Called Power-ups.");
-                hasPowerup = true;
-                gameController.powerups++;
-                sprite = BitmapFactory.decodeResource(gameController.resources.getResources(), R.drawable.vanilla_caramel_choco);
-            }
-        }
     }
 
     // This is if it collides with a regular block. In the future, add tougher blocks.

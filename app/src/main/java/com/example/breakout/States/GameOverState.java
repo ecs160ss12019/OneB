@@ -67,6 +67,7 @@ public class GameOverState extends State {
                 // Reset lives and power-ups
                 gc.lives = 3;
                 gc.powerups = 0;
+                gc.mBOGame.startNewGame();
                 gc.context = new GameWaitingState(gc); // move to the waiting state instead of end state.
                 gc.media.seekTo(0); // this will make it so the song plays from the begining.
                 gc.media.start(); // restart the music
