@@ -2,6 +2,7 @@ package com.example.breakout.States;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import com.example.breakout.BOGame;
@@ -42,6 +43,7 @@ public class GameWaitingState extends State{
                 //TODO: this needs to be fixed so that a new game is started once the player beats all the levels
                 //also this part is probably completely wrong
                 //go to the next level in the level array here
+                Log.d("DEBUG", "going to level:" + gc.currentLevel);
                 if(gc.currentLevel != gc.levels.length) {
                     gc.context = gc.levels[gc.currentLevel - 1]; //new Level1State(gc); // go to running state
                 }

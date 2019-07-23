@@ -98,6 +98,7 @@ public class Level3State extends State{
          */
         // Check to see if the player won
         if(gc.won) {
+            gc.currentLevel += 1;
             gc.context = new GameWonState(gc);
             gc.won = false;
         }
