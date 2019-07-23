@@ -159,8 +159,11 @@ public class BOGame extends SurfaceView implements Runnable {
         gc.blocks.clear();
 
 
-        // Reset the score
-        gc.score = 0;
+        //only reset the score if we started back on the first level
+        if(gc.currentLevel != 1) {
+            // Reset the score
+            gc.score = 0;
+        }
 
         // Set the state to gameRunning
         gc.ball.reset();
@@ -168,6 +171,7 @@ public class BOGame extends SurfaceView implements Runnable {
         randomlyAssignBlocks(); // give them random sprites
 
     }
+
 
     private void draw() {
         /*
