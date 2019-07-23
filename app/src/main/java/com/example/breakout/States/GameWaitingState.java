@@ -46,7 +46,7 @@ public class GameWaitingState extends State{
                     gc.context = gc.levels[gc.currentLevel - 1]; //new Level1State(gc); // go to running state
                 }
                 else{
-                    gc.context = new Level1State(gc)
+                    gc.context = new Level1State(gc);
                 }
                 break;
         }
