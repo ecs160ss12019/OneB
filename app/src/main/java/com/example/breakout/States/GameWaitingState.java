@@ -39,7 +39,9 @@ public class GameWaitingState extends State{
 
             case MotionEvent.ACTION_DOWN: //placed finger on screen
 
-                gc.context = new Level1State(gc); // go to running state
+                //go to the next level in the level array here
+
+                gc.context = gc.levels[gc.currentLevel - 1]; //new Level1State(gc); // go to running state
 
                 break;
         }

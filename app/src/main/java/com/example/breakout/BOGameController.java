@@ -9,6 +9,9 @@ import android.util.Log;
 import android.view.Display;
 
 import com.example.breakout.States.GameInitState;
+import com.example.breakout.States.Level1State;
+import com.example.breakout.States.Level2State;
+import com.example.breakout.States.Level3State;
 import com.example.breakout.States.State;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -134,6 +137,9 @@ public class BOGameController extends Activity {
 
     public boolean firstStart = true; // TODO: Temp, once we get our GameTitleState working, we can remove this
 
+    public State levels[];
+    public int currentLevel = 1;
+
 
 
     //TODO: Think about how many states we really need
@@ -165,6 +171,9 @@ public class BOGameController extends Activity {
         Log.d("DEBUG: ", "CREATE");
 
         context = new GameInitState(this);
+
+        levels = new State[] {new Level1State(this), new Level2State(this), new Level3State(this)};
+
     }
 
     @Override

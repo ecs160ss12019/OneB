@@ -11,9 +11,9 @@ import android.view.MotionEvent;
 import com.example.breakout.BOBall;
 import com.example.breakout.BOGameController;
 
-public class Level1State extends State{
+public class Level3State extends State{
 
-    public Level1State(BOGameController gc) {
+    public Level3State(BOGameController gc) {
         super(gc);
     }
 
@@ -38,7 +38,7 @@ public class Level1State extends State{
 
 
 
-        mCanvas.drawText("Score LEVEL 1: " + gc.score,gc.mScreenX / 55,gc.mScreenY / 9, mPaint); // TODO: move this to UI class?
+        mCanvas.drawText("Score LEVEL 3: " + gc.score,gc.mScreenX / 55,gc.mScreenY / 9, mPaint); // TODO: move this to UI class?
         mCanvas.drawText("Lives: " + gc.lives,gc.mScreenX / 55,gc.mScreenY / 20, mPaint);
     }
 
@@ -98,7 +98,6 @@ public class Level1State extends State{
          */
         // Check to see if the player won
         if(gc.won) {
-            gc.currentLevel += 1;
             gc.context = new GameWonState(gc);
             gc.won = false;
         }
