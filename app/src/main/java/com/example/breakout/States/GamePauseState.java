@@ -13,11 +13,14 @@ public class GamePauseState extends State {
 
     BOMenuButton resumeButton;
     BOMenuButton restartButton;
+    BOMenuButton levelButton;
 
     public GamePauseState(BOGameController gc) {
         super(gc);
         resumeButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "Resume", gc, gc.menu.collider.top);
         restartButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "Restart", gc, (gc.menu.collider.top + gc.mScreenY/(float)7.5));
+        levelButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, " Levels", gc, (gc.menu.collider.top + (gc.mScreenY/(float)7.5)*2));
+
 
 
     }
@@ -31,6 +34,9 @@ public class GamePauseState extends State {
         resumeButton.draw(mCanvas, mPaint);
         //draw the restart button
         restartButton.draw(mCanvas, mPaint);
+        //draw the level button
+        levelButton.draw(mCanvas, mPaint);
+
 
     }
 
@@ -49,6 +55,11 @@ public class GamePauseState extends State {
                 if (motionEvent.getX() > resumeButton.collider.left && motionEvent.getX() < resumeButton.collider.right && motionEvent.getY() < resumeButton.collider.bottom
                         && motionEvent.getY() > resumeButton.collider.top) {
                     gc.context = new GameRunningState(gc);
+                }
+                if (motionEvent.getX() > restartButton.collider.left && motionEvent.getX() < restartButton.collider.right && motionEvent.getY() < restartButton.collider.bottom
+                        && motionEvent.getY() > restartButton.collider.top) {
+                    gc.mBOGame.startNewGame();
+                    gc.context = new GameWaitingState(gc);
                 }
 
         }
