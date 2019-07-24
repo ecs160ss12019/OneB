@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
+import android.view.View;
 
 import com.example.breakout.States.GameInitState;
 import com.example.breakout.States.Level1State;
@@ -215,6 +216,11 @@ public class BOGameController extends Activity {
     public void onUserLeaveHint() {
         super.onUserLeaveHint();
         media.pause();
+    }
+
+    public void closeApplication(View view) {
+        finish();
+        moveTaskToBack(true);
     }
 
 }

@@ -15,14 +15,14 @@ public class GamePauseState extends State {
     BOMenuButton resumeButton;
     BOMenuButton restartButton;
     BOMenuButton levelButton;
+    BOMenuButton exitButton;
 
     public GamePauseState(BOGameController gc) {
         super(gc);
         resumeButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "Resume", gc, gc.menu.collider.top);
         restartButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "Restart", gc, (gc.menu.collider.top + gc.mScreenY/(float)7.5));
         levelButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, " Levels", gc, (gc.menu.collider.top + (gc.mScreenY/(float)7.5)*2));
-
-
+        exitButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "  Exit", gc, (gc.menu.collider.top + (gc.mScreenY/(float)7.5)*3));
 
     }
 
@@ -37,6 +37,8 @@ public class GamePauseState extends State {
         restartButton.draw(mCanvas, mPaint);
         //draw the level button
         levelButton.draw(mCanvas, mPaint);
+        //draw the exit button
+        exitButton.draw(mCanvas, mPaint);
 
 
     }
@@ -59,8 +61,14 @@ public class GamePauseState extends State {
                 }
                 if (motionEvent.getX() > restartButton.collider.left && motionEvent.getX() < restartButton.collider.right && motionEvent.getY() < restartButton.collider.bottom
                         && motionEvent.getY() > restartButton.collider.top) {
+                    gc.lives = 3;
                     gc.mBOGame.startNewGame();
                     gc.context = new GameWaitingState(gc);
+                }
+                if (motionEvent.getX() > exitButton.collider.left && motionEvent.getX() < exitButton.collider.right && motionEvent.getY() < exitButton.collider.bottom
+                        && motionEvent.getY() > exitButton.collider.top) {
+                    gc.closeApplication(gc.mBOGame);
+
                 }
 
         }
