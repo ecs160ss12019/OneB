@@ -62,6 +62,7 @@ public class GamePauseState extends State {
                 if (motionEvent.getX() > restartButton.collider.left && motionEvent.getX() < restartButton.collider.right && motionEvent.getY() < restartButton.collider.bottom
                         && motionEvent.getY() > restartButton.collider.top) {
                     gc.lives = 3;
+                    gc.powerups = 0;
                     gc.mBOGame.startNewGame();
                     gc.context = new GameWaitingState(gc);
                 }

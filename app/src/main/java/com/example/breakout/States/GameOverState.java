@@ -53,7 +53,7 @@ public class GameOverState extends State {
 
 
     public void run() {
-        // What should gameover do while the game is running?
+        // What should game-over do while the game is running?
     }
 
     public void update() {
@@ -69,7 +69,7 @@ public class GameOverState extends State {
                 gc.powerups = 0;
                 gc.mBOGame.startNewGame();
                 gc.context = new GameWaitingState(gc); // move to the waiting state instead of end state.
-                gc.media.seekTo(0); // this will make it so the song plays from the begining.
+                gc.media.seekTo(0); // this will make it so the song plays from the beginning.
                 gc.media.start(); // restart the music
 
         }
