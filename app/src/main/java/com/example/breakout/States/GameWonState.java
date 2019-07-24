@@ -25,7 +25,8 @@ public class GameWonState extends State {
         gc.media.pause();
         gc.media_won.start();
         gc.myLayout.draw(mCanvas, mPaint); // draw the background over the blocks.
-        mCanvas.drawText("You Win!",(gc.mScreenX / (float)5.5) ,gc.mScreenY / (float)1.5, mPaint);
+        mPaint.setTextSize(100);
+        mCanvas.drawText("You Win!",(gc.mScreenX / (float)3.5) ,gc.mScreenY / (float)2, mPaint);
     }
 
     public void run() {

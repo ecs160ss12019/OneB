@@ -37,7 +37,7 @@ public class Level2State extends State{
         mPaint.setTextSize(scoreSize);
 
 
-        mCanvas.drawText("Level: 2 " + gc.lives,gc.mScreenX / 55,gc.mScreenY / 1, mPaint);
+        mCanvas.drawText("Level: " + gc.level,gc.mScreenX / 55,gc.mScreenY / 6, mPaint);
         mCanvas.drawText("Score: " + gc.score,gc.mScreenX / 55,gc.mScreenY / 9, mPaint); // TODO: move this to UI class?
         mCanvas.drawText("Lives: " + gc.lives,gc.mScreenX / 55,gc.mScreenY / 20, mPaint);
     }

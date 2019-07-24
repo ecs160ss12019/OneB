@@ -39,7 +39,7 @@ public class GameRunningState extends State {
         mPaint.setTextSize(scoreSize);
 
 
-
+        mCanvas.drawText("Level: " + gc.level,gc.mScreenX / 55,gc.mScreenY / 6, mPaint);
         mCanvas.drawText("Score: " + gc.score,gc.mScreenX / 55,gc.mScreenY / 9, mPaint); // TODO: move this to UI class?
         mCanvas.drawText("Lives: " + gc.lives,gc.mScreenX / 55,gc.mScreenY / 20, mPaint);
     }

@@ -40,7 +40,7 @@ public class Level3State extends State{
         mPaint.setTextSize(scoreSize);
 
 
-        mCanvas.drawText("Level: 3 " + gc.lives,gc.mScreenX / 55,gc.mScreenY / 1, mPaint);
+        mCanvas.drawText("Level: " + gc.level,gc.mScreenX / 55,gc.mScreenY / 6, mPaint);
         mCanvas.drawText("Score: " + gc.score,gc.mScreenX / 55,gc.mScreenY / 9, mPaint); // TODO: move this to UI class?
         mCanvas.drawText("Lives: " + gc.lives,gc.mScreenX / 55,gc.mScreenY / 20, mPaint);
 
@@ -98,7 +98,7 @@ public class Level3State extends State{
 
     public void checkWon() {
         /*
-        checks if all the blocks have been destroyed and plays the sound effects appropreately
+        checks if all the blocks have been destroyed and plays the sound effects appropriately
          */
         // Check to see if the player won
         if(gc.won) {
@@ -118,6 +118,7 @@ public class Level3State extends State{
     }
 
     public void drawGameOver(Canvas mCanvas, Paint mPaint){
+
         gc.gameOver.draw(mCanvas, mPaint);
     }
 

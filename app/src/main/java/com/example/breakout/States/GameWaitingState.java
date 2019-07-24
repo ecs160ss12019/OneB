@@ -24,7 +24,7 @@ public class GameWaitingState extends State{
     public void draw(Canvas mCanvas, Paint mPaint) {
         new GameRunningState(gc).draw(mCanvas, mPaint); // this is good practice?? LOL Probably not, but its useful.
         mPaint.setTextSize(gc.mScreenX / 15);
-        mCanvas.drawText("Tap Anywhere To Launch!",(gc.mScreenX / (float)5.5) ,gc.mScreenY / (float)1.5, mPaint); // TODO: move this to UI class? Also magic numbers FIX ME
+        mCanvas.drawText("Tap Anywhere To Launch!",(gc.mScreenX / (float)6.6) ,gc.mScreenY / (float)1.5, mPaint); // TODO: move this to UI class? Also magic numbers FIX ME
     }
 
     public void update() {
