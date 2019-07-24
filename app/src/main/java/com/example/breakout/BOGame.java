@@ -44,8 +44,8 @@ public class BOGame extends SurfaceView implements Runnable {
     private SurfaceHolder holder; // So I didn't add 'm' here because
                                     // the name of the variable
                                   // is not the same as the class. take note
-    private Canvas mCanvas;
-    private Paint mPaint;
+    public Canvas mCanvas;
+    public Paint mPaint;
 
     // Thread and Thread Handling
     private Thread gameThread = null;
@@ -91,6 +91,7 @@ public class BOGame extends SurfaceView implements Runnable {
         gc.paddle.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.pic); // initialize the sprit
         gc.ball = new BOBall(gc.mScreenX, gc.paddle);
         gc.ball.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.ball);
+
         gc.blocks = new ArrayList<>();
 
         // Initialize the layout
@@ -101,7 +102,7 @@ public class BOGame extends SurfaceView implements Runnable {
         gc.gameOver.collider = new RectF((gc.mScreenX/2 - gc.mScreenX/4),(gc.mScreenY/2 - gc.mScreenY / 4), (gc.mScreenX/2 + gc.mScreenX/4) , (gc.mScreenY/2 + gc.mScreenY / 4)); // this should place it ~ center of screen.
         gc.gameOver.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.game_over);
 
-        gc.menu = new BOMenu(gc.mScreenX, gc.mScreenY);
+        gc.menu = new BOMenu(gc.mScreenX, gc.mScreenY, gc, mCanvas, mPaint);
         gc.menu.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.menu);
 
         gc.pauseButton = new BOPauseButton(gc.mScreenX, gc.mScreenY);
@@ -158,13 +159,13 @@ public class BOGame extends SurfaceView implements Runnable {
     public void startNewGame() {
         // Reset our game objects
         gc.blocks.clear();
-
+        gc.score = 0;
 
         //only reset the score if we started back on the first level
-        if(gc.currentLevel != 1) {
-            // Reset the score
-            gc.score = 0;
-        }
+//        if(gc.currentLevel != 1) {
+//            // Reset the score
+//            gc.score = 0;
+//        }
 
         // Set the state to gameRunning
         gc.ball.reset();
@@ -321,8 +322,12 @@ public class BOGame extends SurfaceView implements Runnable {
             Random chance = new Random();
             int pickedBlock = chance.nextInt(num_blocks);
 
-            Log.d("Selected Block: ", "" + pickedBlock);
+            while (gc.blocks.get(pickedBlock).hasPowerup == true){
+                pickedBlock = chance.nextInt(num_blocks);
+                Log.d("Duplicate. New Block: ", "" + pickedBlock);
+            } // checking for duplicates
 
+            Log.d("Selected Block: ", "" + pickedBlock);
             gc.blocks.get(pickedBlock).hasPowerup = true;
             gc.powerups++;
             gc.blocks.get(pickedBlock).sprite = BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.vanilla_caramel_choco);

@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
+import android.view.View;
 
 import com.example.breakout.States.GameInitState;
 import com.example.breakout.States.Level1State;
@@ -111,6 +112,7 @@ public class BOGameController extends Activity {
     // GameObjects
     public BOPaddle paddle;
     public BOBall ball;
+    public BOBall ball2; // only draw when power-up is true
     public ArrayList<BOBlock> blocks;
 
     public BOLayout myLayout;
@@ -120,6 +122,9 @@ public class BOGameController extends Activity {
     public MediaPlayer media;
     public MediaPlayer media_won;
     public MediaPlayer media_lost;
+
+    // Power ups
+    public boolean doubleBallPowerUp = false;
 
     // Testing the timer
     public BOTimer timer = new BOTimer();
@@ -211,6 +216,11 @@ public class BOGameController extends Activity {
     public void onUserLeaveHint() {
         super.onUserLeaveHint();
         media.pause();
+    }
+
+    public void closeApplication(View view) {
+        finish();
+        moveTaskToBack(true);
     }
 
 }

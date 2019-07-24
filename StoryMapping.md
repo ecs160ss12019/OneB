@@ -1,28 +1,7 @@
-# User Stories
-1.	As a player, I want to deflect a ball into blocks in order to eventually clear the screen and get a high score!
-2.	As a player, I want to be able to enter my name and have the game remember my highest score because that makes me feel nice.
-3.	As a player, I want to progress through levels to increase our score!
-4.	As a player, I want to be able to beat a level in order to get to the next one.
-5.	As a player, I don’t want it to be impossible to win because that’s lame :^(
-6.  As a player, I don’t the game to be boring because that’s boring. :(
-7.	As a developer/player, I want the game to run at a reasonable fps in order to better the gameplay experience.
-8.	As a developer / player, I want to have different game mechanics such as increase blocked toughness or double blocks.
-9.	As a developer, I want to have a unified style and framework in order to make coding more efficient.
-10.	As developer, I kinda want the game to be funny.
 
-## Sprint 1:
--	Base game done and tested [User Stories 1, 3, 4]
--	Simple (normal breakout mechanics, blocks disappear, and the score gets updated) game mechanics [User Story 1]
--	Create the first level. [User Story 1]
--	Menu Mockup [User Story 2]
-## Sprint 2:
--	Level design (more levels) [User Story 6]
--	Score system  [User Story 2]
--	Power ups and modifiers (2 for now) [User Story 8]
--	Title screen and menus. [User Story 2]
--	Level selects [User Stories 5, 6]
-## Sprint 3:
--	Scoreboard [User Story 2]
--	Home run baby [User Story 8]
--	More unit test [User Story 7]
--	FREE SPACE [User Story 10]
+
+| Epic Story        | As a player, I want a paddle that I can control and interact with the ball|As a developer/player, I want a menu system that is pleasing, but allows the user to have control over the game| As a player/developer, I want a ball that moves using some sort of physics engine in a predictable way| As a player, I want to be able to hit blocks and clear them with my ball in order to win| As a player, I want a dynamic video game whose levels change as the player progresses| I want to use a variety of Powerups to change how the game is played|
+| ------------- |:-------------:| -----:|---------: | --------:| ------:| ------:| 
+| Sprint 1     | As a player, I want to have a rectangle to represent my paddle because it’s easier to hit the ball with a rectangle | As a player, I want to have the basic lives and score interface to see how well im doing in the game | As a developer/player, I want a ball that stays on the screen because it’d be a nightmare trying to hit the blocks otherwise| As a developer, I want a single block on my screen to help me get started implementing the system ;)| As a developer, II want a single and simple level to lay out the framework for our game| - |
+| Sprint 2     | As a player, I want to move the paddle and the ball can interact with the paddle in order to score points in the game     |   As a player, I can now pause and continue the game whenever I want to in case I have something else to do | As a player, I want a ball that bounces off the paddle / walls in a predictable manner to more easily hit the blocks| As a player / developer, I want multiple blocks on the screen that can be hit by the ball in order to get more points| As a player / developer, I want the level to have one or two simple modifiers (such as more than 1 ball) to see how other systems interact with it| I want to implement a simple power up system and make easy power ups |
+| Sprint 3  | - | As a player, I want my score to get put into a database and the menu has access to the player scores so I can make myself feel good about my video game prowas ;) | As a player, The ball should be able to collect power ups and other useful things to keep the game interesting| As a player, I want the blocks to disappear when being hit by the ball and maybe drop power ups to progress | As a player, I want the levels to get a bit more complex (such as inverted screen or different control styles) to keep things interesting| I want the power ups to become more complicated and do more fun things. |

@@ -1,5 +1,8 @@
 package com.example.breakout;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RectF;
 
 public class BOMenuButton extends BOObject {
@@ -11,13 +14,31 @@ public class BOMenuButton extends BOObject {
     float yPosition;
     String text;
 
-    BOMenuButton(int screenWidth, int screenHeight, String text, BOGameController gc) {
+    public BOMenuButton(int screenWidth, int screenHeight, String text, BOGameController gc, float top) {
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
         this.buttonWidth = this.screenWidth / (float)1.75;
-        this.buttonHeight = this.screenHeight / (float)1.75;
+        this.buttonHeight = this.screenHeight / (float)7.5;
         this.text = text;
 
-        collider = new RectF( (screenWidth) - (gc.menu.menuWidth/3), (gc.menu.menuHeight/6), (screenWidth) - (gc.menu.menuWidth/3) + buttonWidth, (gc.menu.menuHeight/16) + buttonHeight);
+        collider = new RectF( gc.menu.collider.left, top + gc.menu.menuHeight/4, gc.menu.collider.right, (top + gc.menu.menuHeight/4) + buttonHeight);
+
+
+
+
+    }
+
+    public void drawText(Canvas mCanvas, Paint mPaint) {
+        mPaint.setTextSize(buttonHeight/(float)1.5);
+        mPaint.setColor(Color.argb(255,255,255,255));
+
+        mCanvas.drawText(text, collider.left +  collider.width()/(float)3.75 , collider.bottom - (collider.height()/(float)6.5), mPaint);
+    }
+
+    public void draw(Canvas mCanvas, Paint mPaint) {
+        mPaint.setColor(Color.argb(255,222,113,144));
+        mCanvas.drawRect(collider, mPaint);
+        drawText(mCanvas, mPaint);
+
     }
 }
