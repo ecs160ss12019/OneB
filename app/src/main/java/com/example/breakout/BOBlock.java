@@ -44,7 +44,19 @@ public class BOBlock extends BOObject{
             // intensive if a block is 'hit' it'll just change its collider elements to negative numbers
             // effectively removing it from the screen
             collider = new RectF(-1,-1,-1,-1);
-            gameController.score += 10;
+            // check if the block hit has a power-up
+            if (hasPowerup) {
+                Log.d("Two balls activated.", "");
+                gameController.doubleBallPowerUp = true;
+                gameController.ball2 = new BOBall(gameController.mScreenX, gameController.paddle);
+                gameController.ball2.sprite = BitmapFactory.decodeResource(gameController.getResources(), R.drawable.ball);
+                gameController.ball2.reset();
+                gameController.score += 10;
+            }
+
+
+
+
 
         }
 

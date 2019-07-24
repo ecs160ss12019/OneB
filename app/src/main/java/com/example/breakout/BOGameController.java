@@ -111,6 +111,7 @@ public class BOGameController extends Activity {
     // GameObjects
     public BOPaddle paddle;
     public BOBall ball;
+    public BOBall ball2; // only draw when power-up is true
     public ArrayList<BOBlock> blocks;
 
     public BOLayout myLayout;
@@ -120,6 +121,9 @@ public class BOGameController extends Activity {
     public MediaPlayer media;
     public MediaPlayer media_won;
     public MediaPlayer media_lost;
+
+    // Power ups
+    public boolean doubleBallPowerUp = false;
 
     // Testing the timer
     public BOTimer timer = new BOTimer();
