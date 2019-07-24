@@ -160,6 +160,8 @@ public class BOGame extends SurfaceView implements Runnable {
         // Reset our game objects
         gc.blocks.clear();
         gc.score = 0;
+        gc.lives = 3;
+        gc.powerups = 0;
 
         //only reset the score if we started back on the first level
 //        if(gc.currentLevel != 1) {

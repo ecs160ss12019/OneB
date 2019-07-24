@@ -40,8 +40,8 @@ public class Level1State extends State{
         mPaint.setTextSize(scoreSize);
 
 
-
-        mCanvas.drawText("Score LEVEL 1: " + gc.score,gc.mScreenX / 55,gc.mScreenY / 9, mPaint); // TODO: move this to UI class?
+        mCanvas.drawText("Level: 1 " + gc.lives,gc.mScreenX / 55,gc.mScreenY / 1, mPaint);
+        mCanvas.drawText("Score: " + gc.score,gc.mScreenX / 55,gc.mScreenY / 9, mPaint); // TODO: move this to UI class?
         mCanvas.drawText("Lives: " + gc.lives,gc.mScreenX / 55,gc.mScreenY / 20, mPaint);
     }
 
@@ -97,7 +97,7 @@ public class Level1State extends State{
                     gc.paddle.touched = motionEvent.getX();
 
                     // PowerUp Debugging Method
-//                    gc.context = new GameWonState(gc);
+                    gc.context = new GameWonState(gc);
 
                 }
 

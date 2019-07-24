@@ -37,8 +37,8 @@ public class Level2State extends State{
         mPaint.setTextSize(scoreSize);
 
 
-
-        mCanvas.drawText("Score LEVEL 2: " + gc.score,gc.mScreenX / 55,gc.mScreenY / 9, mPaint); // TODO: move this to UI class?
+        mCanvas.drawText("Level: 2 " + gc.lives,gc.mScreenX / 55,gc.mScreenY / 1, mPaint);
+        mCanvas.drawText("Score: " + gc.score,gc.mScreenX / 55,gc.mScreenY / 9, mPaint); // TODO: move this to UI class?
         mCanvas.drawText("Lives: " + gc.lives,gc.mScreenX / 55,gc.mScreenY / 20, mPaint);
     }
 
@@ -118,6 +118,7 @@ public class Level2State extends State{
     }
 
     public void drawGameOver(Canvas mCanvas, Paint mPaint){
+
         gc.gameOver.draw(mCanvas, mPaint);
     }
 
@@ -137,7 +138,7 @@ public class Level2State extends State{
             // realistic bounce
             ball.getCollider().bottom = gc.paddle.collider.top + (float).01; // shhhhh. We're making it so the ball isn't constantly colliding
             ball.blockBounce(gc.paddle.collider);
-            ball.incrementSpeed(50);
+            ball.incrementSpeed(10);
         }
 
         //handle walls
@@ -169,7 +170,7 @@ public class Level2State extends State{
             ball.reverseYVelocity();
         }
 
-        // GIMMIC: The ball moves through the wall.
+        // GIMMICK FOR LEVEL 2: The ball moves through the wall.
 
         // Left Wall
         if(ball.getCollider().left < 0) {

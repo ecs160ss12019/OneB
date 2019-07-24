@@ -40,10 +40,9 @@ public class Level3State extends State{
         mPaint.setTextSize(scoreSize);
 
 
-
-        mCanvas.drawText("Score LEVEL 3: " + gc.score,gc.mScreenX / 55,gc.mScreenY / 9, mPaint); // TODO: move this to UI class?
+        mCanvas.drawText("Level: 3 " + gc.lives,gc.mScreenX / 55,gc.mScreenY / 1, mPaint);
+        mCanvas.drawText("Score: " + gc.score,gc.mScreenX / 55,gc.mScreenY / 9, mPaint); // TODO: move this to UI class?
         mCanvas.drawText("Lives: " + gc.lives,gc.mScreenX / 55,gc.mScreenY / 20, mPaint);
-
 
     }
 
@@ -112,7 +111,7 @@ public class Level3State extends State{
     public void drawGameObjects(Canvas mCanvas, Paint mPaint) {
         // Draw in our Game Objects
 
-        //GIMIC: Only draw the ball.
+        // GIMMICK FOR LEVEL 3: Only draw the ball.
 
         gc.ball.draw(mCanvas, mPaint);
 
@@ -131,7 +130,7 @@ public class Level3State extends State{
         return true;
     }
 
-    //TODO: Add a side hitbox to the paddle. Also refractor me
+    //TODO: Add a side hit-box to the paddle. Also refactor me
     private void detectCollisions(BOBall ball) {
         // Has our ball hit the paddle?
         if(RectF.intersects(gc.paddle.collider, ball.getCollider())) {
@@ -141,7 +140,7 @@ public class Level3State extends State{
             ball.incrementSpeed(50);
         }
 
-        //handle walls
+        // handle walls
 
         // bottom wall
         if(ball.getCollider().bottom >= gc.mScreenY) {

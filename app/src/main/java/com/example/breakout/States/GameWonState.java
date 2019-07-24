@@ -25,7 +25,7 @@ public class GameWonState extends State {
         gc.media.pause();
         gc.media_won.start();
         gc.myLayout.draw(mCanvas, mPaint); // draw the background over the blocks.
-        gc.menu.draw(mCanvas, mPaint); // replace with You Won!
+        mCanvas.drawText("You Win!",(gc.mScreenX / (float)5.5) ,gc.mScreenY / (float)1.5, mPaint);
     }
 
     public void run() {
@@ -43,10 +43,8 @@ public class GameWonState extends State {
                 gc.media.seekTo(0); // this will make it so the song plays from the begining.
                 gc.currentLevel++; // increment current level
                 gc.media.start(); // restart the music
-                gc.lives = 3; // reset the lives
-                gc.level++; // increase the level
-                gc.powerups = 0; // reset power-ups for game logic.
-                gc.mBOGame.startNewGame(); // god damn.
+                gc.level++; // increase the level for power-ups
+                gc.mBOGame.startNewGame();
                 gc.context = new GameWaitingState(gc);
         }
         return true;
