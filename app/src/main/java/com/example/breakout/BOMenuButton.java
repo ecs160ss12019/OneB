@@ -11,13 +11,17 @@ public class BOMenuButton extends BOObject {
     float yPosition;
     String text;
 
-    BOMenuButton(int screenWidth, int screenHeight, String text, BOGameController gc) {
+    BOMenuButton(int screenWidth, int screenHeight, String text, float menuWidth, float menuHeight) {
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
-        this.buttonWidth = this.screenWidth / (float)1.75;
-        this.buttonHeight = this.screenHeight / (float)1.75;
+        this.buttonWidth = menuWidth;
+        this.buttonHeight = menuHeight/6;
         this.text = text;
 
-        collider = new RectF( (screenWidth) - (gc.menu.menuWidth/3), (gc.menu.menuHeight/6), (screenWidth) - (gc.menu.menuWidth/3) + buttonWidth, (gc.menu.menuHeight/16) + buttonHeight);
+        collider = new RectF( (screenWidth/2) - (menuWidth/3), (menuHeight/6), (screenWidth/2) + (menuWidth/3), (menuHeight/6) + buttonHeight);
+    }
+
+    public void drawText() {
+
     }
 }

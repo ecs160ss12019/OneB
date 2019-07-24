@@ -101,7 +101,7 @@ public class BOGame extends SurfaceView implements Runnable {
         gc.gameOver.collider = new RectF((gc.mScreenX/2 - gc.mScreenX/4),(gc.mScreenY/2 - gc.mScreenY / 4), (gc.mScreenX/2 + gc.mScreenX/4) , (gc.mScreenY/2 + gc.mScreenY / 4)); // this should place it ~ center of screen.
         gc.gameOver.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.game_over);
 
-        gc.menu = new BOMenu(gc.mScreenX, gc.mScreenY, gc);
+        gc.menu = new BOMenu(gc.mScreenX, gc.mScreenY);
         gc.menu.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.menu);
 
         gc.pauseButton = new BOPauseButton(gc.mScreenX, gc.mScreenY);
