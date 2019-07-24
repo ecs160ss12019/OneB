@@ -220,6 +220,8 @@ public class BOGameController extends Activity {
 
     public void closeApplication(View view) {
         finish();
+        media.stop();
+        media.release();
         moveTaskToBack(true);
     }
 
