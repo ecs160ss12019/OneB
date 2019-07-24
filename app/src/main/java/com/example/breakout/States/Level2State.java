@@ -169,16 +169,18 @@ public class Level2State extends State{
             ball.reverseYVelocity();
         }
 
+        // GIMMIC: The ball moves through the wall.
+
         // Left Wall
         if(ball.getCollider().left < 0) {
-            ball.getCollider().left = 0;
-            ball.reverseXVelocity();
+            ball.getCollider().left = gc.mScreenX - gc.ball.collider.width();
+            ball.getCollider().right = gc.mScreenX;
         }
 
         // Right wall
         if(ball.getCollider().right > gc.mScreenX) {
-            ball.getCollider().right = gc.mScreenX + 10;
-            ball.reverseXVelocity();
+            ball.getCollider().right = 0 + gc.ball.collider.width();
+            ball.getCollider().left = 0;
         }
     }
 

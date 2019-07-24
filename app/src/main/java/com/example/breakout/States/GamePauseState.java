@@ -22,7 +22,7 @@ public class GamePauseState extends State {
         resumeButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "Resume", gc, gc.menu.collider.top);
         restartButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "Restart", gc, (gc.menu.collider.top + gc.mScreenY/(float)7.5));
         levelButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, " Levels", gc, (gc.menu.collider.top + (gc.mScreenY/(float)7.5)*2));
-        exitButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "  Exit", gc, (gc.menu.collider.top + (gc.mScreenY/(float)7.5)*3));
+        exitButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "   Exit", gc, (gc.menu.collider.top + (gc.mScreenY/(float)7.5)*3));
 
     }
 
@@ -57,7 +57,7 @@ public class GamePauseState extends State {
             case MotionEvent.ACTION_DOWN: //placed finger on screen
                 if (motionEvent.getX() > resumeButton.collider.left && motionEvent.getX() < resumeButton.collider.right && motionEvent.getY() < resumeButton.collider.bottom
                         && motionEvent.getY() > resumeButton.collider.top) {
-                    gc.context = new GameRunningState(gc);
+                    gc.context = gc.levels[gc.currentLevel - 1];
                 }
                 if (motionEvent.getX() > restartButton.collider.left && motionEvent.getX() < restartButton.collider.right && motionEvent.getY() < restartButton.collider.bottom
                         && motionEvent.getY() > restartButton.collider.top) {

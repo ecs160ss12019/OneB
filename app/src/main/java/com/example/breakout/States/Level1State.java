@@ -72,7 +72,7 @@ public class Level1State extends State{
         for(int i = 0; i < gc.blocks.size(); i++)
         {
             gc.blocks.get(i).update(gc.ball); // if collided with ball
-            if(gc.doubleBallPowerUp)
+            if(gc.doubleBallPowerUp) // double ball power up
                 gc.blocks.get(i).update(gc.ball2);
         }
         gc.won = wonGame();
@@ -114,7 +114,7 @@ public class Level1State extends State{
          */
         // Check to see if the player won
         if(gc.won) {
-            gc.currentLevel += 1;
+            gc.context = new GameWonState(gc);
             gc.context = new GameWonState(gc);
             gc.won = false;
         }
@@ -145,6 +145,7 @@ public class Level1State extends State{
         }
         return true;
     }
+
 
     //TODO: Add a side hitbox to the paddle. Also refractor me
     private void detectCollisions(BOBall ball) {

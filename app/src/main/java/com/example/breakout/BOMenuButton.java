@@ -3,6 +3,7 @@ package com.example.breakout;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 
 public class BOMenuButton extends BOObject {
@@ -10,8 +11,6 @@ public class BOMenuButton extends BOObject {
     float buttonHeight;
     int screenWidth;
     int screenHeight;
-    float xPosition;
-    float yPosition;
     String text;
 
     public BOMenuButton(int screenWidth, int screenHeight, String text, BOGameController gc, float top) {
@@ -29,10 +28,15 @@ public class BOMenuButton extends BOObject {
     }
 
     public void drawText(Canvas mCanvas, Paint mPaint) {
+
+        Rect bounds = new Rect();
+        mPaint.getTextBounds(text, 0, text.length(), bounds);
+        float x = (collider.left + collider.width() / (float)3.10);
+        float y = ((collider.bottom - collider.height() / 2) - ((mPaint.descent() + mPaint.ascent()) / 2)) ; // code stolen from : https://stackoverflow.com/questions/3630086/how-to-get-string-width-on-android
+
         mPaint.setTextSize(buttonHeight/(float)1.5);
         mPaint.setColor(Color.argb(255,255,255,255));
-
-        mCanvas.drawText(text, collider.left +  collider.width()/(float)3.75 , collider.bottom - (collider.height()/(float)6.5), mPaint);
+        mCanvas.drawText(text, x  , y, mPaint);
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {

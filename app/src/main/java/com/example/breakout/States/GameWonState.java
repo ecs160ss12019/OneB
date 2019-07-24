@@ -41,6 +41,7 @@ public class GameWonState extends State {
 
             case MotionEvent.ACTION_DOWN: //placed finger on screen
                 gc.media.seekTo(0); // this will make it so the song plays from the begining.
+                gc.currentLevel++; // increment current level
                 gc.media.start(); // restart the music
                 gc.lives = 3; // reset the lives
                 gc.level++; // increase the level

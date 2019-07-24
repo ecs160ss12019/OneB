@@ -143,10 +143,10 @@ public class BOGameController extends Activity {
                               // drawables folder without needing to do it in BOGame
                               // lets objects initialize sprites essentially.
 
-    public boolean firstStart = true; // TODO: Temp, once we get our GameTitleState working, we can remove this
 
     public State levels[];
     public int currentLevel = 1;
+
 
 
 
