@@ -51,8 +51,8 @@ public class BOBlock extends BOObject{
                 gameController.ball2 = new BOBall(gameController.mScreenX, gameController.paddle);
                 gameController.ball2.sprite = BitmapFactory.decodeResource(gameController.getResources(), R.drawable.ball);
                 gameController.ball2.reset();
-                gameController.score += 10;
             }
+            gameController.score += 10;
 
 
 
