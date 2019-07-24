@@ -31,7 +31,7 @@ public class BOMenuButton extends BOObject {
 
         Rect bounds = new Rect();
         mPaint.getTextBounds(text, 0, text.length(), bounds);
-        float x = (collider.left + collider.width() / (float)3.10);
+        float x = (collider.left + collider.width() / (float)3.50);
         float y = ((collider.bottom - collider.height() / 2) - ((mPaint.descent() + mPaint.ascent()) / 2)) ; // code stolen from : https://stackoverflow.com/questions/3630086/how-to-get-string-width-on-android
 
         mPaint.setTextSize(buttonHeight/(float)1.5);

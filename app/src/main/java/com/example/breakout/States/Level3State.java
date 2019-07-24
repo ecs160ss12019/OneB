@@ -4,6 +4,8 @@ package com.example.breakout.States;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -18,15 +20,16 @@ public class Level3State extends State{
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
-        // draw nothing while game is running?
-        // lock the canvas and ready to draw
-
-        // Order matters. This should be drawn before the ball and paddle.
-        gc.myLayout.draw(mCanvas, mPaint);
+//         draw nothing while game is running?
+//         lock the canvas and ready to draw
+//
+//         Order matters. This should be drawn before the ball and paddle.
+        //gc.myLayout.draw(mCanvas, mPaint);
         // Choose a color to paint with
         mPaint.setColor(Color.argb
                 (255, 255, 255, 255));
 
+        mCanvas.drawRect(new RectF( 0, 0, gc.mScreenX, gc.mScreenY), mPaint);
         gc.pauseButton.draw(mCanvas, mPaint);
         drawGameObjects(mCanvas, mPaint);
 
@@ -40,6 +43,8 @@ public class Level3State extends State{
 
         mCanvas.drawText("Score LEVEL 3: " + gc.score,gc.mScreenX / 55,gc.mScreenY / 9, mPaint); // TODO: move this to UI class?
         mCanvas.drawText("Lives: " + gc.lives,gc.mScreenX / 55,gc.mScreenY / 20, mPaint);
+
+
     }
 
     public void run() {
@@ -106,15 +111,11 @@ public class Level3State extends State{
 
     public void drawGameObjects(Canvas mCanvas, Paint mPaint) {
         // Draw in our Game Objects
+
+        //GIMIC: Only draw the ball.
+
         gc.ball.draw(mCanvas, mPaint);
-        gc.paddle.draw(mCanvas, mPaint);
 
-
-        // Draw the blocks
-        for(int i = 0; i < gc.blocks.size(); i++) {
-            gc.blocks.get(i).draw(mCanvas, mPaint);
-
-        }
     }
 
     public void drawGameOver(Canvas mCanvas, Paint mPaint){

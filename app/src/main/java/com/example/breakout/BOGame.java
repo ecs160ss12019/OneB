@@ -112,7 +112,7 @@ public class BOGame extends SurfaceView implements Runnable {
         Log.d("DEBUG: ", "BOGAME");
 
         // set up the fonts
-        Typeface tf = ResourcesCompat.getFont(context, R.font.lobster);
+        Typeface tf = ResourcesCompat.getFont(context, R.font.arcade);
         mPaint.setTypeface(tf);
 
     }

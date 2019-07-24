@@ -19,10 +19,10 @@ public class GamePauseState extends State {
 
     public GamePauseState(BOGameController gc) {
         super(gc);
-        resumeButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "Resume", gc, gc.menu.collider.top);
+        resumeButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, " Resume", gc, gc.menu.collider.top);
         restartButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "Restart", gc, (gc.menu.collider.top + gc.mScreenY/(float)7.5));
         levelButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, " Levels", gc, (gc.menu.collider.top + (gc.mScreenY/(float)7.5)*2));
-        exitButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "   Exit", gc, (gc.menu.collider.top + (gc.mScreenY/(float)7.5)*3));
+        exitButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "    Exit", gc, (gc.menu.collider.top + (gc.mScreenY/(float)7.5)*3));
 
     }
 
