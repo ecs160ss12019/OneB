@@ -53,6 +53,9 @@ public class BOGame extends SurfaceView implements Runnable {
     // check if paused
     public boolean isPaused = true;
 
+    // GameObject builder
+    GameObjectBuilder factory;
+
 
     // TODO: Remove all of my Logs lol.
     public BOGame(BOGameController controller, Context context, int x, int y) {
@@ -68,45 +71,49 @@ public class BOGame extends SurfaceView implements Runnable {
         // We should consider only putting music on menu screen
 
         gc = controller;
-
-        // initialize our screen size
-        gc.mScreenX = x;
-        gc.mScreenY = y;
+        factory = new GameObjectBuilder();
 
 
-        //TODO: Maybe there is a better configeration for our game?
-        //  Somebody play with these values
-
-        // By default we will use 5%(1/20th) of screen width for font size
-        gc.fontSize = gc.mScreenX / 20;
-        // Margin will be 1.5% (1/75th) of screen width
-        gc.fontMargin = gc.mScreenX / 75;
 
         // Initialize the drawing objects
         holder = getHolder();
         mPaint = new Paint();
 
-        // Initialize our game objects
-        gc.paddle = new BOPaddle(gc.mScreenX, gc.mScreenY);
-        gc.paddle.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.pic); // initialize the sprit
-        gc.ball = new BOBall(gc.mScreenX, gc.paddle);
-        gc.ball.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.ball);
 
+        // Initialize our game objects
+        Point dim = gc.getMeta().getDim();
+
+        // building the paddle
+        factory.setPos(dim);
+        factory.setResources(gc.resources);
+        gc.paddle = factory.buildPaddle();
+
+        // building the ball
+        factory.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.ball));
+        gc.ball = factory.buildBall();
+
+        //initialize blocks ArrayList for later use
         gc.blocks = new ArrayList<>();
 
-        // Initialize the layout
-        gc.myLayout = new BOLayout(gc.mScreenX, gc.mScreenY);
-        gc.myLayout.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.background);
+        // Initialize the layout  TODO: Move this later
 
-        gc.gameOver = new BOLayout(gc.mScreenX, gc.mScreenY);
-        gc.gameOver.collider = new RectF((gc.mScreenX/2 - gc.mScreenX/4),(gc.mScreenY/2 - gc.mScreenY / 4), (gc.mScreenX/2 + gc.mScreenX/4) , (gc.mScreenY/2 + gc.mScreenY / 4)); // this should place it ~ center of screen.
-        gc.gameOver.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.game_over);
+        factory.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.background));
+        factory.setCollider(new RectF(0,0,dim.x,dim.y));
+        gc.myLayout = factory.buildLayout();
 
-        gc.menu = new BOMenu(gc.mScreenX, gc.mScreenY, gc, mCanvas, mPaint);
+        factory.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.game_over));
+        factory.setCollider(new RectF((dim.x/2 - dim.x/4),(dim.y/2 - dim.y / 4), (dim.x/2 + dim.x/4) , (dim.y/2 + dim.y / 4))); // this should place it ~ center of screen.);
+        gc.gameOver = factory.buildLayout();
+
+
+        /* Our factory probably shouldnt build the BOMenu even though it inherits from gameobject..Think more about this later!! */
+        gc.menu = new BOMenu((int)dim.x, (int)dim.y, gc, mCanvas, mPaint);
         gc.menu.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.menu);
 
-        gc.pauseButton = new BOPauseButton(gc.mScreenX, gc.mScreenY);
+        gc.pauseButton = new BOPauseButton((int)dim.x , (int)dim.y);
         gc.pauseButton.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.pause);
+
+
         // Start the game!
         startNewGame();
         Log.d("DEBUG: ", "BOGAME");
@@ -114,6 +121,8 @@ public class BOGame extends SurfaceView implements Runnable {
         // set up the fonts
         Typeface tf = ResourcesCompat.getFont(context, R.font.arcade);
         mPaint.setTypeface(tf);
+
+        factory.clear(); // reset our factory so other methods don't accidently call something with wrong hold-over dimensions. Instead it'll just crash :^)
 
     }
 
@@ -140,7 +149,7 @@ public class BOGame extends SurfaceView implements Runnable {
                 // Store the current frame rate in mFPS
                 // ready to pass to the update methods of
                 // mBat and mBall next frame/loop
-                gc.FPS = gc.MILLIS_IN_SECONDS / timeThisFrame;
+                gc.getMeta().updateFPS(timeThisFrame);
             }
             if(gc.lives == 0) { // listen for lives == 0
                 startNewGame();
@@ -170,7 +179,7 @@ public class BOGame extends SurfaceView implements Runnable {
 //        }
 
         // Set the state to gameRunning
-        gc.ball.reset();
+        gc.ball.reset(gc.paddle);
         initializeBlocks(); // create the block objects
         randomlyAssignBlocks(); // give them random sprites
         //Collections.shuffle(gc.blocks); // shuffle the blocks!
@@ -198,7 +207,7 @@ public class BOGame extends SurfaceView implements Runnable {
     }
 
     private void printDebuggingText(){
-        int debugSize = gc.fontSize / 2;
+        int debugSize = gc.getMeta().getFontSize()/ 2;
         int debugStart = 150;
         mPaint.setTextSize(debugSize);
 
@@ -281,13 +290,14 @@ public class BOGame extends SurfaceView implements Runnable {
 
         gc.blocks.clear(); // reset our array-list;
 
+        Point dim = gc.getMeta().getDim();
 
         // distance between blocks
-        float xMargin = (float)(gc.mScreenX * .05); //TODO: These are magic numbers. See if we can find better ones
-        float yMargin = (float)(gc.mScreenY * .05);
+        float xMargin = (float)(dim.x * .05); //TODO: These are magic numbers. See if we can find better ones
+        float yMargin = (float)(dim.y * .05);
 
         // padding for screen
-        float padding = (float)(gc.mScreenX* .1); // magic number.
+        float padding = (float)(dim.x * .1); // magic number.
 
         float curX = padding;
         float curY = 0;
@@ -303,13 +313,13 @@ public class BOGame extends SurfaceView implements Runnable {
             // its low-key dumb and repetition of code, but hey we do what we gotta do.
 
             while (canAddMore) {
-                BOBlock temp = new BOBlock(gc.mScreenX, gc.mScreenY, curX + xMargin, curY + yMargin, gc);
+                BOBlock temp = new BOBlock(dim, curX + xMargin, curY + yMargin, gc);
                 gc.blocks.add(temp);
                 num_blocks += 1;
                 height = temp.getHeight();
                 curX += (temp.getLength() + xMargin);
 
-                if (curX + xMargin + temp.getLength() + padding > gc.mScreenX) {
+                if (curX + xMargin + temp.getLength() + padding > dim.x) {
                     canAddMore = false;
                 }
             }

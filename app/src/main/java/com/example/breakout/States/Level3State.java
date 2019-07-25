@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 
 import com.example.breakout.BOBall;
 import com.example.breakout.BOGameController;
+import com.example.breakout.Point;
 
 public class Level3State extends State{
 
@@ -19,31 +20,37 @@ public class Level3State extends State{
         super(gc);
     }
 
+
     public void draw(Canvas mCanvas, Paint mPaint) {
-//         draw nothing while game is running?
-//         lock the canvas and ready to draw
-//
-//         Order matters. This should be drawn before the ball and paddle.
-        //gc.myLayout.draw(mCanvas, mPaint);
+        // draw nothing while game is running?
+        // lock the canvas and ready to draw
+
+        // Order matters. This should be drawn before the ball and paddle.
+        gc.myLayout.draw(mCanvas, mPaint);
         // Choose a color to paint with
         mPaint.setColor(Color.argb
-                (255, 255, 255, 255));
+                (255, 0, 0, 0));
+        Point dim = gc.getMeta().getDim();
 
-        mCanvas.drawRect(new RectF( 0, 0, gc.mScreenX, gc.mScreenY), mPaint);
+
+        mCanvas.drawRect(new RectF( 0, 0, dim.x, dim.y), mPaint);
         gc.pauseButton.draw(mCanvas, mPaint);
         drawGameObjects(mCanvas, mPaint);
 
-        mPaint.setTextSize(gc.fontSize);
+        if(gc.doubleBallPowerUp)
+            gc.ball2.draw(mCanvas, mPaint);
+
+        mPaint.setTextSize(gc.getMeta().getFontSize());
         checkWon();
 
-        int scoreSize = gc.fontSize / 2;
+        int scoreSize = gc.getMeta().getFontSize() / 2;
         mPaint.setTextSize(scoreSize);
 
 
-        mCanvas.drawText("Level: " + gc.level,gc.mScreenX / 55,gc.mScreenY / 6, mPaint);
-        mCanvas.drawText("Score: " + gc.score,gc.mScreenX / 55,gc.mScreenY / 9, mPaint); // TODO: move this to UI class?
-        mCanvas.drawText("Lives: " + gc.lives,gc.mScreenX / 55,gc.mScreenY / 20, mPaint);
 
+        mCanvas.drawText("Level: " + gc.level,dim.x / 55,dim.y / 6, mPaint);
+        mCanvas.drawText("Score: " + gc.score,dim.x / 55,dim.y / 9, mPaint); // TODO: move this to UI class?
+        mCanvas.drawText("Lives: " + gc.lives,dim.x / 55,dim.y / 20, mPaint);
     }
 
     public void run() {
@@ -57,16 +64,27 @@ public class Level3State extends State{
         // we can see if there have
         // been any collisions
         detectCollisions(gc.ball);
-
+        if(gc.ball2 != null) {
+            detectCollisions(gc.ball2);
+        }
     }
 
     public void update() {
-        gc.ball.update(gc.FPS);
-        gc.paddle.update(gc.FPS);
+
+        long FPS = gc.getMeta().getFPS();
+
+        gc.ball.update(FPS);
+        gc.paddle.update(FPS);
+
+        if(gc.doubleBallPowerUp)
+            gc.ball2.update(FPS);
+
 
         for(int i = 0; i < gc.blocks.size(); i++)
         {
             gc.blocks.get(i).update(gc.ball); // if collided with ball
+            if(gc.doubleBallPowerUp) // double ball power up
+                gc.blocks.get(i).update(gc.ball2);
         }
         gc.won = wonGame();
     }
@@ -80,6 +98,7 @@ public class Level3State extends State{
                 if(motionEvent.getX() > gc.pauseButton.collider.left && motionEvent.getX() < gc.pauseButton.collider.right && motionEvent.getY() < gc.pauseButton.collider.bottom
                         && motionEvent.getY() > gc.pauseButton.collider.top) {
                     gc.context = new GamePauseState(gc);
+
                 }
                 else {
 
@@ -87,6 +106,10 @@ public class Level3State extends State{
                     // we have a new movement
                     // command
                     gc.paddle.touched = motionEvent.getX();
+
+                    // PowerUp Debugging Method
+//                    gc.context = new GameWonState(gc);
+
                 }
 
                 break;
@@ -98,11 +121,11 @@ public class Level3State extends State{
 
     public void checkWon() {
         /*
-        checks if all the blocks have been destroyed and plays the sound effects appropriately
+        checks if all the blocks have been destroyed and plays the sound effects appropreately
          */
         // Check to see if the player won
         if(gc.won) {
-//            gc.currentLevel += 1;
+            gc.context = new GameWonState(gc);
             gc.context = new GameWonState(gc);
             gc.won = false;
         }
@@ -110,15 +133,11 @@ public class Level3State extends State{
 
     public void drawGameObjects(Canvas mCanvas, Paint mPaint) {
         // Draw in our Game Objects
-
-        // GIMMICK FOR LEVEL 3: Only draw the ball.
-
-        gc.ball.draw(mCanvas, mPaint);
+        gc.ball.draw(mCanvas, mPaint); // only draw the ball for this gimmick
 
     }
 
     public void drawGameOver(Canvas mCanvas, Paint mPaint){
-
         gc.gameOver.draw(mCanvas, mPaint);
     }
 
@@ -131,20 +150,23 @@ public class Level3State extends State{
         return true;
     }
 
-    //TODO: Add a side hit-box to the paddle. Also refactor me
+
+    //TODO: Add a side hitbox to the paddle. Also refractor me
     private void detectCollisions(BOBall ball) {
         // Has our ball hit the paddle?
         if(RectF.intersects(gc.paddle.collider, ball.getCollider())) {
             // realistic bounce
             ball.getCollider().bottom = gc.paddle.collider.top + (float).01; // shhhhh. We're making it so the ball isn't constantly colliding
             ball.blockBounce(gc.paddle.collider);
-            ball.incrementSpeed(50);
+            ball.incrementSpeed(10);
         }
 
-        // handle walls
+        //handle walls
+
+        Point dim = gc.getMeta().getDim();
 
         // bottom wall
-        if(ball.getCollider().bottom >= gc.mScreenY) {
+        if(ball.getCollider().bottom >= dim.y) {
 
             if (gc.lives > 0) {
                 gc.lives--;
@@ -177,8 +199,9 @@ public class Level3State extends State{
         }
 
         // Right wall
-        if(ball.getCollider().right > gc.mScreenX) {
-            ball.getCollider().right = gc.mScreenX + 10;
+        if(ball.getCollider().right > dim.x) {
+            ball.getCollider().left = dim.x - ball.getCollider().width();
+            ball.getCollider().right = dim.x;
             ball.reverseXVelocity();
         }
     }

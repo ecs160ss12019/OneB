@@ -9,8 +9,13 @@ import android.view.MotionEvent;
 
 import com.example.breakout.BOGameController;
 import com.example.breakout.BOMenuButton;
+import com.example.breakout.Point;
 
 public class GamePauseState extends State {
+    /*
+    The pause state handles logic when the game is paused. This includes things like rendering the menu buttons
+    and giving touch. But mb I should refactor this. Comment here to remind me.
+     */
 
     BOMenuButton resumeButton;
     BOMenuButton restartButton;
@@ -18,11 +23,15 @@ public class GamePauseState extends State {
     BOMenuButton exitButton;
 
     public GamePauseState(BOGameController gc) {
+
         super(gc);
-        resumeButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, " Resume", gc, gc.menu.collider.top);
-        restartButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "Restart", gc, (gc.menu.collider.top + gc.mScreenY/(float)7.5));
-        levelButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, " Levels", gc, (gc.menu.collider.top + (gc.mScreenY/(float)7.5)*2));
-        exitButton = new BOMenuButton(gc.mScreenX, gc.mScreenY, "    Exit", gc, (gc.menu.collider.top + (gc.mScreenY/(float)7.5)*3));
+
+        Point dim = gc.getMeta().getDim();
+
+        resumeButton = new BOMenuButton((int)dim.x, (int)dim.y, " Resume", gc, gc.menu.collider.top);
+        restartButton = new BOMenuButton((int)dim.x, (int)dim.y, "Restart", gc, (gc.menu.collider.top + dim.y/(float)7.5));
+        levelButton = new BOMenuButton((int)dim.x, (int)dim.y,  " Levels", gc, (gc.menu.collider.top + (dim.y/(float)7.5)*2));
+        exitButton = new BOMenuButton((int)dim.x, (int)dim.y,  "    Exit", gc, (gc.menu.collider.top + (dim.y/(float)7.5)*3));
 
     }
 

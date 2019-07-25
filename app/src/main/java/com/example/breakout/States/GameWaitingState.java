@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 
 import com.example.breakout.BOGame;
 import com.example.breakout.BOGameController;
+import com.example.breakout.Point;
 
 public class GameWaitingState extends State{
     /*
@@ -18,13 +19,16 @@ public class GameWaitingState extends State{
 
     public GameWaitingState(BOGameController gc){
         super(gc);
-        gc.ball.reset();
+        gc.ball.reset(gc.paddle);
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
+
+        Point dim = gc.getMeta().getDim();
+
         new GameRunningState(gc).draw(mCanvas, mPaint); // this is good practice?? LOL Probably not, but its useful.
-        mPaint.setTextSize(gc.mScreenX / 15);
-        mCanvas.drawText("Tap Anywhere To Launch!",(gc.mScreenX / (float)6.6) ,gc.mScreenY / (float)1.5, mPaint); // TODO: move this to UI class? Also magic numbers FIX ME
+        mPaint.setTextSize(dim.x / 15);
+        mCanvas.drawText("Tap Anywhere To Launch!",(dim.x / (float)6.6) ,dim.y / (float)1.5, mPaint); // TODO: move this to UI class? Also magic numbers FIX ME
     }
 
     public void update() {

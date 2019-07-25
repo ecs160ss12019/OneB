@@ -1,6 +1,8 @@
 package com.example.breakout;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -25,15 +27,14 @@ public class BOBall extends BOObject{
     private float yVelocity;
     private float angle;
 
-    private BOPaddle paddle; // pass a reference to the paddle so we can reset the ball to its position
 
-    BOBall(int screenX, BOPaddle p) {
+    BOBall(int screenX, Bitmap sprite) {
         // standard constructor that always makes that ball
         // 1% of screen width
         super(screenX / 50, screenX / 50, new Point(0,0));
 
         collider = new RectF();
-        paddle = p;
+        this.sprite = sprite;
 
     }
 
@@ -96,7 +97,7 @@ public class BOBall extends BOObject{
         xVelocity = -xVelocity;
     }
 
-    public void reset(){
+    public void reset(BOPaddle paddle){
         // Initialise the four points of
         // the rectangle which defines the ball
         // Initialized so that it will always be ~ the center of our paddle.

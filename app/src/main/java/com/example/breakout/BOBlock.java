@@ -20,19 +20,18 @@ public class BOBlock extends BOObject{
 
     public boolean hasPowerup;
 
-    private BOGameController gameController;
+    private BOGameController gc;
 
-    BOBlock(int xScreen, int yScreen, float x, float y, BOGameController gameController) {
+    BOBlock(Point dim, float x, float y, BOGameController gameController) {
 
-        super(xScreen / 10, yScreen / 15, new Point(x,y));
+        super(dim.x / 10, dim.y / 15, new Point(x,y));
 
 
-        this.gameController = gameController;
+        gc = gameController;
 
         collider = new RectF(getPos().x, getPos().y, getPos().x + getLength(), getPos().y + getHeight());
         isDead = false;
         hasPowerup = false;
-
 
     }
 
@@ -45,14 +44,14 @@ public class BOBlock extends BOObject{
             // effectively removing it from the screen
             collider = new RectF(-1,-1,-1,-1);
             // check if the block hit has a power-up
-            if (hasPowerup) {
-                Log.d("Two balls activated.", "");
-                gameController.doubleBallPowerUp = true;
-                gameController.ball2 = new BOBall(gameController.mScreenX, gameController.paddle);
-                gameController.ball2.sprite = BitmapFactory.decodeResource(gameController.getResources(), R.drawable.ball);
-                gameController.ball2.reset();
-            }
-            gameController.score += 10;
+//            if (hasPowerup) {
+//                Log.d("Two balls activated.", "");
+//                gc.doubleBallPowerUp = true;
+//                gc.ball2 = new BOBall(gc.getMeta().getDim('y'), gc.paddle);
+//                gc.ball2.sprite = BitmapFactory.decodeResource(gc.getResources(), R.drawable.ball);
+//                gc.ball2.reset();
+//            }
+            gc.score += 10;
 
 
 

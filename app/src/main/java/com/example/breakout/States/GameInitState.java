@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import com.example.breakout.BOGameController;
 import com.example.breakout.BOLayout;
 import com.example.breakout.BOTimer;
+import com.example.breakout.GameObjectBuilder;
 import com.example.breakout.R;
 
 public class GameInitState extends State {
@@ -48,6 +49,7 @@ public class GameInitState extends State {
     public BOTimer t3;
     boolean fadeIn = false;
     boolean fadeOut = false;
+    GameObjectBuilder factory = new GameObjectBuilder();
 
     public GameInitState(BOGameController gc) {
         super(gc);
@@ -57,9 +59,11 @@ public class GameInitState extends State {
 
         t2.run(10L);
         t3 = new BOTimer();
-        myLayout = new BOLayout(gc.mScreenX, gc.mScreenY);
-        myLayout.sprite = BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.logo);
-        background = new RectF(0, 0, gc.mScreenX, gc.mScreenY);
+        factory.setPos(gc.getMeta().getDim());
+        factory.setSprite(BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.logo));
+        factory.setCollider(new RectF(0, 0, gc.getMeta().getDim('x'), gc.getMeta().getDim('y')));
+        myLayout = factory.buildLayout();
+        background = new RectF(0, 0, gc.getMeta().getDim('x'), gc.getMeta().getDim('y'));
         alphaVal = 255;
     }
 

@@ -1,5 +1,6 @@
 package com.example.breakout.States;
 
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -7,6 +8,7 @@ import android.view.MotionEvent;
 
 import com.example.breakout.BOGameController;
 import com.example.breakout.BOLayout;
+import com.example.breakout.Point;
 import com.example.breakout.R;
 
 public class GameWonState extends State {
@@ -14,9 +16,6 @@ public class GameWonState extends State {
     BOLayout winScreen;
     public GameWonState(BOGameController gc) {
         super(gc);
-        winScreen = new BOLayout(gc.mScreenX, gc.mScreenY);
-        winScreen.sprite = BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.ball); // temp
-
 
     }
 
@@ -26,7 +25,9 @@ public class GameWonState extends State {
         gc.media_won.start();
         gc.myLayout.draw(mCanvas, mPaint); // draw the background over the blocks.
         mPaint.setTextSize(100);
-        mCanvas.drawText("You Win!",(gc.mScreenX / (float)3.5) ,gc.mScreenY / (float)2, mPaint);
+        Point dim = gc.getMeta().getDim();
+
+        mCanvas.drawText("You Win!",(dim.x / (float)3.5) ,dim.y / (float)2, mPaint);
     }
 
     public void run() {

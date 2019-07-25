@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 
 import com.example.breakout.BOBall;
 import com.example.breakout.BOGameController;
+import com.example.breakout.Point;
 
 public class Level2State extends State{
 
@@ -30,16 +31,21 @@ public class Level2State extends State{
         gc.pauseButton.draw(mCanvas, mPaint);
         drawGameObjects(mCanvas, mPaint);
 
-        mPaint.setTextSize(gc.fontSize);
+        if(gc.doubleBallPowerUp)
+            gc.ball2.draw(mCanvas, mPaint);
+
+        mPaint.setTextSize(gc.getMeta().getFontSize());
         checkWon();
 
-        int scoreSize = gc.fontSize / 2;
+        int scoreSize = gc.getMeta().getFontSize() / 2;
         mPaint.setTextSize(scoreSize);
 
 
-        mCanvas.drawText("Level: " + gc.level,gc.mScreenX / 55,gc.mScreenY / 6, mPaint);
-        mCanvas.drawText("Score: " + gc.score,gc.mScreenX / 55,gc.mScreenY / 9, mPaint); // TODO: move this to UI class?
-        mCanvas.drawText("Lives: " + gc.lives,gc.mScreenX / 55,gc.mScreenY / 20, mPaint);
+        Point dim = gc.getMeta().getDim();
+
+        mCanvas.drawText("Level: " + gc.level,dim.x / 55,dim.y / 6, mPaint);
+        mCanvas.drawText("Score: " + gc.score,dim.x / 55,dim.y / 9, mPaint); // TODO: move this to UI class?
+        mCanvas.drawText("Lives: " + gc.lives,dim.x / 55,dim.y / 20, mPaint);
     }
 
     public void run() {
@@ -53,16 +59,27 @@ public class Level2State extends State{
         // we can see if there have
         // been any collisions
         detectCollisions(gc.ball);
-
+        if(gc.ball2 != null) {
+            detectCollisions(gc.ball2);
+        }
     }
 
     public void update() {
-        gc.ball.update(gc.FPS);
-        gc.paddle.update(gc.FPS);
+
+        long FPS = gc.getMeta().getFPS();
+
+        gc.ball.update(FPS);
+        gc.paddle.update(FPS);
+
+        if(gc.doubleBallPowerUp)
+            gc.ball2.update(FPS);
+
 
         for(int i = 0; i < gc.blocks.size(); i++)
         {
             gc.blocks.get(i).update(gc.ball); // if collided with ball
+            if(gc.doubleBallPowerUp) // double ball power up
+                gc.blocks.get(i).update(gc.ball2);
         }
         gc.won = wonGame();
     }
@@ -76,6 +93,7 @@ public class Level2State extends State{
                 if(motionEvent.getX() > gc.pauseButton.collider.left && motionEvent.getX() < gc.pauseButton.collider.right && motionEvent.getY() < gc.pauseButton.collider.bottom
                         && motionEvent.getY() > gc.pauseButton.collider.top) {
                     gc.context = new GamePauseState(gc);
+
                 }
                 else {
 
@@ -83,6 +101,10 @@ public class Level2State extends State{
                     // we have a new movement
                     // command
                     gc.paddle.touched = motionEvent.getX();
+
+                    // PowerUp Debugging Method
+//                    gc.context = new GameWonState(gc);
+
                 }
 
                 break;
@@ -98,7 +120,7 @@ public class Level2State extends State{
          */
         // Check to see if the player won
         if(gc.won) {
-            gc.currentLevel += 1;
+            gc.context = new GameWonState(gc);
             gc.context = new GameWonState(gc);
             gc.won = false;
         }
@@ -118,7 +140,6 @@ public class Level2State extends State{
     }
 
     public void drawGameOver(Canvas mCanvas, Paint mPaint){
-
         gc.gameOver.draw(mCanvas, mPaint);
     }
 
@@ -130,6 +151,7 @@ public class Level2State extends State{
         }
         return true;
     }
+
 
     //TODO: Add a side hitbox to the paddle. Also refractor me
     private void detectCollisions(BOBall ball) {
@@ -143,8 +165,10 @@ public class Level2State extends State{
 
         //handle walls
 
+        Point dim = gc.getMeta().getDim();
+
         // bottom wall
-        if(ball.getCollider().bottom >= gc.mScreenY) {
+        if(ball.getCollider().bottom >= dim.y) {
 
             if (gc.lives > 0) {
                 gc.lives--;
@@ -170,17 +194,15 @@ public class Level2State extends State{
             ball.reverseYVelocity();
         }
 
-        // GIMMICK FOR LEVEL 2: The ball moves through the wall.
-
         // Left Wall
         if(ball.getCollider().left < 0) {
-            ball.getCollider().left = gc.mScreenX - gc.ball.collider.width();
-            ball.getCollider().right = gc.mScreenX;
+            ball.getCollider().left = dim.x - ball.getCollider().width();
+            ball.getCollider().right = dim.x;
         }
 
         // Right wall
-        if(ball.getCollider().right > gc.mScreenX) {
-            ball.getCollider().right = 0 + gc.ball.collider.width();
+        if(ball.getCollider().right > dim.x) {
+            ball.getCollider().right = ball.getCollider().width();
             ball.getCollider().left = 0;
         }
     }

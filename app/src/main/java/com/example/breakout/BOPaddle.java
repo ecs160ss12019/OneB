@@ -1,5 +1,7 @@
 package com.example.breakout;
 
+import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -20,7 +22,7 @@ public class BOPaddle extends BOObject {
                         // to set and im too lazy for a setter
 
 
-    BOPaddle(int x, int y) {
+    BOPaddle(int x, int y, Context resources) {
         /*
             Since the bat will be a fixed position based
             on the screen, our bat needs to know where
@@ -38,6 +40,8 @@ public class BOPaddle extends BOObject {
         //initialize our collider to the middle of the screen
         collider = new RectF(getPos().x, getPos().y - 30, getPos().x + getLength(), getPos().y + getHeight() - 10); // TODO: fixme. magic numbers here
         speed = screenX;
+        sprite = BitmapFactory.decodeResource(resources.getResources(), R.drawable.pic); // initialize the sprit
+
 
 
     }

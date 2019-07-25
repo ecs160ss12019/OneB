@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.example.breakout.BOGameController;
+import com.example.breakout.Point;
 import com.example.breakout.R;
 
 
@@ -26,14 +27,17 @@ public class GameInputState extends State {
     public void draw(Canvas mCanvas, Paint mPaint) {
         gc.myLayout.draw(mCanvas, mPaint);
 
-        mPaint.setTextSize(gc.mScreenX / 20);
-        mCanvas.drawText("Please enter your nickname!",(gc.mScreenX/5) ,gc.mScreenY / 3, mPaint);
+        Point p = gc.getMeta().getDim();
+
+        mPaint.setTextSize(p.x / 20);
+
+        mCanvas.drawText("Please enter your nickname!",(p.x/5) ,p.y / 3, mPaint);
 
         layout.measure(mCanvas.getWidth(), mCanvas.getHeight());
         layout.layout(0, 0, mCanvas.getWidth(), mCanvas.getHeight());
 
 //        To place the text view somewhere specific:
-        mCanvas.translate(gc.mScreenX/2 - editText.getWidth()/2, gc.mScreenY/2 - editText.getHeight()/2);
+        mCanvas.translate(p.x/2 - editText.getWidth()/2, p.y/2 - editText.getHeight()/2);
         layout.bringChildToFront(editText);
         layout.draw(mCanvas);
     }

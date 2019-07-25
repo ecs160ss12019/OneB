@@ -1,15 +1,16 @@
 package com.example.breakout;
 
+import android.graphics.Bitmap;
 import android.graphics.RectF;
 
 public class BOLayout extends BOObject {
 
-    public BOLayout(int screenX, int screenY){
-        // standard constructor that always makes the layout
-        // fill up the screen
-        super(screenX, screenY, new Point(0,0));
 
-        collider = new RectF(0,0, screenX, screenY);
+    public BOLayout(Point pos, Bitmap sprite, RectF c)
+    {
+        super(pos.x , pos.y, new Point(0,0));
+        collider = c;
+        this.sprite = sprite;
     }
 
 }

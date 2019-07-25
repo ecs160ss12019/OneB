@@ -20,71 +20,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 public class BOGameController extends Activity {
-    /*
-    The game controller class controls the state machine of the game
-    Ultimately this class should store anything that modifies or changes
-    how the game is played (i.e NewGame() -> starts a new game, Pause() ->
-    pauses game. For the most part, booleans that control modifiers or
-    power-ups should also be stored here.
-     */
-
-    /*
-        Here is what the basic state diagram of our game looks like
-        _______________               _____________
-        |             |    ALWAYS    |             |       ALWAYS
-        |   Create()  |  ----------> |  newGame()  | ---------
-        |_____________|              |_____________|          |
-                                 ALWAYS______|                |
-                          ____________|                       v
-                         |            |                  ___________               _____________
-                         | GameOver() |     lives = 0   |           |numBlocks =0 |             |
-                         |____________| <-------------- |   play()  |---------->  |  nextLevel()|
-                                                        |___________|             |_____________|
-
-        The Arrow transitions means that from one state, it should proceed
-        to another state under a certain condition.
-        ALWAYS means that after the game reaches this state, it should
-        always transition to the following one. Ignore the fact I'm missing
-        some states.
-     */
-
-
-    /*
-        The reasoning behind this state machine is that they are
-        actually incredibly powerful for video games and allows for
-        code to more easily interact with one another.
-
-        Take for example we had in this class 1 bool
-
-        public boolean turnOnDoubleBalls;
-
-        Our new state diagram could look something like this
-
-        _______________               _____________                                _____________
-        |             |    ALWAYS    |             |   turnOnDoubleBalls = true   |             |
-        |   Create()  |  ----------> |  newGame()  | ---------------------------> | numBalls = 2|
-        |_____________|              |_____________|          |                   |_____________|
-                                 ALWAYS______|     |          |
-                          ____________|            |          v
-                         |            |            --->  ___________               _____________
-                         | GameOver() |     lives = 0   |           |numBlocks =0 |             |
-                         |____________| <-------------- |   play()  |---------->  |  nextLevel()|
-                                                        |___________|             |_____________|
-        Now we essentially introduced a state to our machine that controls
-        another aspect of the game! Think about how nice and organized
-        this will be rather than just shoving bools throughout all of our code.
-        Furthermore, the end goal of doing something like this is
-        to help make more power-ups / modifiers as independent as possible, like
-        say we had 2 bools turnOnDoubleBalls and invertControls. The end goal is to
-        be able to turn on both these modifiers and have them apply to the game
-        WITHOUT impacting one another. Although this sounds trivial, trust me
-        as someones whose done this, features mess with each other all the time.
-        Anyways this is my long ass spheel about state machines. When doing your
-        coding I highly encourage you to think about the game in terms like this.
-        It'll help organization / style a lot (and looks a lot more professional!!)
-
-     */
-
 
     // Actual member declarations
     public BOGame mBOGame; // Let's keep the book's style and if a variable
@@ -94,17 +29,7 @@ public class BOGameController extends Activity {
     public int score = 0;
     public int lives = 3;
 
-    // Frame-rate calculations
-    public long FPS;
-    public final int MILLIS_IN_SECONDS = 1000;
-
-    // Hold resolution of the screen
-    public int mScreenX;
-    public int mScreenY;
-
-    // Holds text size
-    public int fontSize;
-    public int fontMargin;
+    private BOMetaData metaData;
 
     public int level;
     public int powerups;
@@ -164,6 +89,7 @@ public class BOGameController extends Activity {
         Point size = new Point();
         display.getSize(size);
         resources = this; // set the resources so other classes can grab them.
+        metaData = new BOMetaData(size.x, size.y, size.x/20, size.x/75 ); //// By default we will use 5%(1/20th) of screen width for font size, // Margin will be 1.5% (1/75th) of screen width
 
         // These must be before mBOGame. Otherwise the blocks are already instantiated.
         level = 1;
@@ -223,6 +149,10 @@ public class BOGameController extends Activity {
         media.stop();
         media.release();
         moveTaskToBack(true);
+    }
+
+    public BOMetaData getMeta() {
+        return metaData;
     }
 
 }
