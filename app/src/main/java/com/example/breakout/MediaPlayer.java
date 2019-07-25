@@ -6,4 +6,9 @@ public class MediaPlayer {
      */
 
     //TODO: Michel, pls handle this. Put media stuff here and call.
+
+    /*
+        will do!
+            - Michel
+     */
 }
