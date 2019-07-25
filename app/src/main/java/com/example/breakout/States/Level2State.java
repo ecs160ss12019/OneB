@@ -46,8 +46,6 @@ public class Level2State extends State{
         mCanvas.drawText("Level: " + gc.level,dim.x / 55,dim.y / 6, mPaint);
         mCanvas.drawText("Score: " + gc.score,dim.x / 55,dim.y / 9, mPaint); // TODO: move this to UI class?
         mCanvas.drawText("Lives: " + gc.lives,dim.x / 55,dim.y / 20, mPaint);
-
-
     }
 
     public void run() {

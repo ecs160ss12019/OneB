@@ -20,7 +20,6 @@ public class Level3State extends State{
         super(gc);
     }
 
-
     public void draw(Canvas mCanvas, Paint mPaint) {
         // draw nothing while game is running?
         // lock the canvas and ready to draw

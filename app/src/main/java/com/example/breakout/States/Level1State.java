@@ -12,7 +12,7 @@ import com.example.breakout.BOBall;
 import com.example.breakout.BOGameController;
 import com.example.breakout.Point;
 
-public class Level1State extends State{
+public class Level1State extends Level{
 
     public Level1State(BOGameController gc) {
         super(gc);
@@ -49,67 +49,70 @@ public class Level1State extends State{
     }
 
     public void run() {
-
-        update();
-        gc.media.start();
-        gc.media.setLooping(true);
-
-        // Now the bat and ball are in
-        // their new positions
-        // we can see if there have
-        // been any collisions
-        detectCollisions(gc.ball);
-        if(gc.ball2 != null) {
-            detectCollisions(gc.ball2);
-        }
+            super.run();
+//        update();
+//        gc.media.start();
+//        gc.media.setLooping(true);
+//
+//        // Now the bat and ball are in
+//        // their new positions
+//        // we can see if there have
+//        // been any collisions
+//        detectCollisions(gc.ball);
+//        if(gc.ball2 != null) {
+//            detectCollisions(gc.ball2);
+//        }
     }
 
     public void update() {
 
-        long FPS = gc.getMeta().getFPS();
+        super.update();
 
-        gc.ball.update(FPS);
-        gc.paddle.update(FPS);
-
-        if(gc.doubleBallPowerUp)
-            gc.ball2.update(FPS);
-
-
-        for(int i = 0; i < gc.blocks.size(); i++)
-        {
-            gc.blocks.get(i).update(gc.ball); // if collided with ball
-            if(gc.doubleBallPowerUp) // double ball power up
-                gc.blocks.get(i).update(gc.ball2);
-        }
-        gc.won = wonGame();
+//        long FPS = gc.getMeta().getFPS();
+//
+//        gc.ball.update(FPS);
+//        gc.paddle.update(FPS);
+//
+//        if(gc.doubleBallPowerUp)
+//            gc.ball2.update(FPS);
+//
+//
+//        for(int i = 0; i < gc.blocks.size(); i++)
+//        {
+//            gc.blocks.get(i).update(gc.ball); // if collided with ball
+//            if(gc.doubleBallPowerUp) // double ball power up
+//                gc.blocks.get(i).update(gc.ball2);
+//        }
+//        gc.won = wonGame();
     }
 
     public boolean onTouchEvent(MotionEvent motionEvent) {
+        return super.onTouchEvent(motionEvent);
 
-        switch(motionEvent.getAction() & MotionEvent.ACTION_MASK) { // get an action
-
-            case MotionEvent.ACTION_DOWN: //placed finger on screen
-
-                if(motionEvent.getX() > gc.pauseButton.collider.left && motionEvent.getX() < gc.pauseButton.collider.right && motionEvent.getY() < gc.pauseButton.collider.bottom
-                        && motionEvent.getY() > gc.pauseButton.collider.top) {
-                    gc.context = new GamePauseState(gc);
-
-                }
-                else {
-
-                    gc.paddle.setReachedPosition(false); // tell the paddle
-                    // we have a new movement
-                    // command
-                    gc.paddle.touched = motionEvent.getX();
-
-                    // PowerUp Debugging Method
-                    //gc.context = new GameWonState(gc);
-
-                }
-
-                break;
-        }
-        return true;
+//        switch(motionEvent.getAction() & MotionEvent.ACTION_MASK) { // get an action
+//
+//            case MotionEvent.ACTION_DOWN: //placed finger on screen
+//
+//                if(motionEvent.getX() > gc.pauseButton.collider.left && motionEvent.getX() < gc.pauseButton.collider.right && motionEvent.getY() < gc.pauseButton.collider.bottom
+//                        && motionEvent.getY() > gc.pauseButton.collider.top) {
+//                    gc.context = new GamePauseState(gc);
+//
+//                }
+//                else {
+//
+//                    gc.paddle.setReachedPosition(false); // tell the paddle
+//                    // we have a new movement
+//                    // command
+//                    gc.paddle.touched = motionEvent.getX();
+//
+//                    // PowerUp Debugging Method
+//                    //gc.context = new GameWonState(gc);
+//
+//                }
+//
+//                break;
+//        }
+//        return true;
     }
 
 
@@ -119,11 +122,12 @@ public class Level1State extends State{
         checks if all the blocks have been destroyed and plays the sound effects appropreately
          */
         // Check to see if the player won
-        if(gc.won) {
-            gc.context = new GameWonState(gc);
-            gc.context = new GameWonState(gc);
-            gc.won = false;
-        }
+//        if(gc.won) {
+//            gc.context = new GameWonState(gc);
+//            gc.context = new GameWonState(gc);
+//            gc.won = false;
+//        }
+        super.checkWon();
     }
 
     public void drawGameObjects(Canvas mCanvas, Paint mPaint) {
@@ -139,22 +143,24 @@ public class Level1State extends State{
         }
     }
 
+    //TODO: make sure we need this method
     public void drawGameOver(Canvas mCanvas, Paint mPaint){
         gc.gameOver.draw(mCanvas, mPaint);
     }
 
-    private boolean wonGame() {
-        for(int i = 0; i < gc.blocks.size(); i++)
-        {
-            if(gc.blocks.get(i).getDeadStatus() == false)
-                return false;
-        }
-        return true;
-    }
+//    private boolean wonGame() {
+////        for(int i = 0; i < gc.blocks.size(); i++)
+////        {
+////            if(gc.blocks.get(i).getDeadStatus() == false)
+////                return false;
+////        }
+////        return true;
+//        return super.wonGame();
+//    }
 
 
     //TODO: Add a side hitbox to the paddle. Also refractor me
-    private void detectCollisions(BOBall ball) {
+    public void detectCollisions(BOBall ball) {
         // Has our ball hit the paddle?
         if(RectF.intersects(gc.paddle.collider, ball.getCollider())) {
             // realistic bounce
