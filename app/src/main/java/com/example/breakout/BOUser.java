@@ -1,7 +1,7 @@
 package com.example.breakout;
 
 public class BOUser {
-    private String nickname;
+    public final String nickname;
     private int score;
 
     public BOUser(String name, int score) {
@@ -9,9 +9,9 @@ public class BOUser {
         this.score = score;
     }
 
-    public boolean shouldChangeScore(int score) {
-        if (score > this.score) {
-            this.score = score;
+    public boolean shouldChangeScore(int newScore) {
+        if (newScore > this.score) {
+            this.score = newScore;
             return true;
         }
         return false;

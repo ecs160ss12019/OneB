@@ -26,22 +26,12 @@ public class GameOverState extends State {
         gc.media_lost.start();
 
 
-        //TODO: Retrieve user account from phone and get name to use on leaderboards
-//        AccountManager manager = (AccountManager) gc.getSystemService(ACCOUNT_SERVICE);
-//        Account[] list = manager.getAccountsByType("com.google");
-//        String gmail = "";
-//
-//
-//        if (list.length == 0) {
-//            Log.v("gmail", "NULL");
-//        } else {
-//            Log.v("gmail", list[0].name);
-//        }
-
         // Write the high score to the database
         //TODO: write high score, not every score... get user name/email to use as path
-        gc.myRef = gc.database.getReference("mkey");
+//        gc.myRef = gc.database.getReference(gc.user.nickname);
+        gc.myRef = gc.database.getReference("Michel");
         gc.myRef.setValue(gc.score);
+
 
     }
 

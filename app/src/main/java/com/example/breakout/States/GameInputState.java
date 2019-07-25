@@ -18,7 +18,6 @@ import com.example.breakout.R;
 public class GameInputState extends State {
     LinearLayout layout;
     EditText editText;
-    BOUser user;
 
     public GameInputState(BOGameController gc) {
         super(gc);
@@ -62,7 +61,8 @@ public class GameInputState extends State {
         if (name.matches("")) {
             Log.d("USER","You must enter a username");
         } else {
-            user = new BOUser(name, getScoreFromDatabase(name));
+            // review this shit
+            gc.user = new BOUser(name, getScoreFromDatabase(name));
             gc.context = new GameTransitionState(gc);
         }
         return false;

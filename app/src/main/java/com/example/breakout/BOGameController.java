@@ -31,6 +31,8 @@ public class BOGameController extends Activity {
 
     private BOMetaData metaData;
 
+    public BOUser user;
+
     public int level;
     public int powerups;
 
