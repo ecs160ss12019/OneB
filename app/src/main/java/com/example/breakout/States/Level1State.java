@@ -97,7 +97,7 @@ public class Level1State extends State{
                     gc.paddle.touched = motionEvent.getX();
 
                     // PowerUp Debugging Method
-                    gc.context = new GameWonState(gc);
+//                    gc.context = new GameWonState(gc);
 
                 }
 

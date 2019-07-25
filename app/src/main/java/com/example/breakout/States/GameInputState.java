@@ -1,34 +1,41 @@
 package com.example.breakout.States;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.example.breakout.BOGameController;
+import com.example.breakout.R;
+
 
 public class GameInputState extends State {
-    EditText input;
+    LinearLayout layout;
+    EditText editText;
 
     public GameInputState(BOGameController gc) {
         super(gc);
-        input = new EditText(gc);
-        input.setText("TEST");
-        input.setWidth(180);
-        input.setBackgroundColor(Color.WHITE);
+        layout = new LinearLayout(gc);
+        editText = new EditText(gc);
+
+        layout.addView(editText);
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
+        gc.myLayout.draw(mCanvas, mPaint);
 
-        Log.d("Canvas Status:", ""+mCanvas);
+        mPaint.setTextSize(gc.mScreenX / 20);
+        mCanvas.drawText("Please enter your nickname!",(gc.mScreenX/5) ,gc.mScreenY / 3, mPaint);
 
-        input.setDrawingCacheEnabled(true);
-        Bitmap b = input.getDrawingCache();
-        Log.d("Bitmap Status:", ""+b);
-        mCanvas.drawBitmap(b, (float)gc.mScreenX/2, (float)gc.mScreenY/2, null);
+        layout.measure(mCanvas.getWidth(), mCanvas.getHeight());
+        layout.layout(0, 0, mCanvas.getWidth(), mCanvas.getHeight());
+
+//        To place the text view somewhere specific:
+        mCanvas.translate(gc.mScreenX/2 - editText.getWidth()/2, gc.mScreenY/2 - editText.getHeight()/2);
+        layout.bringChildToFront(editText);
+        layout.draw(mCanvas);
     }
 
     public void run() {
@@ -40,6 +47,7 @@ public class GameInputState extends State {
     }
 
     public boolean onTouchEvent(MotionEvent motionEvent) {
+//        gc.context = new GameWaitingState(gc);
         return false;
     }
 }
