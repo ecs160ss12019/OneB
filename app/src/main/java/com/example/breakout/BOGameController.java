@@ -72,6 +72,8 @@ public class BOGameController extends Activity {
     public State levels[];
     public int currentLevel = 1;
 
+    // level descriptions for the transition states
+    public String levelDesc[] = {"A  Simple  Breakout  Game.", "Don't be confined."};
 
 
 

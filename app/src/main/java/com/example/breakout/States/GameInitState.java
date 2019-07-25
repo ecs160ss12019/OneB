@@ -72,7 +72,6 @@ public class GameInitState extends State {
         mPaint.setColor(Color.argb(alphaVal,0,0,0));
         myLayout.draw(mCanvas, mPaint);
         mCanvas.drawRect(background, mPaint);
-
     }
 
     public void update() {  // stubby boiz
@@ -81,7 +80,7 @@ public class GameInitState extends State {
 
     public void run() {
         if(t3.completed && fadeOut)
-            gc.context = new GameWaitingState(gc);
+            gc.context = new GameTransitionState(gc);
 
         if(fadeIn && gc.timer.completed && !fadeOut) {
             if(t2.completed) {

@@ -42,12 +42,13 @@ public class GameWonState extends State {
         switch(motionEvent.getAction() & MotionEvent.ACTION_MASK) {
 
             case MotionEvent.ACTION_DOWN: //placed finger on screen
-                gc.media.seekTo(0); // this will make it so the song plays from the begining.
+
                 gc.currentLevel++; // increment current level
-                gc.media.start(); // restart the music
                 gc.level++; // increase the level for power-ups
                 gc.mBOGame.startNewGame();
-                gc.context = new GameWaitingState(gc);
+                gc.context = new GameTransitionState(gc);
+
+
         }
         return true;
     }
