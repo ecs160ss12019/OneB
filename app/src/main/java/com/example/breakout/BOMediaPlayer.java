@@ -40,22 +40,25 @@ public class BOMediaPlayer {
     public BOMediaPlayer(Context newContext){
         this.context = newContext;
         //initialize all the different sounds and load into objects
-        media =  MediaPlayer.create(newContext, R.raw.game_soundtrack);
-
-        media_won = MediaPlayer.create(newContext, R.raw.you_won);
-
-        media_lost =  MediaPlayer.create(newContext, R.raw.game_over);
+//        media =  MediaPlayer.create(newContext, R.raw.game_soundtrack);
+//
+//        media_won = MediaPlayer.create(newContext, R.raw.you_won);
+//
+//        media_lost =  MediaPlayer.create(newContext, R.raw.game_over);
     }
 
     public void playSoundtrack(){
-        media = MediaPlayer.create(context, R.raw.game_soundtrack);
-        //try catch in case the asset fails to load or something
-        try {
-            media.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(media == null) {
+            media = MediaPlayer.create(context, R.raw.game_soundtrack);
         }
+        //try catch in case the asset fails to load or something
+//        try {
+//            media.prepare();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         media.start();
+        media.setLooping(true);
     }
 
     //stop the soundtrack from playing and clear from memory, like when closing the app
@@ -69,26 +72,33 @@ public class BOMediaPlayer {
         media.pause();
     }
 
-    public void playYouWon(){
-        media = MediaPlayer.create(context, R.raw.you_won);
-        //try catch in case the asset fails to load or something
-        try {
-            media.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void restartSoundtrack(){
+        if(media != null) {
+            media.seekTo(0); // this will make it so the song plays from the beginning.
+            media.start(); // restart the music
         }
-        media.start();
+    }
+
+    public void playYouWon(){
+        media_won = MediaPlayer.create(context, R.raw.you_won);
+        //try catch in case the asset fails to load or something
+//        try {
+//            media.prepare();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        media_won.start();
     }
 
     public void playGameOver(){
-        media = MediaPlayer.create(context, R.raw.game_over);
+        media_lost = MediaPlayer.create(context, R.raw.game_over);
         //try catch in case the asset fails to load or something
-        try {
-            media.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        media.start();
+//        try {
+//            media.prepare();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        media_lost.start();
     }
 
 

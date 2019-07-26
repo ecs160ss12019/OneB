@@ -50,8 +50,9 @@ public class GameRunningState extends State {
     public void run() {
 
         update();
-        gc.media.start();
-        gc.media.setLooping(true);
+        gc.mediaPlayer.playSoundtrack();
+        //above line will do this as well
+        //gc.media.setLooping(true);
 
         // Now the bat and ball are in
         // their new positions
