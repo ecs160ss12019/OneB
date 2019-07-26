@@ -80,7 +80,7 @@ public class GameInitState extends State {
 
     public void run() {
         if(t3.completed && fadeOut)
-            gc.context = new GameTransitionState(gc);
+            gc.context = new GameInputState(gc);
 
         if(fadeIn && gc.timer.completed && !fadeOut) {
             if(t2.completed) {
