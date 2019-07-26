@@ -58,11 +58,19 @@ public class BOMediaPlayer {
         media_won.start();
     }
 
+    public void pauseYouWon(){
+        media_won.pause();
+    }
+
 
     public void playGameOver(){
         MediaPlayer media_lost = MediaPlayer.create(context, R.raw.game_over);
 
         media_lost.start();
+    }
+
+    public void pauseGameOver(){
+        media_won.pause();
     }
 
 
