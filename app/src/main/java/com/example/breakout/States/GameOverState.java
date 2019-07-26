@@ -23,7 +23,7 @@ public class GameOverState extends State {
     public GameOverState(BOGameController gc) {
         super(gc);
         gc.mediaPlayer.pauseSoundtrack(); // don't stop it because then we run into syncing issues
-        gc.mediaPlayer.media_lost.start();
+        gc.mediaPlayer.playGameOver();
 
 
         // Write the high score to the database

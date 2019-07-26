@@ -32,8 +32,6 @@ public class Level2State extends State{
         gc.pauseButton.draw(mCanvas, mPaint);
         drawGameObjects(mCanvas, mPaint);
 
-        if(gc.doubleBallPowerUp)
-            gc.ball2.draw(mCanvas, mPaint);
 
         mPaint.setTextSize(gc.getMeta().getFontSize());
         checkWon();
@@ -69,9 +67,6 @@ public class Level2State extends State{
 
         gc.ball.update(FPS);
         gc.paddle.update(FPS);
-
-        if(gc.doubleBallPowerUp)
-            gc.ball2.update(FPS);
 
 
         for(int i = 0; i < gc.blocks.size(); i++)
@@ -115,7 +110,7 @@ public class Level2State extends State{
 
     public void checkWon() {
         /*
-        checks if all the blocks have been destroyed and plays the sound effects appropreately
+        checks if all the blocks have been destroyed and plays the sound effects appropriately
          */
         // Check to see if the player won
         if(gc.won) {
@@ -145,14 +140,14 @@ public class Level2State extends State{
     private boolean wonGame() {
         for(int i = 0; i < gc.blocks.size(); i++)
         {
-            if(gc.blocks.get(i).getDeadStatus() == false)
+            if(!gc.blocks.get(i).getDeadStatus())
                 return false;
         }
         return true;
     }
 
 
-    //TODO: Add a side hitbox to the paddle. Also refractor me
+    //TODO: Add a side hit-box to the paddle. Also refactor me
     private void detectCollisions(BOBall ball) {
         // Has our ball hit the paddle?
         if(RectF.intersects(gc.paddle.collider, ball.getCollider())) {

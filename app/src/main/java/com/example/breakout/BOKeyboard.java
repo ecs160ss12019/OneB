@@ -5,11 +5,8 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 public class BOKeyboard {
-    /*
-    I'm actually going to fcking kill myself.
 
-    //TODO: Kill myself.
-     */
+    // Because it was hard to implement an actual keyboard.
 
     Key keys[] = new Key[30];
 

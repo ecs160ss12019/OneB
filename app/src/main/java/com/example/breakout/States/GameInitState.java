@@ -43,13 +43,12 @@ public class GameInitState extends State {
 
 
     public BOLayout myLayout; // Holds out title screen
-    public RectF background; // BEHOLD, the most ghetto animation you will ever see.
-    int alphaVal;
-    public BOTimer t2;
-    public BOTimer t3;
-    boolean fadeIn = false;
-    boolean fadeOut = false;
-    GameObjectBuilder factory = new GameObjectBuilder();
+    private RectF background; // BEHOLD, the most ghetto animation you will ever see.
+    private int alphaVal;
+    private BOTimer t2;
+    private BOTimer t3;
+    private boolean fadeIn = false;
+    private boolean fadeOut = false;
 
     public GameInitState(BOGameController gc) {
         super(gc);
@@ -59,6 +58,7 @@ public class GameInitState extends State {
 
         t2.run(10L);
         t3 = new BOTimer();
+        GameObjectBuilder factory = new GameObjectBuilder();
         factory.setPos(gc.getMeta().getDim());
         factory.setSprite(BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.logo));
         factory.setCollider(new RectF(0, 0, gc.getMeta().getDim('x'), gc.getMeta().getDim('y')));
