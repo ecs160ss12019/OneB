@@ -54,8 +54,7 @@ public class Level2State extends State{
     public void run() {
 
         update();
-        gc.media.start();
-        gc.media.setLooping(true);
+        gc.mediaPlayer.playSoundtrack();
 
         // Now the bat and ball are in
         // their new positions
