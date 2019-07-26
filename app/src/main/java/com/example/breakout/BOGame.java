@@ -27,14 +27,12 @@ public class BOGame extends SurfaceView implements Runnable {
         - Moving the paddle
         - Handling block breaking logic
         - Moving the ball
-        - Keeping track of lives (although alternativly the gameContrller can do that)
+        - Keeping track of lives (although alternatively the gameController can do that)
 
         Just to give you some kind of idea on what should go here.
     */
 
-    // Actual Members
-    private final boolean DEBUGGING = false;  // in case you cared / wondered
-                                             // declaring something 'final
+    // declaring something 'final
                                              // means it can be read, but not modified
 
     public BOGameController gc; // stores a reference to our gameController
@@ -197,6 +195,9 @@ public class BOGame extends SurfaceView implements Runnable {
 
             gc.context.draw(mCanvas, mPaint);
 
+            // Actual Members
+            // in case you cared / wondered
+            boolean DEBUGGING = false;
             if(DEBUGGING) {
                 printDebuggingText();
             }
@@ -261,7 +262,7 @@ public class BOGame extends SurfaceView implements Runnable {
         // Initializing the sprites of the blocks
         for(int i = 0; i < gc.blocks.size(); i++) {
 
-            if (gc.blocks.get(i).hasPowerup) {
+            if (gc.blocks.get(i).hasPowerUp) {
                 continue;
             }
             int choice = blockGen.nextInt();
@@ -331,13 +332,13 @@ public class BOGame extends SurfaceView implements Runnable {
             Random chance = new Random();
             int pickedBlock = chance.nextInt(num_blocks);
 
-            while (gc.blocks.get(pickedBlock).hasPowerup){
+            while (gc.blocks.get(pickedBlock).hasPowerUp){
                 pickedBlock = chance.nextInt(num_blocks);
                 Log.d("Duplicate. New Block: ", "" + pickedBlock);
             } // checking for duplicates
 
             Log.d("Selected Block: ", "" + pickedBlock);
-            gc.blocks.get(pickedBlock).hasPowerup = true;
+            gc.blocks.get(pickedBlock).hasPowerUp = true;
             gc.powerups++;
             gc.blocks.get(pickedBlock).sprite = BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.vanilla_caramel_choco);
         }

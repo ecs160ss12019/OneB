@@ -108,7 +108,7 @@ public class Level2State extends State{
 
 
 
-    public void checkWon() {
+    private void checkWon() {
         /*
         checks if all the blocks have been destroyed and plays the sound effects appropriately
          */
@@ -120,7 +120,7 @@ public class Level2State extends State{
         }
     }
 
-    public void drawGameObjects(Canvas mCanvas, Paint mPaint) {
+    private void drawGameObjects(Canvas mCanvas, Paint mPaint) {
         // Draw in our Game Objects
         gc.ball.draw(mCanvas, mPaint);
         gc.paddle.draw(mCanvas, mPaint);
@@ -131,10 +131,6 @@ public class Level2State extends State{
             gc.blocks.get(i).draw(mCanvas, mPaint);
 
         }
-    }
-
-    public void drawGameOver(Canvas mCanvas, Paint mPaint){
-        gc.gameOver.draw(mCanvas, mPaint);
     }
 
     private boolean wonGame() {

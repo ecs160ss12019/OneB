@@ -99,7 +99,7 @@ public class GameRunningState extends State {
 
 
 
-    public void checkWon() {
+    private void checkWon() {
         /*
         checks if all the blocks have been destroyed and plays the sound effects appropreately
          */
@@ -111,7 +111,7 @@ public class GameRunningState extends State {
         }
     }
 
-    public void drawGameObjects(Canvas mCanvas, Paint mPaint) {
+    private void drawGameObjects(Canvas mCanvas, Paint mPaint) {
         // Draw in our Game Objects
         gc.ball.draw(mCanvas, mPaint);
         gc.paddle.draw(mCanvas, mPaint);
@@ -131,7 +131,7 @@ public class GameRunningState extends State {
     private boolean wonGame() {
         for(int i = 0; i < gc.blocks.size(); i++)
         {
-            if(gc.blocks.get(i).getDeadStatus() == false)
+            if(!gc.blocks.get(i).getDeadStatus())
                 return false;
         }
         return true;
@@ -147,7 +147,7 @@ public class GameRunningState extends State {
             ball.incrementSpeed(10);
         }
 
-        //handle walls
+        // handle walls
 
         Point dim = gc.getMeta().getDim();
 

@@ -8,10 +8,10 @@ import com.example.breakout.BOGameController;
 
 public abstract class State {
     /*
-        Abstract state classs that all future states will inherit from
+        Abstract state class that all future states will inherit from
         Look here to see what must be included in a state class.
 
-        Children state should be public due to directory dependecies being mad if not
+        Children state should be public due to directory dependencies being mad if not
      */
     public BOGameController gc;
 

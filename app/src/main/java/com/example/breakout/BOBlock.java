@@ -15,10 +15,9 @@ public class BOBlock extends BOObject{
     including collisions and deletions
      */
 
-    public boolean isDead; // check to see if the block has been destroyed
-    //TODO: change me back to private later
+    private boolean isDead; // check to see if the block has been destroyed
 
-    public boolean hasPowerup;
+    public boolean hasPowerUp;
 
     private BOGameController gc;
 //    public BODoubleBall doubleBall;
@@ -32,7 +31,7 @@ public class BOBlock extends BOObject{
 
         collider = new RectF(getPos().x, getPos().y, getPos().x + getLength(), getPos().y + getHeight());
         isDead = false;
-        hasPowerup = false;
+        hasPowerUp = false;
 
     }
 
@@ -46,7 +45,7 @@ public class BOBlock extends BOObject{
             // effectively removing it from the screen
             collider = new RectF(-1,-1,-1,-1);
             // check if the block hit has a power-up
-            if (hasPowerup) {
+            if (hasPowerUp) {
 //               doubleBall.apply(gc);
                Log.d("PowerUp", "Activated");
             }
@@ -55,7 +54,7 @@ public class BOBlock extends BOObject{
 
     }
 
-    public boolean collided(BOBall ball) {
+    private boolean collided(BOBall ball) {
         /*
         check to see if the ball has collided with this object
         */
