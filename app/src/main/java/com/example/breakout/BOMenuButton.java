@@ -9,9 +9,9 @@ import android.graphics.RectF;
 public class BOMenuButton extends BOObject {
     float buttonWidth;
     float buttonHeight;
-    int screenWidth;
-    int screenHeight;
-    String text;
+    private int screenWidth;
+    private int screenHeight;
+    private String text;
 
     public BOMenuButton(int screenWidth, int screenHeight, String text, BOGameController gc, float top) {
         this.screenWidth = screenWidth;
@@ -21,9 +21,6 @@ public class BOMenuButton extends BOObject {
         this.text = text;
 
         collider = new RectF( gc.menu.collider.left, top + gc.menu.menuHeight/4, gc.menu.collider.right, (top + gc.menu.menuHeight/4) + buttonHeight);
-
-
-
 
     }
 

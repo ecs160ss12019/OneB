@@ -10,10 +10,7 @@ public class BOKeyboard {
 
     Key keys[] = new Key[30];
 
-    BOGameController gc;
     public BOKeyboard(BOGameController gc) {
-
-        this.gc = gc;
 
         Point dim = gc.getMeta().getDim();
         float keyWidth = dim.x / 15;

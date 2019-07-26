@@ -104,7 +104,7 @@ public class BOGame extends SurfaceView implements Runnable {
         gc.gameOver = factory.buildLayout();
 
 
-        /* Our factory probably shouldnt build the BOMenu even though it inherits from gameobject..Think more about this later!! */
+        /* Our factory probably shouldn't build the BOMenu even though it inherits from gameobject..Think more about this later!! */
         gc.menu = new BOMenu((int)dim.x, (int)dim.y, gc, mCanvas, mPaint);
         gc.menu.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.menu);
 

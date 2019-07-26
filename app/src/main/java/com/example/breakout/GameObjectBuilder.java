@@ -20,7 +20,7 @@ public class GameObjectBuilder {
     private Point pos; // Note, here we are using our own custom Point object that can handle floats
     private Context resources;
 
-    public GameObjectBuilder() // default constructor initalizes everything to null / 0
+    public GameObjectBuilder() // default constructor initializes everything to null / 0
     {
         collider = null;
         sprite = null;

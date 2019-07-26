@@ -4,10 +4,10 @@ import android.graphics.RectF;
 import android.util.Log;
 
 public class BOPauseButton extends BOObject {
-    float pauseWidth;
-    float pauseHeight;
-    int screenWidth;
-    int screenHeight;
+    private float pauseWidth;
+    private float pauseHeight;
+    private int screenWidth;
+    private int screenHeight;
 
     BOPauseButton(int screenWidth, int screenHeight) {
         this.screenWidth = screenWidth;

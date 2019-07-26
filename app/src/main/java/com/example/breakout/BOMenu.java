@@ -7,21 +7,15 @@ import android.util.Log;
 
 public class BOMenu extends BOObject {
 
-    int screenWidth;
-    int screenHeight;
-    public float menuWidth;
-    public float menuHeight;
-
+    float menuHeight;
 
     BOMenu(int screenWidth, int screenHeight, BOGameController gc, Canvas mCanvas, Paint mPaint) {
-        this.screenWidth = screenWidth;
-        this.screenHeight = screenHeight;
-        this.menuWidth = this.screenWidth / (float) 1.75;
-        this.menuHeight = this.screenHeight / (float) 1.75;
+        float menuWidth = screenWidth / (float) 1.75;
+        this.menuHeight = screenHeight / (float) 1.75;
 
-        Log.d("MENU: ", "" + this.menuWidth);
-        Log.d("MENU: ", "" + this.screenWidth);
-        Log.d("MENU: ", "" + this.screenWidth);
+        Log.d("MENU: ", "" + menuWidth);
+        Log.d("MENU: ", "" + screenWidth);
+        Log.d("MENU: ", "" + screenWidth);
         collider = new RectF((screenWidth / 2) - (menuWidth / 3), (screenHeight / 2) - ((float) (menuHeight / 1.5)), (screenWidth / 2) + (menuWidth / 3), (screenHeight / 2) + ((float) (menuHeight / 1.5)));
 
     }

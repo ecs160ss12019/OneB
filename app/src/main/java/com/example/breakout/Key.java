@@ -18,7 +18,7 @@ public class Key {
         mPaint.setColor(Color.argb(255,183,81,111));
         mCanvas.drawRect(box, mPaint);
         mPaint.setColor(Color.argb(255,255,255,255));
-        mCanvas.drawText(""+key, box.left + box.width()/3, box.bottom - box.height()/2, mPaint);
+        mCanvas.drawText(""+key, box.left + box.width()/3, box.bottom - box.height()/3, mPaint);
     }
 
 }
