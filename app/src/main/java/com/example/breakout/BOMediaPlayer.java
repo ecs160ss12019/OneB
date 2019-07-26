@@ -3,33 +3,11 @@ package com.example.breakout;
 import android.content.Context;
 import android.media.MediaPlayer;
 
-import java.io.IOException;
 
-
-//public class Audio{
-//
-//    MediaPlayer mp;
-//    Context context;
-//
-//    public Audio(Context ct){
-//        this.context = ct;
-//    }
-//    public void playClick(){
-//        mp = MediaPlayer.create(context, R.raw.click);
-//        mp.prepare();
-//        mp.start();
-//    }
 
 public class BOMediaPlayer {
     /*
     Handles Media playing!
-     */
-
-    //TODO: Michel, pls handle this. Put media stuff here and call.
-
-    /*
-        will do!
-            - Michel
      */
 
     public MediaPlayer media;
@@ -51,12 +29,7 @@ public class BOMediaPlayer {
         if(media == null) {
             media = MediaPlayer.create(context, R.raw.game_soundtrack);
         }
-        //try catch in case the asset fails to load or something
-//        try {
-//            media.prepare();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
         media.start();
         media.setLooping(true);
     }
@@ -79,25 +52,18 @@ public class BOMediaPlayer {
         }
     }
 
+    //sound used when the player wins a level
+    //TODO: make sure that the winning and losing sounds work correctly
     public void playYouWon(){
         media_won = MediaPlayer.create(context, R.raw.you_won);
-        //try catch in case the asset fails to load or something
-//        try {
-//            media.prepare();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
         media_won.start();
     }
 
+
     public void playGameOver(){
         media_lost = MediaPlayer.create(context, R.raw.game_over);
-        //try catch in case the asset fails to load or something
-//        try {
-//            media.prepare();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
         media_lost.start();
     }
 
