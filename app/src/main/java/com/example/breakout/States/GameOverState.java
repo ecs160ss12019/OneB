@@ -22,8 +22,8 @@ public class GameOverState extends State {
 
     public GameOverState(BOGameController gc) {
         super(gc);
-        gc.media.pause(); // don't stop it because then we run into syncing issues
-        gc.media_lost.start();
+        gc.mediaPlayer.pauseSoundtrack(); // don't stop it because then we run into syncing issues
+        gc.mediaPlayer.media_lost.start();
 
 
         // Write the high score to the database
@@ -56,8 +56,8 @@ public class GameOverState extends State {
             case MotionEvent.ACTION_DOWN: //placed finger on screen
                 gc.mBOGame.startNewGame();
                 gc.context = new GameWaitingState(gc); // move to the waiting state instead of end state.
-                gc.media.seekTo(0); // this will make it so the song plays from the beginning.
-                gc.media.start(); // restart the music
+                gc.mediaPlayer.restartSoundtrack(); // this will make it so the song plays from the beginning.
+                 // restart the music
 
         }
         return true;

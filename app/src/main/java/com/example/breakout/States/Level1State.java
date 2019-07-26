@@ -9,7 +9,9 @@ import android.util.Log;
 import android.view.MotionEvent;
 
 import com.example.breakout.BOBall;
+//import com.example.breakout.BODoubleBall;
 import com.example.breakout.BOGameController;
+//import com.example.breakout.BOPowerUp;
 import com.example.breakout.Point;
 
 public class Level1State extends State{
@@ -50,18 +52,15 @@ public class Level1State extends State{
 
     public void run() {
 
+
         update();
-        gc.media.start();
-        gc.media.setLooping(true);
+        gc.mediaPlayer.playSoundtrack();
 
         // Now the bat and ball are in
         // their new positions
         // we can see if there have
         // been any collisions
         detectCollisions(gc.ball);
-        if(gc.ball2 != null) {
-            detectCollisions(gc.ball2);
-        }
     }
 
     public void update() {
@@ -71,15 +70,10 @@ public class Level1State extends State{
         gc.ball.update(FPS);
         gc.paddle.update(FPS);
 
-        if(gc.doubleBallPowerUp)
-            gc.ball2.update(FPS);
-
 
         for(int i = 0; i < gc.blocks.size(); i++)
         {
             gc.blocks.get(i).update(gc.ball); // if collided with ball
-            if(gc.doubleBallPowerUp) // double ball power up
-                gc.blocks.get(i).update(gc.ball2);
         }
         gc.won = wonGame();
     }

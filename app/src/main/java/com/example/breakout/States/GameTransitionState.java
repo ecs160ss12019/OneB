@@ -52,8 +52,8 @@ public class GameTransitionState extends State{
         switch(motionEvent.getAction() & MotionEvent.ACTION_MASK) {
 
             case MotionEvent.ACTION_DOWN: //placed finger on screen
-                gc.media.seekTo(0); // this will make it so the song plays from the begining.
-                gc.media.start(); // restart the music
+                gc.mediaPlayer.restartSoundtrack(); // this will make it so the song plays from the begining.
+                 // restart the music
                 gc.context = gc.levels[gc.currentLevel - 1];
         }
         return true;

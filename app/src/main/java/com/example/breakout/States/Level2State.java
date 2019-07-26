@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 
 import com.example.breakout.BOBall;
+//import com.example.breakout.BODoubleBall;
 import com.example.breakout.BOGameController;
 import com.example.breakout.Point;
 
@@ -53,17 +54,13 @@ public class Level2State extends State{
     public void run() {
 
         update();
-        gc.media.start();
-        gc.media.setLooping(true);
+        gc.mediaPlayer.playSoundtrack();
 
         // Now the bat and ball are in
         // their new positions
         // we can see if there have
         // been any collisions
         detectCollisions(gc.ball);
-        if(gc.ball2 != null) {
-            detectCollisions(gc.ball2);
-        }
     }
 
     public void update() {

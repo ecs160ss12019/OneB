@@ -267,17 +267,14 @@ public class BOGame extends SurfaceView implements Runnable {
             int choice = blockGen.nextInt();
             choice = Math.abs(choice); // make sure choice is always positive
 
-            int mod = choice % 5;
+            int mod = choice % 4;
 
             if (mod == 0)
-                gc.blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.strawberry_choco);
+                gc.blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.choco_brown);
             else if (mod == 1)
                 gc.blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.strawberry_choco);
-            else if (mod == 2)
-                gc.blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.matcha_choco);
             else
-                gc.blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.choco_brown);
-
+                gc.blocks.get(i).sprite = BitmapFactory.decodeResource(getResources(), R.drawable.matcha_choco);
         }
     }
 
@@ -334,7 +331,7 @@ public class BOGame extends SurfaceView implements Runnable {
             Random chance = new Random();
             int pickedBlock = chance.nextInt(num_blocks);
 
-            while (gc.blocks.get(pickedBlock).hasPowerup == true){
+            while (gc.blocks.get(pickedBlock).hasPowerup){
                 pickedBlock = chance.nextInt(num_blocks);
                 Log.d("Duplicate. New Block: ", "" + pickedBlock);
             } // checking for duplicates
