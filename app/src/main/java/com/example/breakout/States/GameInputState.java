@@ -3,13 +3,16 @@ package com.example.breakout.States;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.example.breakout.BOGameController;
+import com.example.breakout.BOKeyboard;
 import com.example.breakout.BOUser;
 import com.example.breakout.Point;
 import com.example.breakout.R;
@@ -18,6 +21,8 @@ import com.example.breakout.R;
 public class GameInputState extends State {
     LinearLayout layout;
     EditText editText;
+    BOKeyboard keyboard;
+    String name = "";
 
     public GameInputState(BOGameController gc) {
         super(gc);
@@ -25,6 +30,7 @@ public class GameInputState extends State {
         editText = new EditText(gc);
 
         layout.addView(editText);
+        keyboard = new BOKeyboard(gc);
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
@@ -34,16 +40,11 @@ public class GameInputState extends State {
 
         mPaint.setTextSize(p.x / 20);
 
+        mPaint.setColor(Color.argb(255,255,255,255));
         mCanvas.drawText("Please enter your nickname!",(p.x/5) ,p.y / 3, mPaint);
+        mCanvas.drawText(name,(p.x/5) ,p.y / 2, mPaint);
 
-        layout.measure(mCanvas.getWidth(), mCanvas.getHeight());
-        layout.layout(0, 0, mCanvas.getWidth(), mCanvas.getHeight());
-
-//        To place the text view somewhere specific:
-        mCanvas.translate(p.x/2 - editText.getWidth()/2, p.y/2 - editText.getHeight()/2);
-        layout.bringChildToFront(editText);
-        layout.draw(mCanvas);
-        editText.bringToFront();
+        keyboard.draw(mCanvas, mPaint);
 
 
     }
@@ -57,15 +58,27 @@ public class GameInputState extends State {
     }
 
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        String name = editText.getText().toString();
-        if (name.matches("")) {
-            Log.d("USER","You must enter a username");
-        } else {
-            // review this shit
-            gc.user = new BOUser(name, getScoreFromDatabase(name));
-            gc.context = new GameTransitionState(gc);
+
+        switch(motionEvent.getAction() & MotionEvent.ACTION_MASK) { // get an action
+
+            case MotionEvent.ACTION_DOWN: //placed finger on screen
+
+                RectF touched  = new RectF(motionEvent.getX(), motionEvent.getY(), motionEvent.getX(), motionEvent.getY());
+                char ret = keyboard.returnTouched(touched);
+
+                if(ret == '!')
+                {
+                    gc.context = new GameTransitionState(gc);
+                }
+                if(ret != '-')
+                {
+                    name += ret;
+                }
+
+
+                break;
         }
-        return false;
+        return true;
     }
 
     public int getScoreFromDatabase(String name) {
@@ -74,4 +87,7 @@ public class GameInputState extends State {
 
         return 0;
     }
+
+
+
 }
