@@ -45,10 +45,12 @@ public class BOGameController extends Activity {
     public BOLayout myLayout;
     public BOLayout gameOver;
 
-    // For the music
-    public MediaPlayer media;
-    public MediaPlayer media_won;
-    public MediaPlayer media_lost;
+//    // For the music
+//    public MediaPlayer media;
+//    public MediaPlayer media_won;
+//    public MediaPlayer media_lost;
+
+    public BOMediaPlayer mediaPlayer;
 
     // Power ups
     public boolean doubleBallPowerUp = false;
@@ -104,11 +106,14 @@ public class BOGameController extends Activity {
 
 
         //initialize sound effects
-        media = MediaPlayer.create(this, R.raw.game_soundtrack);
+//        media = MediaPlayer.create(this, R.raw.game_soundtrack);
+//
+//        media_won = MediaPlayer.create(this, R.raw.you_won);
+//
+//        media_lost = MediaPlayer.create(this, R.raw.game_over);
+        mediaPlayer = new BOMediaPlayer(this);
 
-        media_won = MediaPlayer.create(this, R.raw.you_won);
 
-        media_lost = MediaPlayer.create(this, R.raw.game_over);
         setContentView(mBOGame);
 
         Log.d("DEBUG: ", "CREATE");
@@ -145,13 +150,12 @@ public class BOGameController extends Activity {
     @Override
     public void onUserLeaveHint() {
         super.onUserLeaveHint();
-        media.pause();
+        mediaPlayer.pauseSoundtrack();
     }
 
     public void closeApplication(View view) {
         finish();
-        media.stop();
-        media.release();
+        mediaPlayer.stopSoundtrack();
         moveTaskToBack(true);
     }
 

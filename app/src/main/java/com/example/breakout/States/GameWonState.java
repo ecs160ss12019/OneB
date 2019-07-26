@@ -21,8 +21,9 @@ public class GameWonState extends State {
 
     public void draw(Canvas mCanvas, Paint mPaint) {
         // draw the New Game menu if in won state
-        gc.media.pause();
-        gc.media_won.start();
+        gc.mediaPlayer.pauseSoundtrack();
+        gc.mediaPlayer.playYouWon();
+
         gc.myLayout.draw(mCanvas, mPaint); // draw the background over the blocks.
         mPaint.setTextSize(100);
         Point dim = gc.getMeta().getDim();

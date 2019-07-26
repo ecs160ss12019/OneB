@@ -21,6 +21,7 @@ public class BOBlock extends BOObject{
     public boolean hasPowerup;
 
     private BOGameController gc;
+//    public BODoubleBall doubleBall;
 
     BOBlock(Point dim, float x, float y, BOGameController gameController) {
 
@@ -37,6 +38,7 @@ public class BOBlock extends BOObject{
 
     // This is if it collides with a regular block. In the future, add tougher blocks.
     public void update(BOBall ball) {
+//        doubleBall = new BODoubleBall(gc);
         if(collided(ball))
         {
             // We're going to lazy delete this block. Since this app isn't super memory
@@ -44,19 +46,11 @@ public class BOBlock extends BOObject{
             // effectively removing it from the screen
             collider = new RectF(-1,-1,-1,-1);
             // check if the block hit has a power-up
-//            if (hasPowerup) {
-//                Log.d("Two balls activated.", "");
-//                gc.doubleBallPowerUp = true;
-//                gc.ball2 = new BOBall(gc.getMeta().getDim('y'), gc.paddle);
-//                gc.ball2.sprite = BitmapFactory.decodeResource(gc.getResources(), R.drawable.ball);
-//                gc.ball2.reset();
-//            }
+            if (hasPowerup) {
+//               doubleBall.apply(gc);
+               Log.d("PowerUp", "Activated");
+            }
             gc.score += 10;
-
-
-
-
-
         }
 
     }
