@@ -4,7 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class BOTimer {
-    Timer t;
+    private Timer t;
     public boolean completed;
 
     public BOTimer() {

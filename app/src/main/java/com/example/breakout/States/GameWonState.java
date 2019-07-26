@@ -13,7 +13,6 @@ import com.example.breakout.R;
 
 public class GameWonState extends State {
 
-    BOLayout winScreen;
     public GameWonState(BOGameController gc) {
         super(gc);
 

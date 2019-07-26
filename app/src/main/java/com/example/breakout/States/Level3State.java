@@ -118,7 +118,7 @@ public class Level3State extends State{
 
 
 
-    public void checkWon() {
+    private void checkWon() {
         /*
         checks if all the blocks have been destroyed and plays the sound effects appropreately
          */
@@ -130,14 +130,10 @@ public class Level3State extends State{
         }
     }
 
-    public void drawGameObjects(Canvas mCanvas, Paint mPaint) {
+    private void drawGameObjects(Canvas mCanvas, Paint mPaint) {
         // Draw in our Game Objects
         gc.ball.draw(mCanvas, mPaint); // only draw the ball for this gimmick
 
-    }
-
-    public void drawGameOver(Canvas mCanvas, Paint mPaint){
-        gc.gameOver.draw(mCanvas, mPaint);
     }
 
     private boolean wonGame() {
@@ -150,7 +146,7 @@ public class Level3State extends State{
     }
 
 
-    //TODO: Add a side hitbox to the paddle. Also refractor me
+    // TODO: Add a side hit-box to the paddle. Also refactor me
     private void detectCollisions(BOBall ball) {
         // Has our ball hit the paddle?
         if(RectF.intersects(gc.paddle.collider, ball.getCollider())) {
@@ -160,7 +156,7 @@ public class Level3State extends State{
             ball.incrementSpeed(10);
         }
 
-        //handle walls
+        // handle walls
 
         Point dim = gc.getMeta().getDim();
 

@@ -12,11 +12,10 @@ public class BOPaddle extends BOObject {
      */
 
     private float speed;
-    private int screenX;
     private boolean reachedPosition = true; // used to determine whether the
                                      // paddle has reached its position
                                      // and should wait for a new
-                                    // movement commmand
+                                    // movement command
 
     public float touched; // public because BOGame needs to access it
                         // to set and im too lazy for a setter
@@ -34,12 +33,11 @@ public class BOPaddle extends BOObject {
         // by default the paddle should start in the middle of the screen (x/2) and floating a tiny bit above the bottom (bout 1/40 from bottom)
         super(x / 8, y / 40, new Point( x /2 , y - (y / 40)));
 
-        screenX = x;
         touched = getPos().x; //initialize our initial touch to the xpos
 
         //initialize our collider to the middle of the screen
         collider = new RectF(getPos().x, getPos().y - 30, getPos().x + getLength(), getPos().y + getHeight() - 10); // TODO: fixme. magic numbers here
-        speed = screenX;
+        speed = x;
         sprite = BitmapFactory.decodeResource(resources.getResources(), R.drawable.pic); // initialize the sprit
 
 

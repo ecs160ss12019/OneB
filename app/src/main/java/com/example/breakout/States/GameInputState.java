@@ -19,15 +19,13 @@ import com.example.breakout.R;
 
 
 public class GameInputState extends State {
-    LinearLayout layout;
-    EditText editText;
-    BOKeyboard keyboard;
-    String name = "";
+    private BOKeyboard keyboard;
+    private String name = "";
 
     public GameInputState(BOGameController gc) {
         super(gc);
-        layout = new LinearLayout(gc);
-        editText = new EditText(gc);
+        LinearLayout layout = new LinearLayout(gc);
+        EditText editText = new EditText(gc);
 
         layout.addView(editText);
         keyboard = new BOKeyboard(gc);

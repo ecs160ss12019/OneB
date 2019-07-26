@@ -17,10 +17,10 @@ public class GamePauseState extends State {
     and giving touch. But mb I should refactor this. Comment here to remind me.
      */
 
-    BOMenuButton resumeButton;
-    BOMenuButton restartButton;
-    BOMenuButton levelButton;
-    BOMenuButton exitButton;
+    private BOMenuButton resumeButton;
+    private BOMenuButton restartButton;
+    private BOMenuButton levelButton;
+    private BOMenuButton exitButton;
 
     public GamePauseState(BOGameController gc) {
 

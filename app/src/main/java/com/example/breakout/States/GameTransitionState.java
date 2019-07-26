@@ -18,7 +18,6 @@ public class GameTransitionState extends State{
      level text. So if you try calling this function and we're not a game transition state, u in trouble.
      */
 
-    String levelDesc;
     public GameTransitionState(BOGameController gc){
         super(gc);
     }
@@ -60,7 +59,6 @@ public class GameTransitionState extends State{
     }
 
     public void setText(String s) {
-        levelDesc = s;
     }
 
 }

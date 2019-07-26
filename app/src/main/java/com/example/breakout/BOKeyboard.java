@@ -5,18 +5,12 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 public class BOKeyboard {
-    /*
-    I'm actually going to fcking kill myself.
 
-    //TODO: Kill myself.
-     */
+    // Because it was hard to implement an actual keyboard.
 
     Key keys[] = new Key[30];
 
-    BOGameController gc;
     public BOKeyboard(BOGameController gc) {
-
-        this.gc = gc;
 
         Point dim = gc.getMeta().getDim();
         float keyWidth = dim.x / 15;

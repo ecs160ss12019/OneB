@@ -10,10 +10,8 @@ public class BOMediaPlayer {
     Handles Media playing!
      */
 
-    public MediaPlayer media;
-    public MediaPlayer media_won;
-    public MediaPlayer media_lost;
-    Context context;
+    private MediaPlayer media;
+    private Context context;
 
     public BOMediaPlayer(Context newContext){
         this.context = newContext;
@@ -55,16 +53,24 @@ public class BOMediaPlayer {
     //sound used when the player wins a level
     //TODO: make sure that the winning and losing sounds work correctly
     public void playYouWon(){
-        media_won = MediaPlayer.create(context, R.raw.you_won);
+        MediaPlayer media_won = MediaPlayer.create(context, R.raw.you_won);
 
         media_won.start();
     }
 
+    public void pauseYouWon(){
+        media_won.pause();
+    }
+
 
     public void playGameOver(){
-        media_lost = MediaPlayer.create(context, R.raw.game_over);
+        MediaPlayer media_lost = MediaPlayer.create(context, R.raw.game_over);
 
         media_lost.start();
+    }
+
+    public void pauseGameOver(){
+        media_won.pause();
     }
 
 
