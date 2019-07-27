@@ -1,7 +1,7 @@
 package com.example.breakout;
 
 public class BOUser {
-    public final String nickname;
+    public String nickname;
     private int score;
 
     public BOUser(String name, int score) {

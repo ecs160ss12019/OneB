@@ -66,6 +66,7 @@ public class GameInputState extends State {
 
                 if(ret.matches("GO"))
                 {
+                    gc.user.nickname = ret;
                     gc.context = new GameTransitionState(gc);
                 }
                 if(ret != "-")
