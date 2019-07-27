@@ -64,7 +64,7 @@ public class GameInputState extends State {
                 RectF touched  = new RectF(motionEvent.getX(), motionEvent.getY(), motionEvent.getX(), motionEvent.getY());
                 String ret = keyboard.returnTouched(touched);
 
-                if(ret == "!")
+                if(ret.matches("GO"))
                 {
                     gc.context = new GameTransitionState(gc);
                 }
