@@ -62,13 +62,13 @@ public class GameInputState extends State {
             case MotionEvent.ACTION_DOWN: //placed finger on screen
 
                 RectF touched  = new RectF(motionEvent.getX(), motionEvent.getY(), motionEvent.getX(), motionEvent.getY());
-                char ret = keyboard.returnTouched(touched);
+                String ret = keyboard.returnTouched(touched);
 
-                if(ret == '!')
+                if(ret == "!")
                 {
                     gc.context = new GameTransitionState(gc);
                 }
-                if(ret != '-')
+                if(ret != "-")
                 {
                     name += ret;
                 }

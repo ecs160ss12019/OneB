@@ -2,7 +2,7 @@ package com.example.breakout;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-
+import android.provider.MediaStore;
 
 
 public class BOMediaPlayer {
@@ -11,16 +11,19 @@ public class BOMediaPlayer {
      */
 
     private MediaPlayer media;
+    private MediaPlayer media_won;
+    private MediaPlayer media_lost;
+
     private Context context;
 
     public BOMediaPlayer(Context newContext){
         this.context = newContext;
         //initialize all the different sounds and load into objects
-//        media =  MediaPlayer.create(newContext, R.raw.game_soundtrack);
+        media =  MediaPlayer.create(newContext, R.raw.game_soundtrack);
 //
-//        media_won = MediaPlayer.create(newContext, R.raw.you_won);
+        media_won = MediaPlayer.create(newContext, R.raw.you_won);
 //
-//        media_lost =  MediaPlayer.create(newContext, R.raw.game_over);
+        media_lost =  MediaPlayer.create(newContext, R.raw.game_over);
     }
 
     public void playSoundtrack(){
@@ -53,7 +56,7 @@ public class BOMediaPlayer {
     //sound used when the player wins a level
     //TODO: make sure that the winning and losing sounds work correctly
     public void playYouWon(){
-        MediaPlayer media_won = MediaPlayer.create(context, R.raw.you_won);
+//        MediaPlayer media_won = MediaPlayer.create(context, R.raw.you_won);
 
         media_won.start();
     }
@@ -64,13 +67,13 @@ public class BOMediaPlayer {
 
 
     public void playGameOver(){
-        MediaPlayer media_lost = MediaPlayer.create(context, R.raw.game_over);
+//        MediaPlayer media_lost = MediaPlayer.create(context, R.raw.game_over);
 
         media_lost.start();
     }
 
     public void pauseGameOver(){
-        media_won.pause();
+        media_lost.pause();
     }
 
 

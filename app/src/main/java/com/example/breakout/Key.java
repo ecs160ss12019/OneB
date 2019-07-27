@@ -6,10 +6,10 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 public class Key {
-    char key;
+    String key;
     RectF box;
 
-    Key(char k, RectF b) {
+    Key(String k, RectF b) {
         key = k;
         box = b;
     }

@@ -28,8 +28,8 @@ public class GameOverState extends State {
 
         // Write the high score to the database
         //TODO: write high score, not every score... get user name/email to use as path
-//        gc.myRef = gc.database.getReference(gc.user.nickname);
-        gc.myRef = gc.database.getReference("Michel");
+        gc.myRef = gc.database.getReference(gc.user.nickname);
+//        gc.myRef = gc.database.getReference("Michel");
         gc.myRef.setValue(gc.score);
 
 
