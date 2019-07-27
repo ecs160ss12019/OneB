@@ -25,7 +25,7 @@ public class BOKeyboard {
         float BB = dim.y - keySpace;
 
 
-        String letters[] = {"z","x","c","v","b","n","m","","",".", ">", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "q","w","e","r","t","y","u","i","o","p"};
+        String letters[] = {"z","x","c","v","b","n","m",",",".","!", "GO", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "q","w","e","r","t","y","u","i","o","p"};
         for(int j = 0; j < 3; j++) {
             for (int i = 0; i < 10; i++) {
                 keys[(10 * j) + i] = new Key(letters[(10 * j) + i], new RectF(LB, TB, RB, BB));
