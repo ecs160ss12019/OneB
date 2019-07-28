@@ -16,6 +16,10 @@ import com.example.breakout.BOKeyboard;
 import com.example.breakout.BOUser;
 import com.example.breakout.Point;
 import com.example.breakout.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class GameInputState extends State {
@@ -64,29 +68,18 @@ public class GameInputState extends State {
                 RectF touched  = new RectF(motionEvent.getX(), motionEvent.getY(), motionEvent.getX(), motionEvent.getY());
                 String ret = keyboard.returnTouched(touched);
 
-                if(ret.matches("GO"))
-                {
-                    gc.user.nickname = ret;
+                if(ret.matches("GO")) {
+                    gc.user = new BOUser(name, 0, gc);
                     gc.context = new GameTransitionState(gc);
                 }
-                if(ret != "-")
-                {
+
+                if(ret != "-") {
                     name += ret;
                 }
-
 
                 break;
         }
         return true;
     }
-
-    public int getScoreFromDatabase(String name) {
-        // if user exists in DB, get score corresponding to their name
-        // else, return 0
-
-        return 0;
-    }
-
-
 
 }
