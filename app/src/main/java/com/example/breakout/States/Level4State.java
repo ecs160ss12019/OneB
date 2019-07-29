@@ -91,7 +91,10 @@ public class Level4State extends State{
                     gc.paddle.setReachedPosition(false); // tell the paddle
                     // we have a new movement
                     // command
-                    gc.paddle.touched = motionEvent.getX();
+                    //gc.paddle.touched = motionEvent.getX();
+
+                    //change to make this level make the paddle work in reverse
+                    gc.paddle.touched = gc.getMeta().getDim('x') - motionEvent.getX();
 
                     // PowerUp Debugging Method
                     //gc.context = new GameWonState(gc);

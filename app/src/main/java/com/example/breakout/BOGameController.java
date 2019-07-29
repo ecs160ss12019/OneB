@@ -13,6 +13,7 @@ import com.example.breakout.States.GameInitState;
 import com.example.breakout.States.Level1State;
 import com.example.breakout.States.Level2State;
 import com.example.breakout.States.Level3State;
+import com.example.breakout.States.Level4State;
 import com.example.breakout.States.State;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -41,14 +42,10 @@ public class BOGameController extends Activity {
     public BOBall ball;
     public BOBall ball2; // only draw when power-up is true
     public ArrayList<BOBlock> blocks;
+    public BOLeaderboard leaderboard;
 
     public BOLayout myLayout;
     public BOLayout gameOver;
-
-//    // For the music
-//    public MediaPlayer media;
-//    public MediaPlayer media_won;
-//    public MediaPlayer media_lost;
 
     public BOMediaPlayer mediaPlayer;
 
@@ -77,7 +74,7 @@ public class BOGameController extends Activity {
     public int currentLevel = 1;
 
     // level descriptions for the transition states
-    public String levelDesc[] = {"A  Simple  Breakout  Game.", "Don't be confined."};
+    public String levelDesc[] = {"A  Simple  Breakout  Game.", "Don't be confined.", "the third one", "things are backwards"};
 
 
 
@@ -120,7 +117,7 @@ public class BOGameController extends Activity {
 
         context = new GameInitState(this);
 
-        levels = new State[] {new Level1State(this), new Level2State(this), new Level3State(this)};
+        levels = new State[] {new Level1State(this), new Level2State(this), new Level3State(this), new Level4State(this)};
 
     }
 
