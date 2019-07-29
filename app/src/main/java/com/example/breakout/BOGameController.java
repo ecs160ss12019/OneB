@@ -45,14 +45,10 @@ public class BOGameController extends Activity {
     public BOBall ball;
     public BOBall ball2; // only draw when power-up is true
     public ArrayList<BOBlock> blocks;
+    public BOLeaderboard leaderboard;
 
     public BOLayout myLayout;
     public BOLayout gameOver;
-
-//    // For the music
-//    public MediaPlayer media;
-//    public MediaPlayer media_won;
-//    public MediaPlayer media_lost;
 
     public BOMediaPlayer mediaPlayer;
 
