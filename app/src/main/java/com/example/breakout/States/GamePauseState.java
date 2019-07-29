@@ -21,6 +21,7 @@ public class GamePauseState extends State {
     private BOMenuButton restartButton;
     private BOMenuButton levelButton;
     private BOMenuButton exitButton;
+    private BOMenuButton leaderBoard;
 
     public GamePauseState(BOGameController gc) {
 
@@ -32,6 +33,8 @@ public class GamePauseState extends State {
         restartButton = new BOMenuButton((int)dim.x, (int)dim.y, "Restart", gc, (gc.menu.collider.top + dim.y/(float)7.5));
         levelButton = new BOMenuButton((int)dim.x, (int)dim.y,  " Levels", gc, (gc.menu.collider.top + (dim.y/(float)7.5)*2));
         exitButton = new BOMenuButton((int)dim.x, (int)dim.y,  "    Exit", gc, (gc.menu.collider.top + (dim.y/(float)7.5)*3));
+        leaderBoard = new BOMenuButton((int)dim.x, (int)dim.y, "Leaderboard", gc, (gc.menu.collider.top + (dim.y/(float)7.5)*4));
+
 
     }
 
@@ -48,6 +51,8 @@ public class GamePauseState extends State {
         levelButton.draw(mCanvas, mPaint);
         //draw the exit button
         exitButton.draw(mCanvas, mPaint);
+        //draw the leaderboard button
+        leaderBoard.draw(mCanvas, mPaint);
 
 
     }
@@ -78,6 +83,7 @@ public class GamePauseState extends State {
                     gc.closeApplication(gc.mBOGame);
 
                 }
+
 
         }
         return true;
