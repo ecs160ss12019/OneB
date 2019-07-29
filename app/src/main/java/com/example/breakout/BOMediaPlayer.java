@@ -19,11 +19,11 @@ public class BOMediaPlayer {
     public BOMediaPlayer(Context newContext){
         this.context = newContext;
         //initialize all the different sounds and load into objects
-        media =  MediaPlayer.create(newContext, R.raw.game_soundtrack);
+        //media =  MediaPlayer.create(newContext, R.raw.game_soundtrack);
 //
-        media_won = MediaPlayer.create(newContext, R.raw.you_won);
+        //media_won = MediaPlayer.create(newContext, R.raw.you_won);
 //
-        media_lost =  MediaPlayer.create(newContext, R.raw.game_over);
+        //media_lost =  MediaPlayer.create(newContext, R.raw.game_over);
     }
 
     public void playSoundtrack(){
@@ -56,8 +56,9 @@ public class BOMediaPlayer {
     //sound used when the player wins a level
     //TODO: make sure that the winning and losing sounds work correctly
     public void playYouWon(){
-//        MediaPlayer media_won = MediaPlayer.create(context, R.raw.you_won);
-
+        if(media == null) {
+            MediaPlayer media_won = MediaPlayer.create(context, R.raw.you_won);
+        }
         media_won.start();
     }
 
@@ -67,8 +68,9 @@ public class BOMediaPlayer {
 
 
     public void playGameOver(){
-//        MediaPlayer media_lost = MediaPlayer.create(context, R.raw.game_over);
-
+        if(media == null) {
+            MediaPlayer media_lost = MediaPlayer.create(context, R.raw.game_over);
+        }
         media_lost.start();
     }
 

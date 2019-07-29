@@ -59,6 +59,15 @@ public class GameInputState extends State {
 
     }
 
+    //method to make the backspace functionality work right
+    private static String removeLastCharacter(String str) {
+        String result = null;
+        if ((str != null) && (str.length() > 0)) {
+            result = str.substring(0, str.length() - 1);
+        }
+        return result;
+    }
+
     public boolean onTouchEvent(MotionEvent motionEvent) {
 
         switch(motionEvent.getAction() & MotionEvent.ACTION_MASK) { // get an action
@@ -69,8 +78,19 @@ public class GameInputState extends State {
                 String ret = keyboard.returnTouched(touched);
 
                 if(ret.matches("GO")) {
-                    gc.user = new BOUser(name, 0, gc);
+                    gc.user = new BOUser(name, 0);
                     gc.context = new GameTransitionState(gc);
+                }
+
+                if(ret.matches("<-")) {
+                    name = removeLastCharacter(name);
+                    if(name != null){
+                        break;
+                    }
+                    else{
+                        name = "";
+                        break;
+                    }
                 }
 
                 if(ret != "-") {
