@@ -84,7 +84,13 @@ public class GameInputState extends State {
 
                 if(ret.matches("<-")) {
                     name = removeLastCharacter(name);
-                    break;
+                    if(name != null){
+                        break;
+                    }
+                    else{
+                        name = "";
+                        break;
+                    }
                 }
 
                 if(ret != "-") {
