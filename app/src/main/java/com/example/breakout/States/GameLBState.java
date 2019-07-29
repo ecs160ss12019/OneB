@@ -13,16 +13,20 @@ import java.util.List;
 
 public class GameLBState extends State {
     private static final int SIZE = 5;
-    private List<BOLeaderboardItem> places = new ArrayList<>(SIZE);
+    private BOLeaderboardItem rank1;
+//    private List<BOLeaderboardItem> places = new ArrayList<>(SIZE);
 
     public GameLBState(BOGameController gc) {
         super(gc);
+        rank1 = new BOLeaderboardItem((int)gc.getMeta().getDim().x, (int)gc.getMeta().getDim().y, gc.user, 1, gc, gc.menu.collider.top);
 //        places.add(new BOLeaderboardItem((int)gc.getMeta().getDim().x, (int)gc.getMeta().getDim().y, places.get(0).text, gc, 5));
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
         gc.myLayout.draw(mCanvas, mPaint); // draw the background over the blocks.
         gc.leaderboard.draw(mCanvas, mPaint);
+
+        rank1.draw(mCanvas, mPaint);
     }
 
     public void run(){
@@ -34,7 +38,17 @@ public class GameLBState extends State {
     }
 
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
+        switch(motionEvent.getAction() & MotionEvent.ACTION_MASK) {
 
+            case MotionEvent.ACTION_DOWN: //placed finger on screen
+                if (motionEvent.getX() < gc.menu.collider.left || motionEvent.getX() > gc.menu.collider.right || motionEvent.getY() > gc.menu.collider.bottom
+                        || motionEvent.getY() < gc.menu.collider.top) {
+                    gc.context = new GamePauseState(gc);
+
+                }
+
+
+        }
+        return true;
+    }
 }
