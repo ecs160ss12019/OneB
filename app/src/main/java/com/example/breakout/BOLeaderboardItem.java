@@ -1,5 +1,8 @@
 package com.example.breakout;
 
-public class BOLeaderboardItem {
+public class BOLeaderboardItem extends BOObject {
 
+    public BOLeaderboardItem(BOGameController gc) {
+
+    }
 }
