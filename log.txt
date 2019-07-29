@@ -1,3 +1,507 @@
+commit f670ca36eecfdd8ca5a929fe632ba6a0c8450b6b
+Merge: 4294677 350b7e7
+Author: Gabriella Quattrone <gfquattrone@ucdavis.edu>
+Date:   Fri Jul 26 09:49:37 2019 -0700
+
+    Merge branch 'master' of https://github.com/ecs160ss12019/OneB
+
+commit 4294677dc211fa8fcf97a274b4ae3c20de0b644c
+Author: Gabriella Quattrone <gfquattrone@ucdavis.edu>
+Date:   Fri Jul 26 09:49:23 2019 -0700
+
+    Optimizing Code to Make Variables That Could Be Private private.
+    Also fixed the centering of the keyboard.
+
+commit 997572b45855089cc87307d9bb9713468cb62c8e
+Author: Gabriella Quattrone <gfquattrone@ucdavis.edu>
+Date:   Fri Jul 26 09:24:08 2019 -0700
+
+    Optimizing Code to Make Variables That Could Be Private private.
+    Also getting rid of functions/variables we never call/use.
+
+commit 350b7e7b33963b6eea335dbbe5aa7cfe5e32a6ea
+Author: iceysteel <zainm211@hotmail.com>
+Date:   Fri Jul 26 09:11:36 2019 -0700
+
+    Added two new functions to pause playing different sounds
+
+commit 35a4ae348cd6b7c85082501d5000549b7c629188
+Author: Gabriella Quattrone <gfquattrone@ucdavis.edu>
+Date:   Fri Jul 26 08:41:17 2019 -0700
+
+    Optimizing Code in Init State.
+    Made Variables That Could Be Private private.
+    Also fixed a media bug that stopped the game from running (will have to test the sound out later.)
+
+commit 31519777105d9629fc478be0d49b707910f95f01
+Merge: ac5d91b 5be57a9
+Author: Phillip Tran <pntran@ucdavis.edu>
+Date:   Thu Jul 25 22:24:54 2019 -0700
+
+    Merge remote-tracking branch 'origin/master'
+
+commit ac5d91b5a906f43f0db397eaca06e5058cb6c445
+Author: Phillip Tran <pntran@ucdavis.edu>
+Date:   Thu Jul 25 22:24:43 2019 -0700
+
+    Added Keyboard. Alternative. FUCK THIS SHIT.
+
+commit 5be57a92d044350caf357f1eff69894c3f1ce62b
+Merge: e8edd55 7c9bd32
+Author: Gabriella Quattrone <gfquattrone@ucdavis.edu>
+Date:   Thu Jul 25 18:15:59 2019 -0700
+
+    Merge branch 'master' of https://github.com/ecs160ss12019/OneB
+
+commit e8edd552e8d1f2d5b6c88a2c5ce059f2e8018012
+Author: Gabriella Quattrone <gfquattrone@ucdavis.edu>
+Date:   Thu Jul 25 18:15:56 2019 -0700
+
+    Created a PowerUp Class.
+    Commented out because it currently doesn't work.
+
+commit 7c9bd32daa31d019fbed2ce1ea49c1b1d6b6c0ce
+Author: iceysteel <zainm211@hotmail.com>
+Date:   Thu Jul 25 18:11:09 2019 -0700
+
+    Cleaned up comments and unused code to make the new class more readable
+
+commit b2d81eaa560c36fba73b577d3f263dcb799b2ff5
+Author: iceysteel <zainm211@hotmail.com>
+Date:   Thu Jul 25 18:04:59 2019 -0700
+
+    Refactored code to use the new BOMediaPlayer class throughout the entire project. main soundtrack tested to be working!
+
+commit a8cdb4fa58bf2c488f43702b018e2691636811d0
+Author: iceysteel <zainm211@hotmail.com>
+Date:   Thu Jul 25 16:50:58 2019 -0700
+
+    Added methods to BOMediaPlayer to control playback for each of the sounds in the game, still following factory design pattern
+
+commit 4ba004b518fc7d0b0768ad93730efac79cd31826
+Author: iceysteel <zainm211@hotmail.com>
+Date:   Thu Jul 25 16:38:06 2019 -0700
+
+    Added BOMediaPlayer class and constuctor following the factory design pattern to play sounds in the game
+
+commit a6df098a303e837e3abbb25fd9d3c9f36a7535fd
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Thu Jul 25 03:20:43 2019 -0700
+
+    Minor advancements in DB code
+
+commit bc0e29aa4387e4d881bac3e7b06cb9332ff4a25a
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Thu Jul 25 03:11:11 2019 -0700
+
+    Created BOUser for the DB, and progressed on DB method setup
+
+commit a6898a187c52722cb535810f4c729622b875823d
+Author: Phillip Tran <pntran@ucdavis.edu>
+Date:   Wed Jul 24 20:48:42 2019 -0700
+
+    Added transition state / screen.
+
+commit 3fc0656383c325f085699b73be851cb419e453d5
+Author: Phillip Tran <pntran@ucdavis.edu>
+Date:   Wed Jul 24 20:14:00 2019 -0700
+
+    Large refactoring effort: Implemented builder pattern, but not for every object yet. Still need to think.
+
+commit be883db1c71d5090968bc658491a345efc71cf8e
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Wed Jul 24 18:29:42 2019 -0700
+
+    Made GameInputState inactive until it's fixed
+
+commit 7113ed979375e4bb21817660138f20c321268b23
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Wed Jul 24 14:13:00 2019 -0700
+
+    Fixed: audio doesn't stop playing when the user selects "Exit" from the menu
+
+commit 1f2ad955d0cac79b8c50579dbf118833c824c549
+Author: Gabriella Quattrone <gfquattrone@ucdavis.edu>
+Date:   Wed Jul 24 09:20:11 2019 -0700
+
+    Made Levels Display in a Separate Line.
+    Fixed You Win! to fill Whole Screen.
+    Fixed The Placement of Tap to Launch.
+
+commit f49931e237aaa2eff1e907813329bd4cc58c4ecd
+Author: Gabriella Quattrone <gfquattrone@ucdavis.edu>
+Date:   Wed Jul 24 08:59:18 2019 -0700
+
+    Started refactoring every power-up = 0 into newGame().
+    Made a You Win! Screen. Need to fix size of it next.
+
+commit af643d102aee59f3eb960f66679c3db05a5cd97e
+Author: Gabriella Quattrone <gfquattrone@ucdavis.edu>
+Date:   Wed Jul 24 08:40:59 2019 -0700
+
+    Fixed another power-up bug with the menu screen.
+    (Getting a little repetitive. Should refactor.)
+
+commit 48372382f7c0956286e2c5cf265f8673c2da38ff
+Author: Phillip Tran <pntran@ucdavis.edu>
+Date:   Wed Jul 24 06:32:50 2019 -0700
+
+    Added new font
+
+commit f492f3da7656a855cb950cfd251ffff8d6b2376e
+Author: Phillip Tran <pntran@ucdavis.edu>
+Date:   Tue Jul 23 20:26:35 2019 -0700
+
+    Center Aligned Menu Text and added a mechanic to lvl 2 :^). Don't worry. Its not a glitch.
+
+commit e4d332cc46665e0307f7798afc534f5c3991b2ef
+Merge: d9f480d d08f648
+Author: Phillip Tran <pntran@ucdavis.edu>
+Date:   Tue Jul 23 19:13:18 2019 -0700
+
+    Merge branch 'master' of https://github.com/ecs160ss12019/OneB
+
+commit d9f480da15b96dc12de7f066ffd204acc5e3897f
+Author: Phillip Tran <pntran@ucdavis.edu>
+Date:   Tue Jul 23 19:12:44 2019 -0700
+
+    Logs and acceptance test
+
+commit d08f6484619e39e5fb63cf584149f85e13e01e22
+Merge: b58776a aab7fec
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Tue Jul 23 18:18:38 2019 -0700
+
+    Merge remote-tracking branch 'origin/master'
+
+commit b58776a3dfa7dcaa708f10d4a72b6d6b940114f3
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Tue Jul 23 18:18:14 2019 -0700
+
+    Started working on the GameInputState
+
+commit aab7fec1cec4a96f8b372120a523fc256cb2dbf7
+Author: Kira Bender <klbender@ucdavis.edu>
+Date:   Tue Jul 23 17:29:46 2019 -0700
+
+    exit button COMPLETED
+
+commit d971859b5f10ffc684c36bd6ce42a09ccf7f0c97
+Merge: 8a25bad 1b2a25c
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Tue Jul 23 17:10:39 2019 -0700
+
+    Merge branch 'master' of https://github.com/ecs160ss12019/OneB
+
+commit 8a25bad896803835558523a823185db19834b27c
+Merge: 667e15c da64213
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Tue Jul 23 17:10:33 2019 -0700
+
+    Merge remote-tracking branch 'remotes/origin/master'
+    
+    # Conflicts:
+    #       app/src/main/java/com/example/breakout/BOMenu.java
+    #       app/src/main/java/com/example/breakout/BOMenuButton.java
+
+commit 1b2a25c53d90218311c13891a60a9c0a6f329643
+Author: Kira Bender <klbender@ucdavis.edu>
+Date:   Tue Jul 23 17:08:01 2019 -0700
+
+    restart button COMPLETED, levels button introduced
+
+commit 667e15ca10d2ab36d4247115f4b6ed0075c762ff
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Tue Jul 23 17:07:24 2019 -0700
+
+    Bugs
+
+commit da642133dc42229279b32d5a529e9b2b7e73e12b
+Author: Kira Bender <klbender@ucdavis.edu>
+Date:   Tue Jul 23 16:52:52 2019 -0700
+
+    resume button COMPLETED
+
+commit 5d7030202998b914765ad7fc97c5954bc027c0d1
+Author: Gabriella Quattrone <gfquattrone@ucdavis.edu>
+Date:   Tue Jul 23 16:20:56 2019 -0700
+
+    Fixed Powerup Bug.
+    Powerups currently only work for Level 1.
+
+commit d900d1cb5563da4b8a8a08cccb33b6221b90230a
+Merge: e6e027b a4925a2
+Author: Gabriella Quattrone <gfquattrone@ucdavis.edu>
+Date:   Tue Jul 23 16:14:31 2019 -0700
+
+    Merge remote-tracking branch 'origin/master'
+
+commit e6e027b623a2599e2cb0d147c34ea66011d9b514
+Author: Gabriella Quattrone <gfquattrone@ucdavis.edu>
+Date:   Tue Jul 23 16:14:26 2019 -0700
+
+    Implemented power-ups for balls!
+    - Need to make this level agnostic.
+    - Need to make it not repeat code too much.
+
+commit a4925a2d737fa4e4765f4fe00c5a118eb060c600
+Author: Kira Bender <klbender@ucdavis.edu>
+Date:   Tue Jul 23 16:13:56 2019 -0700
+
+    resume button recreated
+
+commit 8502d00973998357d080da68d5af584126aafced
+Author: Kira Bender <klbender@ucdavis.edu>
+Date:   Tue Jul 23 15:18:03 2019 -0700
+
+    menu template update
+
+commit d1dd5911b5569e65622e307b755f1bc592b563e7
+Author: Gabriella Quattrone <gfquattrone@ucdavis.edu>
+Date:   Tue Jul 23 15:04:42 2019 -0700
+
+    PowerUps now don't duplicate on the same block.
+
+commit dc7194ce97e24188e0a8ad20ab5d76a4be7823ae
+Author: Phillip Tran <pntran@ucdavis.edu>
+Date:   Tue Jul 23 14:31:25 2019 -0700
+
+    Updated StoryMapping and Acceptance test
+
+commit 4c669077c60257dc6a7c7c54affdc80f53115a46
+Merge: 0d312a0 c96ed55
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Tue Jul 23 13:53:43 2019 -0700
+
+    Merge branch 'master' of https://github.com/ecs160ss12019/OneB
+
+commit c96ed55309416acb99a3434ae92f1a8a9d59284d
+Author: iceysteel <zainm211@hotmail.com>
+Date:   Tue Jul 23 11:11:41 2019 -0700
+
+    fixed a logical error in the GameWaitingState class
+
+commit 6efafcfb8c174e38ebf89f04b0886668dc0b0d20
+Merge: 3e51ecd 0ca6dcb
+Author: iceysteel <zainm211@hotmail.com>
+Date:   Tue Jul 23 10:54:12 2019 -0700
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 3e51ecd39e42b7f8e6dc84671776439da2a460a9
+Author: iceysteel <zainm211@hotmail.com>
+Date:   Tue Jul 23 10:54:00 2019 -0700
+
+    Fixed a bug where the level wouldn't progress when the user beats a level
+
+commit 0d312a0ab25a2b30f4bad134e14810bf720b68af
+Merge: 40f8395 0ca6dcb
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Mon Jul 22 18:46:57 2019 -0700
+
+    Merge branch 'master' of https://github.com/ecs160ss12019/OneB
+
+commit 0ca6dcbfa8cffb92d5975c3100ae4fa337314d50
+Author: Gabriella Quattrone <gfquattrone@ucdavis.edu>
+Date:   Mon Jul 22 18:46:13 2019 -0700
+
+    Working on Powerups
+
+commit 858597fb5e6261942d0d0d985c8863433da86585
+Merge: 96b6788 4aa3ab1
+Author: Gabriella Quattrone <gfquattrone@ucdavis.edu>
+Date:   Mon Jul 22 18:44:45 2019 -0700
+
+    Merge branch 'master' of https://github.com/ecs160ss12019/OneB
+
+commit 40f839543e2853acb37b21c708685a12aa3f1b5f
+Merge: 9a8d485 4aa3ab1
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Mon Jul 22 18:37:37 2019 -0700
+
+    Merge branch 'master' of https://github.com/ecs160ss12019/OneB
+
+commit 9a8d485e16120277b219b9a237170505a225dd9d
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Mon Jul 22 18:37:30 2019 -0700
+
+    Changed parameters for the menu
+
+commit 96b67885560ec8a7899780734cb04a7d9fa62ab7
+Author: Gabriella Quattrone <gfquattrone@ucdavis.edu>
+Date:   Mon Jul 22 18:36:59 2019 -0700
+
+    Power Ups now increase per level. However need to fix colliding.
+
+commit 4aa3ab11357b94232ea2cb613a1a7007947f00a4
+Author: iceysteel <zainm211@hotmail.com>
+Date:   Mon Jul 22 18:36:38 2019 -0700
+
+    Fixed a bug in the gamewaitingstate class
+
+commit 759843b785a91844bbf8b646553b88d50266a1ed
+Merge: acab476 13e8a91
+Author: Gabriella Quattrone <gfquattrone@ucdavis.edu>
+Date:   Mon Jul 22 18:34:42 2019 -0700
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 13e8a91d40c4c2ca09a7d4610ae33060824b72f2
+Merge: 747612c cf11025
+Author: iceysteel <zainm211@hotmail.com>
+Date:   Mon Jul 22 18:32:11 2019 -0700
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 747612c5af87e7d30565b4bb769c08092b9f6bf4
+Author: iceysteel <zainm211@hotmail.com>
+Date:   Mon Jul 22 18:31:52 2019 -0700
+
+    Added check to make sure level count doesnt go out of bounds
+
+commit b27427debb1d37bb70df8bdc228070c0e4d5638a
+Author: iceysteel <zainm211@hotmail.com>
+Date:   Mon Jul 22 18:25:56 2019 -0700
+
+    Added level switching to the game, every time you win one level it goes to the next level
+
+commit cf11025d2e213be4cdb7bcb5285dd1d795ceaa21
+Merge: b21c6fa e9b5990
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Mon Jul 22 18:23:55 2019 -0700
+
+    Merge remote-tracking branch 'remotes/origin/master'
+    
+    # Conflicts:
+    #       app/src/main/java/com/example/breakout/BOMenuButton.java
+
+commit b21c6fa2d62db187dba2f42113abf3f8280b44da
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Mon Jul 22 18:20:34 2019 -0700
+
+    Continuing the menu (pair programming)
+
+commit e9b5990ff86b878e5a97d1eee8db49193d4a5341
+Author: Kira Bender <klbender@ucdavis.edu>
+Date:   Mon Jul 22 18:18:31 2019 -0700
+
+    text for rework
+
+commit acab4760551e2f80cf129ae590e0fdea5dd66f14
+Merge: e996a52 e71b010
+Author: Gabriella Quattrone <gfquattrone@ucdavis.edu>
+Date:   Mon Jul 22 18:02:46 2019 -0700
+
+    Merge remote-tracking branch 'origin/master'
+
+commit e996a52561b06e12296bb362755b7db2ec0214fb
+Author: Gabriella Quattrone <gfquattrone@ucdavis.edu>
+Date:   Mon Jul 22 18:02:40 2019 -0700
+
+    Implementing Power-ups (still buggy)
+
+commit e71b01015934102784c1f4f4651fe001d2490d2f
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Mon Jul 22 18:01:07 2019 -0700
+
+    Fixed: resolution of menu is no longer atrocious
+
+commit 2d943a8b89b8a1f4ee018275630870af201e2d4c
+Merge: 576fba2 89e687b
+Author: Kira Bender <klbender@ucdavis.edu>
+Date:   Mon Jul 22 17:45:13 2019 -0700
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 576fba28d6ebe971ec862c9aa45be2b126046e27
+Author: Kira Bender <klbender@ucdavis.edu>
+Date:   Mon Jul 22 17:44:33 2019 -0700
+
+    started rework on menu
+
+commit 89e687bdbb8b1de0dcc8a027de7bae16659bd69d
+Merge: e49b670 96071d2
+Author: iceysteel <zainm211@hotmail.com>
+Date:   Mon Jul 22 17:35:09 2019 -0700
+
+    Merge remote-tracking branch 'origin/master'
+
+commit e49b670388d20230fc5ba0892282d05daabb0a57
+Author: iceysteel <zainm211@hotmail.com>
+Date:   Mon Jul 22 17:34:54 2019 -0700
+
+    Added new level framework to the game, level 1 working
+
+commit 96071d28460ebe6e5bdbdf62c636447adddb8eae
+Author: Kira Bender <klbender@ucdavis.edu>
+Date:   Mon Jul 22 17:23:50 2019 -0700
+
+    basic refactoring
+
+commit 0cce1999a4e8b387dbbdcedce27b7d27158e3a53
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Sun Jul 21 19:39:07 2019 -0700
+
+    Fixed: audio does not stop when user closes the application
+
+commit 97011d4152f56dbedce1375830cc5608d22a73bf
+Merge: 720142b a0e12d5
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Sat Jul 20 14:09:56 2019 -0700
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 720142be18f8c01bc55a189b0b08be8c4ecfd80e
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Sat Jul 20 14:09:44 2019 -0700
+
+    Very minor refactoring for database code
+
+commit a0e12d5d7f2cab57aa8c73ed7e94400aa661d3e6
+Merge: 2837b3e f22b5cf
+Author: iceysteel <zainm211@hotmail.com>
+Date:   Fri Jul 19 20:34:09 2019 -0700
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 2837b3e0e85d94ffaed2b3c7a4610fb940681cf6
+Author: iceysteel <zainm211@hotmail.com>
+Date:   Fri Jul 19 20:33:57 2019 -0700
+
+    Updated CRC documention file to reflect changes made this week and refactoring
+
+commit f22b5cf872ae3ba1430f06ac85f9c98df354cef8
+Author: Phillip Tran <pntran@ucdavis.edu>
+Date:   Fri Jul 19 12:23:47 2019 -0700
+
+    Changed detect collisions to take a ball as a parameter.
+
+commit 9573acbd87d55a3af1047664b6719d2f8e028bf9
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Thu Jul 18 19:29:02 2019 -0700
+
+    Scores are successfully written to Firebase under dummy profile (for now)
+    NOTE: DB-related code should remain commented out
+
+commit a8ac9d34ec09687d67cf543f31711a0fc843d810
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Thu Jul 18 18:57:26 2019 -0700
+
+    Database writing has been added in, still need to retrieve some user info. NOTE: DB-related code should remain commented out
+
+commit 07d2c2808edda7bd9e02d006ab467ab75b91f6ca
+Merge: 24d1b60 1a585f0
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Thu Jul 18 18:18:34 2019 -0700
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 24d1b60ebbe065a6a3e885be6bf0a77128b4e25f
+Author: Michel Eter <micoror1@gmail.com>
+Date:   Thu Jul 18 18:18:24 2019 -0700
+
+    Added firebase compatability again because it wasn't saved in the refactor
+
 commit 1a585f0bb6a37e162e43f4d083909d02619bb1f5
 Author: Phillip Tran <pntran@ucdavis.edu>
 Date:   Thu Jul 18 17:42:47 2019 -0700
