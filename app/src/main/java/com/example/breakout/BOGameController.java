@@ -34,6 +34,9 @@ public class BOGameController extends Activity {
 
     public BOUser user;
 
+    //variable that decides how long a username can be
+    public int userNameCharCap = 10;
+
     public int level;
     public int powerups;
 
