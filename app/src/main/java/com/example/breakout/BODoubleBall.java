@@ -89,5 +89,10 @@ public class BODoubleBall extends BOPowerUp {
     public BOBall getMember() {
         return doubleBall;
     }
+
+    @Override
+    public void time() {
+
+    }
 }
 

@@ -13,5 +13,10 @@ public class BONoPowerUp extends BOPowerUp {
     public BOObject getMember() {
         return null;
     }
+
+    @Override
+    public void time() {
+
+    }
 }
 
