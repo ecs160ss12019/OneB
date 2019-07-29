@@ -5,8 +5,7 @@ public class BOUser {
     public int score;
     BOGameController gc;
 
-    public BOUser(String name, int score, BOGameController gc) {
-        this.gc = gc;
+    public BOUser(String name, int score) {
         nickname = name;
         this.score = score;
     }

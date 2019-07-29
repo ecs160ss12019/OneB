@@ -1,22 +1,10 @@
 package com.example.breakout.States;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.util.Log;
 import android.view.MotionEvent;
 
-import androidx.core.app.ActivityCompat;
-
 import com.example.breakout.BOGameController;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import static android.content.Context.ACCOUNT_SERVICE;
 
 public class GameOverState extends State {
 
@@ -24,7 +12,6 @@ public class GameOverState extends State {
         super(gc);
         gc.mediaPlayer.pauseSoundtrack(); // don't stop it because then we run into syncing issues
         gc.mediaPlayer.playGameOver();
-
 
         // Write the high score to the database
         gc.myRef = gc.database.getReference("users/" + gc.user.nickname + "/score");

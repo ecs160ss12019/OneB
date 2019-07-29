@@ -69,7 +69,7 @@ public class GameInputState extends State {
                 String ret = keyboard.returnTouched(touched);
 
                 if(ret.matches("GO")) {
-                    gc.user = new BOUser(name, 0, gc);
+                    gc.user = new BOUser(name, 0);
                     gc.context = new GameTransitionState(gc);
                 }
 
