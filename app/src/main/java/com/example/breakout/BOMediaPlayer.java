@@ -56,7 +56,7 @@ public class BOMediaPlayer {
     //sound used when the player wins a level
     //TODO: make sure that the winning and losing sounds work correctly
     public void playYouWon(){
-        if(media == null) {
+        if(media_won == null) {
             MediaPlayer media_won = MediaPlayer.create(context, R.raw.you_won);
         }
         media_won.start();
@@ -68,7 +68,7 @@ public class BOMediaPlayer {
 
 
     public void playGameOver(){
-        if(media == null) {
+        if(media_lost == null) {
             MediaPlayer media_lost = MediaPlayer.create(context, R.raw.game_over);
         }
         media_lost.start();
