@@ -9,9 +9,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 
 import com.example.breakout.BOBall;
-//import com.example.breakout.BODoubleBall;
 import com.example.breakout.BOGameController;
-//import com.example.breakout.BOPowerUp;
 import com.example.breakout.Point;
 
 public class Level1State extends State{
@@ -32,9 +30,6 @@ public class Level1State extends State{
 
         gc.pauseButton.draw(mCanvas, mPaint);
         drawGameObjects(mCanvas, mPaint);
-
-        if(gc.doubleBallPowerUp)
-            gc.ball2.draw(mCanvas, mPaint);
 
         mPaint.setTextSize(gc.getMeta().getFontSize());
         checkWon();
@@ -147,7 +142,7 @@ public class Level1State extends State{
     }
 
 
-    //TODO: Add a side hitbox to the paddle. Also refractor me
+    //TODO: Add a side hit-box to the paddle. Also refractor me
     private void detectCollisions(BOBall ball) {
         // Has our ball hit the paddle?
         if(RectF.intersects(gc.paddle.collider, ball.getCollider())) {
@@ -163,6 +158,12 @@ public class Level1State extends State{
 
         // bottom wall
         if(ball.getCollider().bottom >= dim.y) {
+
+            if(gc.powerUp.type() == "Double Ball")
+            {
+                gc.ball = (BOBall)gc.powerUp.getMember();
+                return;
+            }
 
             if (gc.lives > 0) {
                 gc.lives--;
