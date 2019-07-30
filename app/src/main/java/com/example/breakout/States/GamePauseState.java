@@ -31,11 +31,11 @@ public class GamePauseState extends State {
 
         Point dim = gc.getMeta().getDim();
 
-        resumeButton = new BOMenuButton((int)dim.x, (int)dim.y, " Resume", gc, gc.menu.collider.top);
-        restartButton = new BOMenuButton((int)dim.x, (int)dim.y, "Restart", gc, (gc.menu.collider.top + dim.y/(float)7.5));
-        levelButton = new BOMenuButton((int)dim.x, (int)dim.y,  " Levels", gc, (gc.menu.collider.top + (dim.y/(float)7.5)*2));
-        leaderButton = new BOMenuButton((int)dim.x, (int)dim.y, "Leaderboard", gc, (gc.menu.collider.top + (dim.y/(float)7.5)*4));
-        exitButton = new BOMenuButton((int)dim.x, (int)dim.y,  "    Exit", gc, (gc.menu.collider.top + (dim.y/(float)7.5)*3));
+        resumeButton = new BOMenuButton((int)dim.x, (int)dim.y, "           Resume", gc, gc.menu.collider.top);
+        restartButton = new BOMenuButton((int)dim.x, (int)dim.y, "         Restart", gc, (gc.menu.collider.top + dim.y/(float)7.5));
+        levelButton = new BOMenuButton((int)dim.x, (int)dim.y,  "           Levels", gc, (gc.menu.collider.top + (dim.y/(float)7.5)*2));
+        leaderButton = new BOMenuButton((int)dim.x, (int)dim.y, "Leaderboard", gc, (gc.menu.collider.top + (dim.y/(float)7.5)*3));
+        exitButton = new BOMenuButton((int)dim.x, (int)dim.y,  "               Exit", gc, (gc.menu.collider.top + (dim.y/(float)7.5)*4));
 
     }
 
