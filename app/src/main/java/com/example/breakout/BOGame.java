@@ -111,6 +111,9 @@ public class BOGame extends SurfaceView implements Runnable {
         gc.pauseButton = new BOPauseButton((int)dim.x , (int)dim.y);
         gc.pauseButton.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.pause);
 
+        gc.leaderBoard = new BOLeaderboard((int)dim.x, (int)dim.y, gc, mCanvas, mPaint);
+        gc.leaderBoard.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.leaderboard);
+
 
         // Start the game!
         startNewGame();

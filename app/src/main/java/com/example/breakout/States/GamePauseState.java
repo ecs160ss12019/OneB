@@ -20,8 +20,8 @@ public class GamePauseState extends State {
     private BOMenuButton resumeButton;
     private BOMenuButton restartButton;
     private BOMenuButton levelButton;
-    private BOMenuButton exitButton;
     private BOMenuButton leaderBoard;
+    private BOMenuButton exitButton;
 
     public GamePauseState(BOGameController gc) {
 
@@ -82,6 +82,12 @@ public class GamePauseState extends State {
                 if (motionEvent.getX() > exitButton.collider.left && motionEvent.getX() < exitButton.collider.right && motionEvent.getY() < exitButton.collider.bottom
                         && motionEvent.getY() > exitButton.collider.top) {
                     gc.closeApplication(gc.mBOGame);
+
+                }
+                if (motionEvent.getX() > leaderBoard.collider.left && motionEvent.getX() < leaderBoard.collider.right && motionEvent.getY() < leaderBoard.collider.bottom
+                        && motionEvent.getY() > leaderBoard.collider.top) {
+                    //gc.leaderboard.draw(mCanvas, mPaint);
+
 
                 }
 
