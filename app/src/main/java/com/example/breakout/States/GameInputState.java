@@ -94,7 +94,9 @@ public class GameInputState extends State {
                 }
 
                 if(ret != "-") {
-                    name += ret;
+                    if(name.length() + 1 < gc.userNameCharCap) {
+                        name += ret;
+                    }
                 }
 
                 break;

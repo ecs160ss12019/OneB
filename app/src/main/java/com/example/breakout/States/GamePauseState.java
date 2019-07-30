@@ -84,6 +84,11 @@ public class GamePauseState extends State {
                     gc.closeApplication(gc.mBOGame);
 
                 }
+                if (motionEvent.getX() > leaderBoard.collider.left && motionEvent.getX() < leaderBoard.collider.right && motionEvent.getY() < leaderBoard.collider.bottom
+                        && motionEvent.getY() > leaderBoard.collider.top) {
+                    gc.context = new GameLBState(gc);
+
+                }
 
 
         }

@@ -105,7 +105,7 @@ public class Level1State extends State{
 
     private void checkWon() {
         /*
-        checks if all the blocks have been destroyed and plays the sound effects appropreately
+        checks if all the blocks have been destroyed and plays the sound effects appropriately
          */
         // Check to see if the player won
         if(gc.won) {

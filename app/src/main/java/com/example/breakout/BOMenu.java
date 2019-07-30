@@ -9,7 +9,7 @@ public class BOMenu extends BOObject {
 
     float menuHeight;
 
-    BOMenu(int screenWidth, int screenHeight, BOGameController gc, Canvas mCanvas, Paint mPaint) {
+    BOMenu(int screenWidth, int screenHeight) {
         float menuWidth = screenWidth / (float) 1.75;
         this.menuHeight = screenHeight / (float) 1.75;
 
