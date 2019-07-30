@@ -79,5 +79,9 @@ public class BOObject {
         }
     }
 
+    public void setPos(Point p) {
+        pos = p;
+    }
+
 
 }

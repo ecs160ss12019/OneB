@@ -38,7 +38,7 @@ public class BOGameController extends Activity {
     public int userNameCharCap = 10;
 
     public int level;
-    public int powerups;
+    public int numPowerups;
 
     // GameObjects
     public BOPaddle paddle;
@@ -62,6 +62,7 @@ public class BOGameController extends Activity {
     public BOMenu menu;
     public BOPauseButton pauseButton;
     public BOLeaderboard leaderBoard;
+    public BOPowerUp powerUp;
 
     // Database connection
     public FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -78,8 +79,7 @@ public class BOGameController extends Activity {
     public int currentLevel = 1;
 
     // level descriptions for the transition states
-    public String levelDesc[] = {"A  Simple  Breakout  Game.", "Don't be confined.", "the third one", "things are backwards"};
-
+    public String levelDesc[] = {"A  Simple  Breakout  Game.", "don't be confined.", "the third one", "things are backwards"};
 
 
     //TODO: Think about how many states we really need
@@ -98,10 +98,13 @@ public class BOGameController extends Activity {
         resources = this; // set the resources so other classes can grab them.
         metaData = new BOMetaData(size.x, size.y, size.x/20, size.x/75 ); //// By default we will use 5%(1/20th) of screen width for font size, // Margin will be 1.5% (1/75th) of screen width
 
+
+
         // These must be before mBOGame. Otherwise the blocks are already instantiated.
         level = 1;
-        powerups = 0;
+        numPowerups = 0;
 
+        powerUp = new BONoPowerUp();
         mBOGame = new BOGame(this, this, size.x, size.y);
 
 

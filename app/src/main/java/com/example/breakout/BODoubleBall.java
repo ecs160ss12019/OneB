@@ -92,6 +92,7 @@ public class BODoubleBall extends BOPowerUp {
 
     @Override
     public void time() {
+        gc.powerUp = new BONoPowerUp();
 
     }
 }

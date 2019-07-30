@@ -170,7 +170,7 @@ public class BOGame extends SurfaceView implements Runnable {
         // Reset our game objects
         gc.blocks.clear();
         gc.lives = 3;
-        gc.powerups = 0;
+        gc.numPowerups = 0;
 
         //only reset the score if we started back on the first level
         if(gc.currentLevel == 1) {
@@ -196,6 +196,7 @@ public class BOGame extends SurfaceView implements Runnable {
             mCanvas = holder.lockCanvas();
 
             gc.context.draw(mCanvas, mPaint);
+            gc.powerUp.apply(gc); // apply any power up
 
             // Actual Members
             // in case you cared / wondered
@@ -328,9 +329,9 @@ public class BOGame extends SurfaceView implements Runnable {
             numRows--;
         }
 
-        Log.d("Amount of Power Ups: ", "" + gc.powerups);
+        Log.d("Amount of Power Ups: ", "" + gc.numPowerups);
         Log.d("Level Number: ", "" + gc.level);
-        while (gc.powerups < gc.level){
+        while (gc.numPowerups < gc.level){
             Random chance = new Random();
             int pickedBlock = chance.nextInt(num_blocks);
 
@@ -341,7 +342,7 @@ public class BOGame extends SurfaceView implements Runnable {
 
             Log.d("Selected Block: ", "" + pickedBlock);
             gc.blocks.get(pickedBlock).hasPowerUp = true;
-            gc.powerups++;
+            gc.numPowerups++;
             gc.blocks.get(pickedBlock).sprite = BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.vanilla_caramel_choco);
         }
     }
