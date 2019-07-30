@@ -28,7 +28,7 @@ public class BOBall extends BOObject{
     private float angle;
 
 
-    BOBall(int screenX, Bitmap sprite) {
+    public BOBall(int screenX, Bitmap sprite) {
         // standard constructor that always makes that ball
         // 1% of screen width
         super(screenX / 50, screenX / 50, new Point(0,0));
@@ -37,7 +37,6 @@ public class BOBall extends BOObject{
         this.sprite = sprite;
 
     }
-
 
     // Update
     public void update(long fps) {
@@ -98,6 +97,8 @@ public class BOBall extends BOObject{
     }
 
     public void reset(BOPaddle paddle){
+
+
         // Initialise the four points of
         // the rectangle which defines the ball
         // Initialized so that it will always be ~ the center of our paddle.
@@ -105,6 +106,7 @@ public class BOBall extends BOObject{
         collider.top = paddle.collider.top - paddle.getHeight() - getHeight();
         collider.right = paddle.collider.left + ( paddle.collider.width() / 2) + getLength() - getLength()/2;
         collider.bottom = paddle.collider.top + getHeight() - paddle.getHeight() - getHeight();
+
 
         // How fast will the ball travel
         // You could vary this to suit

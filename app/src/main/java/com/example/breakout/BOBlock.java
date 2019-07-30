@@ -46,8 +46,8 @@ public class BOBlock extends BOObject{
             collider = new RectF(-1,-1,-1,-1);
             // check if the block hit has a power-up
             if (hasPowerUp) {
-//               doubleBall.apply(gc);
-               Log.d("PowerUp", "Activated");
+                gc.powerUp = gc.powerUp.randomPowerUp(gc);
+                Log.d("" + gc.powerUp + " PowerUp", "Activated");
             }
             gc.score += 10;
         }
@@ -71,6 +71,8 @@ public class BOBlock extends BOObject{
     public boolean getDeadStatus() {
         return isDead;
     }
+
+    public void setDeadStatus() { isDead = true; }
 
 }
 

@@ -58,7 +58,7 @@ public class BOObject {
         return height;
     }
 
-    Point getPos() {
+    public Point getPos() {
         return pos;
     }
 
@@ -77,6 +77,10 @@ public class BOObject {
         }else {
             mCanvas.drawBitmap(sprite, null, collider, null);
         }
+    }
+
+    public void setPos(Point p) {
+        pos = p;
     }
 
 

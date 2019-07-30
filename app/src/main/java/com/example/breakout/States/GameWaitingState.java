@@ -48,8 +48,8 @@ public class GameWaitingState extends State{
                 //also this part is probably completely wrong
                 //go to the next level in the level array here
                 Log.d("DEBUG", "going to level:" + gc.currentLevel);
-                if(gc.currentLevel <= gc.levels.length) {
-                    gc.context = gc.levels[gc.currentLevel - 1]; //new Level1State(gc); // go to running state
+                if(gc.currentLevel <= 10) {
+                    gc.levelSelector.selectLevel(gc.currentLevel);
                 }
                 else{
                     gc.currentLevel = 1;

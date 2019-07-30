@@ -14,6 +14,8 @@ import com.example.breakout.States.Level1State;
 import com.example.breakout.States.Level2State;
 import com.example.breakout.States.Level3State;
 import com.example.breakout.States.Level4State;
+import com.example.breakout.States.Level5State;
+import com.example.breakout.States.Level6State;
 import com.example.breakout.States.State;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -38,7 +40,7 @@ public class BOGameController extends Activity {
     public int userNameCharCap = 10;
 
     public int level;
-    public int powerups;
+    public int numPowerups;
 
     // GameObjects
     public BOPaddle paddle;
@@ -60,7 +62,9 @@ public class BOGameController extends Activity {
 
     public BOMenu menu;
     public BOPauseButton pauseButton;
-    public BOLeaderboard leaderboard;
+
+    public BOLeaderboard leaderBoard;
+    public BOPowerUp powerUp;
 
     // Database connection
     public FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -73,12 +77,10 @@ public class BOGameController extends Activity {
                               // lets objects initialize sprites essentially.
 
 
-    public State levels[];
     public int currentLevel = 1;
-
+    public LevelSelect levelSelector;
     // level descriptions for the transition states
-    public String levelDesc[] = {"A  Simple  Breakout  Game.", "Don't be confined.", "the third one", "things are backwards"};
-
+    public String levelDesc[] = {"A  Simple  Breakout  Game.", "don't  be  confined.", "the  third  one", "things  are  backwards", "Daryl  Out", "UFOS"};
 
 
     //TODO: Think about how many states we really need
@@ -97,10 +99,13 @@ public class BOGameController extends Activity {
         resources = this; // set the resources so other classes can grab them.
         metaData = new BOMetaData(size.x, size.y, size.x/20, size.x/75 ); //// By default we will use 5%(1/20th) of screen width for font size, // Margin will be 1.5% (1/75th) of screen width
 
+
+
         // These must be before mBOGame. Otherwise the blocks are already instantiated.
         level = 1;
-        powerups = 0;
+        numPowerups = 0;
 
+        powerUp = new BONoPowerUp();
         mBOGame = new BOGame(this, this, size.x, size.y);
 
 
@@ -120,7 +125,7 @@ public class BOGameController extends Activity {
 
         context = new GameInitState(this);
 
-        levels = new State[] {new Level1State(this), new Level2State(this), new Level3State(this), new Level4State(this)};
+        levelSelector = new LevelSelect(this);
 
     }
 

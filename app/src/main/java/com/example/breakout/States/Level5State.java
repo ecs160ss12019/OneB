@@ -1,5 +1,6 @@
 package com.example.breakout.States;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -10,11 +11,16 @@ import android.view.MotionEvent;
 import com.example.breakout.BOBall;
 import com.example.breakout.BOGameController;
 import com.example.breakout.Point;
+import com.example.breakout.R;
 
 public class Level5State extends State{
 
     public Level5State(BOGameController gc) {
         super(gc);
+        float x = gc.getMeta().getDim('x');
+        BOBall levelBall = new BOBall((int)(x * 3),BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.daryl) );
+        levelBall.reset(gc.paddle);
+        gc.ball = levelBall;
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
