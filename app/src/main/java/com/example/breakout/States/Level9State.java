@@ -30,9 +30,6 @@ public class Level9State extends State{
         gc.pauseButton.draw(mCanvas, mPaint);
         drawGameObjects(mCanvas, mPaint);
 
-        if(gc.doubleBallPowerUp)
-            gc.ball2.draw(mCanvas, mPaint);
-
         mPaint.setTextSize(gc.getMeta().getFontSize());
         checkWon();
 
