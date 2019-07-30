@@ -11,18 +11,43 @@ import android.view.MotionEvent;
 import com.example.breakout.BOBall;
 import com.example.breakout.BOBlock;
 import com.example.breakout.BOGameController;
+import com.example.breakout.BOTimer;
 import com.example.breakout.Point;
 import com.example.breakout.R;
+import com.example.breakout.Shot;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Level6State extends State{
 
-    BOBall shot = new BOBall(gc.getMeta().getDim('x'), BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.daryl));
+    // There is a bug here. Kinda difficult to explain and phillip is hungry so i'll fix it l8ter
+
+    BOTimer timer = new BOTimer();
+
+
+    Shot shotsList[] = new Shot[10];
+
+    float blockHeight;
+    ArrayList<BOBlock> oldBlocks;
+
+    ArrayList<Integer> activeShips = new ArrayList<>();
 
     public Level6State(BOGameController gc) {
         super(gc);
-        shot.reset(gc.paddle);
+        blockHeight = gc.getMeta().getDim('y') / 40;
+        for(int i = 0; i < shotsList.length;i++)
+            shotsList[i] = new Shot(0,0, new Point(0,0));
+
+        oldBlocks = gc.blocks;
+
+        for(int i = 0; i < gc.blocks.size(); i++)
+        {
+            activeShips.add(i);
+            gc.blocks.get(i).sprite = BitmapFactory.decodeResource(gc.getResources(), R.drawable.ufo);
+        }
+
+
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
@@ -54,7 +79,14 @@ public class Level6State extends State{
         mCanvas.drawText("Score: " + gc.score,dim.x / 55,dim.y / 9, mPaint); // TODO: move this to UI class?
         mCanvas.drawText("Lives: " + gc.lives,dim.x / 55,dim.y / 20, mPaint);
 
-        shot.draw(mCanvas, mPaint);
+        for(int i = 0; i < shotsList.length; i++)
+        {
+            if(shotsList[i].getFired())
+            {
+                shotsList[i].draw(mCanvas, mPaint);
+                shotsList[i].update();
+            }
+        }
     }
 
     public void run() {
@@ -83,6 +115,15 @@ public class Level6State extends State{
         for(int i = 0; i < gc.blocks.size(); i++)
         {
             gc.blocks.get(i).update(gc.ball); // if collided with ball
+        }
+
+        //keep our list of activeList of ships updated
+        activeShips.clear();
+        for(int i = 0; i < gc.blocks.size(); i++) // this is inefficent but bleh
+        {
+            if(gc.blocks.get(i).getDeadStatus() == false) {
+                activeShips.add(i);
+            }
         }
         gc.won = wonGame();
     }
@@ -159,12 +200,32 @@ public class Level6State extends State{
         // select a random block
 
 
-        Random random = new Random();
-        int shipToFire = random.nextInt(gc.blocks.size());
-        BOBlock selectedBlock = gc.blocks.get(shipToFire);
-        shot.setPos(selectedBlock.getPos());
-        shot.collider.top = selectedBlock.collider.bottom;
-        shot.collider.bottom = selectedBlock.collider.bottom + 1000;
+        if(timer.completed) {
+            timer.run(1000L);
+
+
+            for(int i = 0; i < shotsList.length; i++)
+            {
+                if(!shotsList[i].getFired()) // select a new shot to be fired
+                {
+                    Random random = new Random();
+                    int position = random.nextInt(activeShips.size());
+                    int shipToFire = activeShips.get(position);
+                    BOBlock selectedBlock = gc.blocks.get(shipToFire);
+                    shotsList[i] = new Shot(selectedBlock.collider.width() / 2, selectedBlock.collider.height() * 2, selectedBlock.getPos()); // create a new shot
+                    shotsList[i].collider = new RectF((selectedBlock.collider.left + selectedBlock.collider.width() / (float)2.2) , selectedBlock.collider.top + blockHeight,
+                            (selectedBlock.collider.right - selectedBlock.collider.width()/(float)2.2 ), (selectedBlock.collider.bottom + blockHeight )); // allign shot to ufo
+                    shotsList[i].fire(); // fire the shot
+                    break;
+                }
+            }
+
+
+
+
+
+        }
+
 
     }
 
@@ -182,6 +243,24 @@ public class Level6State extends State{
         //handle walls
 
         Point dim = gc.getMeta().getDim();
+
+
+        for(int i = 0; i < shotsList.length; i++)
+        {
+            if(shotsList[i].getFired() && shotsList[i].collider.bottom >= dim.y)
+            {
+                shotsList[i].finish();
+            }
+            else if(shotsList[i].getFired() && RectF.intersects(shotsList[i].collider, gc.paddle.collider))
+            {
+                gc.lives--;
+                gc.context = new GameWaitingState(gc);
+                if(gc.lives == 0){ // Fun scoping issue.
+                    gc.context = new GameOverState(gc);
+
+                }
+            }
+        }
 
         // bottom wall
         if(ball.getCollider().bottom >= dim.y) {

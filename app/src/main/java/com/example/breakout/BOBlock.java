@@ -44,6 +44,7 @@ public class BOBlock extends BOObject{
             // intensive if a block is 'hit' it'll just change its collider elements to negative numbers
             // effectively removing it from the screen
             collider = new RectF(-1,-1,-1,-1);
+            isDead = true;
             // check if the block hit has a power-up
             if (hasPowerUp) {
                 gc.powerUp = gc.powerUp.randomPowerUp(gc);

@@ -15,6 +15,7 @@ public class Level7State extends State{
 
     public Level7State(BOGameController gc) {
         super(gc);
+
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
