@@ -40,8 +40,7 @@ public class Level3State extends State{
 
 
         mPaint.setTextSize(gc.getMeta().getFontSize());
-        mPaint.setColor(Color.argb
-                (255, 255, 255, 255));
+        mPaint.setColor(Color.argb(255, 255, 255, 255));
         checkWon();
 
         int scoreSize = gc.getMeta().getFontSize() / 2;
@@ -49,7 +48,7 @@ public class Level3State extends State{
 
 
 
-        mCanvas.drawText("Level: " + gc.level,dim.x / 55,dim.y / 6, mPaint);
+        mCanvas.drawText("Level: " + gc.currentLevel,dim.x / 55,dim.y / 6, mPaint);
         mCanvas.drawText("Score: " + gc.score,dim.x / 55,dim.y / 9, mPaint); // TODO: move this to UI class?
         mCanvas.drawText("Lives: " + gc.lives,dim.x / 55,dim.y / 20, mPaint);
 

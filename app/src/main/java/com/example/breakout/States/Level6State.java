@@ -44,14 +44,7 @@ public class Level6State extends State{
         int scoreSize = gc.getMeta().getFontSize() / 2;
         mPaint.setTextSize(scoreSize);
 
-
-        Point dim = gc.getMeta().getDim();
-
-        mCanvas.drawText("Level: " + gc.level,dim.x / 55,dim.y / 6, mPaint);
-        mCanvas.drawText("Score: " + gc.score,dim.x / 55,dim.y / 9, mPaint); // TODO: move this to UI class?
-        mCanvas.drawText("Lives: " + gc.lives,dim.x / 55,dim.y / 20, mPaint);
-
-        shot.draw(mCanvas, mPaint);
+        drawUI(mCanvas, mPaint);
     }
 
     public void run() {
