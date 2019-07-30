@@ -72,6 +72,8 @@ public class BOBlock extends BOObject{
         return isDead;
     }
 
+    public void setDeadStatus() { isDead = true; }
+
 }
 
 
