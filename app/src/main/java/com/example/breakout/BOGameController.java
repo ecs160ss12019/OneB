@@ -45,7 +45,6 @@ public class BOGameController extends Activity {
     public BOBall ball;
     public BOBall ball2; // only draw when power-up is true
     public ArrayList<BOBlock> blocks;
-    public BOLeaderboard leaderboard;
 
     public BOLayout myLayout;
     public BOLayout gameOver;
@@ -61,6 +60,7 @@ public class BOGameController extends Activity {
 
     public BOMenu menu;
     public BOPauseButton pauseButton;
+
     public BOLeaderboard leaderBoard;
     public BOPowerUp powerUp;
 
