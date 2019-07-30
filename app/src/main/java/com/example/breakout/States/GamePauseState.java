@@ -71,7 +71,7 @@ public class GamePauseState extends State {
             case MotionEvent.ACTION_DOWN: //placed finger on screen
                 if (motionEvent.getX() > resumeButton.collider.left && motionEvent.getX() < resumeButton.collider.right && motionEvent.getY() < resumeButton.collider.bottom
                         && motionEvent.getY() > resumeButton.collider.top) {
-                    gc.context = gc.levels[gc.currentLevel - 1];
+                    gc.levelSelector.selectLevel(gc.currentLevel);
                 }
                 if (motionEvent.getX() > restartButton.collider.left && motionEvent.getX() < restartButton.collider.right && motionEvent.getY() < restartButton.collider.bottom
                         && motionEvent.getY() > restartButton.collider.top) {

@@ -15,6 +15,7 @@ import com.example.breakout.States.Level2State;
 import com.example.breakout.States.Level3State;
 import com.example.breakout.States.Level4State;
 import com.example.breakout.States.Level5State;
+import com.example.breakout.States.Level6State;
 import com.example.breakout.States.State;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -76,11 +77,10 @@ public class BOGameController extends Activity {
                               // lets objects initialize sprites essentially.
 
 
-    public State levels[];
-    public int currentLevel = 5;
-
+    public int currentLevel = 1;
+    public LevelSelect levelSelector;
     // level descriptions for the transition states
-    public String levelDesc[] = {"A  Simple  Breakout  Game.", "don't  be  confined.", "the  third  one", "things  are  backwards", "Daryl  Out"};
+    public String levelDesc[] = {"A  Simple  Breakout  Game.", "don't  be  confined.", "the  third  one", "things  are  backwards", "Daryl  Out", "UFOS"};
 
 
     //TODO: Think about how many states we really need
@@ -125,7 +125,7 @@ public class BOGameController extends Activity {
 
         context = new GameInitState(this);
 
-        levels = new State[] {new Level1State(this), new Level2State(this), new Level3State(this), new Level4State(this), new Level5State(this)};
+        levelSelector = new LevelSelect(this);
 
     }
 

@@ -53,7 +53,7 @@ public class GameTransitionState extends State{
             case MotionEvent.ACTION_DOWN: //placed finger on screen
                 gc.mediaPlayer.restartSoundtrack(); // this will make it so the song plays from the begining.
                  // restart the music
-                gc.context = gc.levels[gc.currentLevel - 1];
+                gc.levelSelector.selectLevel(gc.currentLevel);
         }
         return true;
     }

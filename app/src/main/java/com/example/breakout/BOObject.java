@@ -58,7 +58,7 @@ public class BOObject {
         return height;
     }
 
-    Point getPos() {
+    public Point getPos() {
         return pos;
     }
 

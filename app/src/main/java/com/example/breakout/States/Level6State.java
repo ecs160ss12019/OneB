@@ -1,5 +1,6 @@
 package com.example.breakout.States;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -8,13 +9,20 @@ import android.util.Log;
 import android.view.MotionEvent;
 
 import com.example.breakout.BOBall;
+import com.example.breakout.BOBlock;
 import com.example.breakout.BOGameController;
 import com.example.breakout.Point;
+import com.example.breakout.R;
+
+import java.util.Random;
 
 public class Level6State extends State{
 
+    BOBall shot = new BOBall(gc.getMeta().getDim('x'), BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.daryl));
+
     public Level6State(BOGameController gc) {
         super(gc);
+        shot.reset(gc.paddle);
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
@@ -45,6 +53,8 @@ public class Level6State extends State{
         mCanvas.drawText("Level: " + gc.level,dim.x / 55,dim.y / 6, mPaint);
         mCanvas.drawText("Score: " + gc.score,dim.x / 55,dim.y / 9, mPaint); // TODO: move this to UI class?
         mCanvas.drawText("Lives: " + gc.lives,dim.x / 55,dim.y / 20, mPaint);
+
+        shot.draw(mCanvas, mPaint);
     }
 
     public void run() {
@@ -66,6 +76,8 @@ public class Level6State extends State{
 
         gc.ball.update(FPS);
         gc.paddle.update(FPS);
+        fire();
+
 
 
         for(int i = 0; i < gc.blocks.size(); i++)
@@ -141,6 +153,19 @@ public class Level6State extends State{
                 return false;
         }
         return true;
+    }
+
+    void fire() {
+        // select a random block
+
+
+        Random random = new Random();
+        int shipToFire = random.nextInt(gc.blocks.size());
+        BOBlock selectedBlock = gc.blocks.get(shipToFire);
+        shot.setPos(selectedBlock.getPos());
+        shot.collider.top = selectedBlock.collider.bottom;
+        shot.collider.bottom = selectedBlock.collider.bottom + 1000;
+
     }
 
 
