@@ -40,6 +40,8 @@ public class Level3State extends State{
 
 
         mPaint.setTextSize(gc.getMeta().getFontSize());
+        mPaint.setColor(Color.argb
+                (255, 255, 255, 255));
         checkWon();
 
         int scoreSize = gc.getMeta().getFontSize() / 2;

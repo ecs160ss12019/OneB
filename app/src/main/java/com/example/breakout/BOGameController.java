@@ -77,7 +77,7 @@ public class BOGameController extends Activity {
                               // lets objects initialize sprites essentially.
 
 
-    public int currentLevel = 5;
+    public int currentLevel = 1;
     public LevelSelect levelSelector;
     // level descriptions for the transition states
     public String levelDesc[] = {"a  simple  breakout  game.", "don't  be  confined.", "the  third  one", "things  are  backwards", "daryl  out", "ufos"};
