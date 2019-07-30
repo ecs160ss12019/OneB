@@ -8,7 +8,7 @@ public class BOLeaderboard extends BOObject {
     float leaderHeight;
 
     BOLeaderboard(int screenWidth, int screenHeight) {
-        float leaderWidth = screenWidth / (float) 1.5;
+        float leaderWidth = screenWidth / (float) 1.75;
         this.leaderHeight = screenHeight / (float) 1.75;
 
         collider = new RectF((screenWidth / 2) - (leaderWidth / 3), (screenHeight / 2) - ((float) (leaderHeight / 1.5)), (screenWidth / 2) + (leaderWidth / 3), (screenHeight / 2) + ((float) (leaderHeight / 1.5)));

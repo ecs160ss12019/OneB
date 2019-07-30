@@ -64,6 +64,7 @@ public class BOGameController extends Activity {
     public BOPauseButton pauseButton;
 
     public BOLeaderboard leaderBoard;
+    public BOLeaderboard leaderboard;
     public BOPowerUp powerUp;
 
     // Database connection

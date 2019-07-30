@@ -45,7 +45,7 @@ public class BOLeaderboardItem extends BOObject {
 
     public void draw(Canvas mCanvas, Paint mPaint) {
         mPaint.setColor(Color.argb(255,222,113,144));
-        mCanvas.drawRect(collider, mPaint);
+        mCanvas.drawBitmap(sprite,null,gc.menu.collider, mPaint);
         drawText(mCanvas, mPaint);
 
         //leaderBoard = new BOMenuButton((int)dim.x, (int)dim.y, "Leaderboard", gc, );
