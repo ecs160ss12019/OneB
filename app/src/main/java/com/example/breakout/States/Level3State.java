@@ -30,7 +30,7 @@ public class Level3State extends State{
         gc.myLayout.draw(mCanvas, mPaint);
         // Choose a color to paint with
         mPaint.setColor(Color.argb
-                (255, 0, 0, 0));
+                (255, 255, 255, 255));
         Point dim = gc.getMeta().getDim();
 
 
