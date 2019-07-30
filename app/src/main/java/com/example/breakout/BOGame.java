@@ -51,7 +51,6 @@ public class BOGame extends SurfaceView implements Runnable {
     // check if paused
     public boolean isPaused = true;
 
-
     // GameObject builder
     GameObjectBuilder factory;
 
@@ -106,13 +105,15 @@ public class BOGame extends SurfaceView implements Runnable {
 
 
         /* Our factory probably shouldn't build the BOMenu even though it inherits from gameobject..Think more about this later!! */
-        gc.menu = new BOMenu((int)dim.x, (int)dim.y, gc, mCanvas, mPaint);
+        gc.menu = new BOMenu((int)dim.x, (int)dim.y);
         gc.menu.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.menu);
 
         gc.pauseButton = new BOPauseButton((int)dim.x , (int)dim.y);
         gc.pauseButton.sprite = BitmapFactory.decodeResource(getResources(), R.drawable.pause);
 
-        gc.powerUp = new BONoPowerUp();
+        gc.leaderboard = new BOLeaderboard((int)dim.x, (int)dim.y);
+        gc.leaderboard.sprite = BitmapFactory.decodeResource(getResources(),R.drawable.leaderboard);
+
 
         // Start the game!
         startNewGame();
@@ -134,7 +135,6 @@ public class BOGame extends SurfaceView implements Runnable {
             // Provided the game isn't paused
             // call the update method
             gc.context.run();
-
 
             // The movement has been handled and collisions
             // detected now we can draw the scene.
@@ -169,15 +169,14 @@ public class BOGame extends SurfaceView implements Runnable {
     public void startNewGame() {
         // Reset our game objects
         gc.blocks.clear();
-        gc.score = 0;
         gc.lives = 3;
         gc.powerups = 0;
 
         //only reset the score if we started back on the first level
-//        if(gc.currentLevel != 1) {
-//            // Reset the score
-//            gc.score = 0;
-//        }
+        if(gc.currentLevel == 1) {
+            // Reset the score
+            gc.score = 0;
+        }
 
         // Set the state to gameRunning
         gc.ball.reset(gc.paddle);
@@ -197,8 +196,6 @@ public class BOGame extends SurfaceView implements Runnable {
             mCanvas = holder.lockCanvas();
 
             gc.context.draw(mCanvas, mPaint);
-            gc.powerUp.apply(gc);
-
 
             // Actual Members
             // in case you cared / wondered
@@ -312,7 +309,7 @@ public class BOGame extends SurfaceView implements Runnable {
         while (numRows > 0) {
             boolean canAddMore = true;
             float height = 0; // awkward scoping issue. We want to access the height of the block, but we dont declare a block object until the for loop.
-            // fortunately the block height is always constant so we can just repeatedly update the height value.
+            // fortunately the block height is always constant so we can just repeatly update the height value.
             // its low-key dumb and repetition of code, but hey we do what we gotta do.
 
             while (canAddMore) {

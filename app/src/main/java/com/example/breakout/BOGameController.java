@@ -61,7 +61,7 @@ public class BOGameController extends Activity {
 
     public BOMenu menu;
     public BOPauseButton pauseButton;
-    public BOPowerUp powerUp;
+    public BOLeaderboard leaderBoard;
 
     // Database connection
     public FirebaseDatabase database = FirebaseDatabase.getInstance();

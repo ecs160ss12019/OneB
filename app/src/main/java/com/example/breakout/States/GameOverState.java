@@ -42,8 +42,10 @@ public class GameOverState extends State {
 
 
             case MotionEvent.ACTION_DOWN: //placed finger on screen
+                gc.currentLevel = 1;
+                gc.level = 1;
                 gc.mBOGame.startNewGame();
-                gc.context = new GameWaitingState(gc); // move to the waiting state instead of end state.
+                gc.context = new GameTransitionState(gc); // move to the waiting state instead of end state.
                 gc.mediaPlayer.restartSoundtrack(); // this will make it so the song plays from the beginning.
                  // restart the music
 
