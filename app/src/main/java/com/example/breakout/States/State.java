@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import com.example.breakout.BOGameController;
+import com.example.breakout.Point;
 
 public abstract class State {
     /*
@@ -22,6 +23,11 @@ public abstract class State {
     public abstract void run();
     public abstract void update();
     public abstract boolean onTouchEvent(MotionEvent motionEvent);
-
+    public void drawUI(Canvas mCanvas, Paint mPaint) {
+        Point dim = gc.getMeta().getDim();
+        mCanvas.drawText("Level: " + gc.currentLevel,dim.x / 55,dim.y / 6, mPaint);
+        mCanvas.drawText("Score: " + gc.score,dim.x / 55,dim.y / 9, mPaint); // TODO: move this to UI class?
+        mCanvas.drawText("Lives: " + gc.lives,dim.x / 55,dim.y / 20, mPaint);
+    }
 
 }
