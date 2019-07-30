@@ -78,8 +78,14 @@ public class GameInputState extends State {
                 String ret = keyboard.returnTouched(touched);
 
                 if(ret.matches("GO")) {
-                    gc.user = new BOUser(name, 0);
-                    gc.context = new GameTransitionState(gc);
+                    //make sure the user didnt just make an empty username
+                    if(name.length() > 0) {
+                        gc.user = new BOUser(name, 0);
+                        gc.context = new GameTransitionState(gc);
+
+                        //break so we dont go into the other if statements
+                        break;
+                    }
                 }
 
                 if(ret.matches("<-")) {
@@ -94,8 +100,12 @@ public class GameInputState extends State {
                 }
 
                 if(ret != "-") {
+                    //make sure the length of the name is less than the char cap
                     if(name.length() + 1 < gc.userNameCharCap) {
-                        name += ret;
+                        //for some reason the app gets to this part of the code when you press "GO" so make sure you dont add that to the string
+                        if(ret != "GO") {
+                            name += ret;
+                        }
                     }
                 }
 
