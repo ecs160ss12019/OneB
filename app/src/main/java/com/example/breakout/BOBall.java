@@ -28,7 +28,7 @@ public class BOBall extends BOObject{
     private float angle;
 
 
-    BOBall(int screenX, Bitmap sprite) {
+    public BOBall(int screenX, Bitmap sprite) {
         // standard constructor that always makes that ball
         // 1% of screen width
         super(screenX / 50, screenX / 50, new Point(0,0));
