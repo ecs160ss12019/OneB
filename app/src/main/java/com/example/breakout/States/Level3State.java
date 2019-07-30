@@ -30,7 +30,7 @@ public class Level3State extends State{
         gc.myLayout.draw(mCanvas, mPaint);
         // Choose a color to paint with
         mPaint.setColor(Color.argb
-                (255, 255, 255, 255));
+                (255, 0, 0, 0));
         Point dim = gc.getMeta().getDim();
 
 
@@ -40,7 +40,8 @@ public class Level3State extends State{
 
         if(gc.doubleBallPowerUp)
             gc.ball2.draw(mCanvas, mPaint);
-
+        mPaint.setColor(Color.argb
+                (255, 255, 255, 255));
         mPaint.setTextSize(gc.getMeta().getFontSize());
         checkWon();
 
