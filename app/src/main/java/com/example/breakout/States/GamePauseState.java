@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 
 import com.example.breakout.BOGameController;
+import com.example.breakout.BOLeaderboard;
+import com.example.breakout.BOLeaderboardItem;
 import com.example.breakout.BOMenuButton;
 import com.example.breakout.Point;
 
@@ -21,7 +23,7 @@ public class GamePauseState extends State {
     private BOMenuButton restartButton;
     private BOMenuButton levelButton;
     private BOMenuButton exitButton;
-    private BOMenuButton leaderBoard;
+    private BOMenuButton leaderButton;
 
     public GamePauseState(BOGameController gc) {
 
@@ -32,9 +34,8 @@ public class GamePauseState extends State {
         resumeButton = new BOMenuButton((int)dim.x, (int)dim.y, " Resume", gc, gc.menu.collider.top);
         restartButton = new BOMenuButton((int)dim.x, (int)dim.y, "Restart", gc, (gc.menu.collider.top + dim.y/(float)7.5));
         levelButton = new BOMenuButton((int)dim.x, (int)dim.y,  " Levels", gc, (gc.menu.collider.top + (dim.y/(float)7.5)*2));
-        leaderBoard = new BOMenuButton((int)dim.x, (int)dim.y, "Leaderboard", gc, (gc.menu.collider.top + (dim.y/(float)7.5)*4));
+        leaderButton = new BOMenuButton((int)dim.x, (int)dim.y, "Leaderboard", gc, (gc.menu.collider.top + (dim.y/(float)7.5)*4));
         exitButton = new BOMenuButton((int)dim.x, (int)dim.y,  "    Exit", gc, (gc.menu.collider.top + (dim.y/(float)7.5)*3));
-
 
     }
 
@@ -50,11 +51,9 @@ public class GamePauseState extends State {
         //draw the level button
         levelButton.draw(mCanvas, mPaint);
         //draw the leaderboard button
-        leaderBoard.draw(mCanvas, mPaint);
+        leaderButton.draw(mCanvas, mPaint);
         //draw the exit button
         exitButton.draw(mCanvas, mPaint);
-
-
 
     }
 
@@ -84,8 +83,8 @@ public class GamePauseState extends State {
                     gc.closeApplication(gc.mBOGame);
 
                 }
-                if (motionEvent.getX() > leaderBoard.collider.left && motionEvent.getX() < leaderBoard.collider.right && motionEvent.getY() < leaderBoard.collider.bottom
-                        && motionEvent.getY() > leaderBoard.collider.top) {
+                if (motionEvent.getX() > leaderButton.collider.left && motionEvent.getX() < leaderButton.collider.right && motionEvent.getY() < leaderButton.collider.bottom
+                        && motionEvent.getY() > leaderButton.collider.top) {
                     gc.context = new GameLBState(gc);
 
                 }

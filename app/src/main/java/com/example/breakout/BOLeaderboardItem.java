@@ -13,9 +13,11 @@ public class BOLeaderboardItem extends BOObject {
     private int screenHeight;
     private int rank;
     private String name;
+    private BOGameController gc;
     private int score;
 
     public BOLeaderboardItem(int screenWidth, int screenHeight, BOUser user, int rank, BOGameController gc, float top) {
+        this.gc = gc;
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
         leaderWidth = this.screenWidth / (float)1.75;
@@ -27,6 +29,7 @@ public class BOLeaderboardItem extends BOObject {
 
         collider = new RectF( gc.menu.collider.left, top + gc.menu.menuHeight/4, gc.menu.collider.right, (top + gc.menu.menuHeight/4) + leaderHeight);
     }
+
 
     public void drawText(Canvas mCanvas, Paint mPaint) {
 
@@ -44,6 +47,11 @@ public class BOLeaderboardItem extends BOObject {
         mPaint.setColor(Color.argb(255,222,113,144));
         mCanvas.drawRect(collider, mPaint);
         drawText(mCanvas, mPaint);
+
+        //leaderBoard = new BOMenuButton((int)dim.x, (int)dim.y, "Leaderboard", gc, );
+        mPaint.setColor(Color.argb(255,222,113,144));
+        Point dim = gc.getMeta().getDim();
+        mCanvas.drawText("Leaderboard",(int)collider.left + collider.width() / (float)6.5, collider.top - 50, mPaint);
 
     }
 

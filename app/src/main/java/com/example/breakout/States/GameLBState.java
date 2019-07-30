@@ -26,6 +26,7 @@ public class GameLBState extends State {
         gc.myLayout.draw(mCanvas, mPaint); // draw the background over the blocks.
         gc.leaderboard.draw(mCanvas, mPaint);
 
+
         rank1.draw(mCanvas, mPaint);
     }
 
