@@ -31,9 +31,10 @@ public class Level3State extends State{
         // Choose a color to paint with
         mPaint.setColor(Color.argb
                 (255, 0, 0, 0));
-        Point dim = gc.getMeta().getDim();
 
+        Point dim = gc.getMeta().getDim();
         mCanvas.drawRect(new RectF( 0, 0, dim.x, dim.y), mPaint);
+
         gc.pauseButton.draw(mCanvas, mPaint);
         drawGameObjects(mCanvas, mPaint);
 

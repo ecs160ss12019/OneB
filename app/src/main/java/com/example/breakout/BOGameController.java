@@ -3,19 +3,12 @@ package com.example.breakout;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Point;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
 
 import com.example.breakout.States.GameInitState;
-import com.example.breakout.States.Level1State;
-import com.example.breakout.States.Level2State;
-import com.example.breakout.States.Level3State;
-import com.example.breakout.States.Level4State;
-import com.example.breakout.States.Level5State;
-import com.example.breakout.States.Level6State;
 import com.example.breakout.States.State;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -77,13 +70,10 @@ public class BOGameController extends Activity {
                               // lets objects initialize sprites essentially.
 
 
-    public int currentLevel = 7;
+    public int currentLevel = 5;
     public LevelSelect levelSelector;
     // level descriptions for the transition states
     public String levelDesc[] = {"A  Simple  Breakout  Game.", "don't  be  confined.", "the  third  one", "things  are  backwards", "Daryl  Out", "UFOS", "One at a Time"};
-
-
-    //TODO: Think about how many states we really need
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
