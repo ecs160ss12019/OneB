@@ -1,5 +1,6 @@
 package com.example.breakout.States;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.MotionEvent;
 
 import com.example.breakout.BOGameController;
 import com.example.breakout.BOLeaderboardItem;
+import com.example.breakout.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -28,6 +30,7 @@ public class GameLBState extends State {
         // get top 5 profiles from DB and populate ArrayList
         readInData();
         rank1 = new BOLeaderboardItem((int)gc.getMeta().getDim().x, (int)gc.getMeta().getDim().y, gc.user, 1, gc, gc.menu.collider.top);
+        rank1.sprite = BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.leaderboard);
 //        places.add(new BOLeaderboardItem((int)gc.getMeta().getDim().x, (int)gc.getMeta().getDim().y, places.get(0).text, gc, 5));
     }
 
