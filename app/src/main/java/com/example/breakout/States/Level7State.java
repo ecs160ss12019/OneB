@@ -9,12 +9,20 @@ import android.view.MotionEvent;
 
 import com.example.breakout.BOBall;
 import com.example.breakout.BOGameController;
+import com.example.breakout.BOTimer;
 import com.example.breakout.Point;
 
 public class Level7State extends State{
+    BOTimer timer = new BOTimer();
+    BOTimer timer2 = new BOTimer();
 
     public Level7State(BOGameController gc) {
         super(gc);
+        timer.run(1000);
+        for(int i = gc.blocks.size() - 1 ; i > gc.blocks.size()/4 ; i--)
+        {
+            gc.blocks.remove(i);
+        }
 
     }
 
@@ -42,6 +50,12 @@ public class Level7State extends State{
 
     public void run() {
 
+        if(timer2.completed)
+        {
+            timer.run(2000L);
+            timer2.run(7000L);
+        }
+
 
         update();
         gc.mediaPlayer.playSoundtrack();
@@ -57,9 +71,12 @@ public class Level7State extends State{
 
         long FPS = gc.getMeta().getFPS();
 
-        gc.ball.update(FPS);
-        gc.paddle.update(FPS);
-
+        if(timer.completed) {
+            gc.ball.update(FPS);
+        }
+        else{
+            gc.paddle.update(FPS);
+        }
 
         for(int i = 0; i < gc.blocks.size(); i++)
         {
