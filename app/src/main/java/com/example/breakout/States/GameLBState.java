@@ -1,66 +1,81 @@
 package com.example.breakout.States;
 
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.Log;
-import android.util.Size;
 import android.view.MotionEvent;
+
+import androidx.annotation.NonNull;
 
 import com.example.breakout.BOGameController;
 import com.example.breakout.BOLeaderboardItem;
-import com.example.breakout.R;
+import com.example.breakout.BORecord;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GameLBState extends State {
+
     private static final int SIZE = 5;
-    private BOLeaderboardItem rank1;
-//    private List<BOLeaderboardItem> places = new ArrayList<>(SIZE);
+    private List<BORecord> top5 = new ArrayList<>();
+    private List<BOLeaderboardItem> top5_LB = new ArrayList<>();
 
     public GameLBState(BOGameController gc) {
         super(gc);
-        gc.myRef = FirebaseDatabase.getInstance().getReference();
+        gc.myRef = FirebaseDatabase.getInstance().getReference("users");
         // get top 5 profiles from DB and populate ArrayList
-        readInData();
-        rank1 = new BOLeaderboardItem((int)gc.getMeta().getDim().x, (int)gc.getMeta().getDim().y, gc.user, 1, gc, gc.menu.collider.top);
-        rank1.sprite = BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.leaderboard);
-//        places.add(new BOLeaderboardItem((int)gc.getMeta().getDim().x, (int)gc.getMeta().getDim().y, places.get(0).text, gc, 5));
+        populateTopFive();
     }
 
-    private void readInData() {
-        // My top posts by number of stars
-//        gc.myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                Query myQuery = gc.myRef.child("users").child("").orderByChild("score");
-//                System.out.println("HELLO" + myQuery);
-//                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-//                    Log.d("FUCK","TESTING LEADS");
-////                    Log.d("KEY", postSnapshot.getChildren());
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Getting Post failed, log a message
-//                Log.w("fuck", "loadPost:onCancelled", databaseError.toException());
-//                // ...
-//            }
-//        });
+    private void populateTopFive() {
+        gc.myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot user : dataSnapshot.getChildren()) {
+                    top5.add(new BORecord(0, user.getKey(), user.child("score").getValue(int.class)));
+                }
+
+                // Sort the list and set top5 ranks
+                sortList(top5);
+                setRanks(top5);
+                top5 = top5.subList(0, SIZE);
+
+                for (int i = 0; i < SIZE; i++) {
+                    top5_LB.add(new BOLeaderboardItem((int)gc.getMeta().getDim().x, (int)gc.getMeta().getDim().y, gc, top5.get(i), gc.leaderboard.collider.top));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("DB Error: ", databaseError.getMessage());
+            }
+        });
+    }
+
+    private void sortList(List<BORecord> records) {
+        Collections.sort(records);
+        Collections.reverse(records);
+    }
+
+    private void setRanks(List<BORecord> records) {
+        for (int i = 0; i < SIZE; i++) {
+            records.get(i).setRank(i+1);
+        }
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
         gc.myLayout.draw(mCanvas, mPaint); // draw the background over the blocks.
+        gc.leaderboard.draw(mCanvas, mPaint);
 
-
-        rank1.draw(mCanvas, mPaint);
+        for (BOLeaderboardItem l : top5_LB) {
+            l.draw(mCanvas, mPaint);
+        }
     }
 
     public void run(){
@@ -80,8 +95,6 @@ public class GameLBState extends State {
                     gc.context = new GamePauseState(gc);
 
                 }
-
-
         }
         return true;
     }

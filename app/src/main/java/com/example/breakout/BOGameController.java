@@ -63,7 +63,6 @@ public class BOGameController extends Activity {
     public BOMenu menu;
     public BOPauseButton pauseButton;
 
-    public BOLeaderboard leaderBoard;
     public BOLeaderboard leaderboard;
     public BOPowerUp powerUp;
 

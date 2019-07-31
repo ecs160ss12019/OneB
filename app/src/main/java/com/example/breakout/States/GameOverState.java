@@ -17,10 +17,6 @@ public class GameOverState extends State {
         gc.myRef = gc.database.getReference("users/" + gc.user.nickname + "/score");
         gc.myRef.setValue(gc.score);
 
-        // read in high score from DB and set it into user score
-        gc.user.changeScore(gc.score);
-        System.out.println(gc.score);
-
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
