@@ -23,10 +23,6 @@ public class GameWonState extends State {
         gc.mediaPlayer.pauseSoundtrack();
         gc.mediaPlayer.playYouWon();
 
-        // read in high score from DB and set it into user score
-        gc.user.changeScore(gc.score);
-        System.out.println(gc.score);
-
         // Write the high score to the database
         gc.myRef = gc.database.getReference("users/" + gc.user.nickname + "/score");
         gc.myRef.setValue(gc.score);
