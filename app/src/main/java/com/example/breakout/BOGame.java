@@ -196,6 +196,8 @@ public class BOGame extends SurfaceView implements Runnable {
             mCanvas = holder.lockCanvas();
 
             gc.context.draw(mCanvas, mPaint);
+            gc.powerUp.apply(gc); // apply any power up
+
 
 
             // Actual Members
@@ -329,9 +331,13 @@ public class BOGame extends SurfaceView implements Runnable {
             numRows--;
         }
 
-        Log.d("Amount of Power Ups: ", "" + gc.numPowerups);
-        Log.d("Level Number: ", "" + gc.level);
-        while (gc.numPowerups < gc.level){
+        int powerupLimit = gc.currentLevel;
+        if (powerupLimit > 5) {
+            powerupLimit = 5;
+        }
+        Log.d("Amount of Power Ups: ", "" + powerupLimit);
+        Log.d("Level Number: ", "" + gc.currentLevel);
+        while (gc.numPowerups < powerupLimit){
             Random chance = new Random();
             int pickedBlock = chance.nextInt(num_blocks);
 
