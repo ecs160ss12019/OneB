@@ -21,7 +21,8 @@ public class BOLevelSelector extends State {
     Bitmap sprite;
     BOMenuButton minusButton;
     BOMenuButton plusButton;
-    int Levels = 1;
+    BOMenuButton okButton;
+    int Levels = gc.currentLevel;
 
     public BOLevelSelector(BOGameController gc) {
         super(gc);
@@ -40,6 +41,7 @@ public class BOLevelSelector extends State {
         minusButton = new BOMenuButton((int)screenWidth, (int)screenHeight, "-", gc, collider.height() / 2);
 
         plusButton = new BOMenuButton((int)screenWidth, (int)screenHeight, "+", gc, collider.height() / 2);
+        okButton = new BOMenuButton((int)screenWidth, (int)screenHeight, "Ok!", gc, collider.height() / (float)1.5);
 
     }
 
@@ -54,10 +56,15 @@ public class BOLevelSelector extends State {
         plusButton.collider.right = collider.right - collider.width()/8;
         plusButton.collider.left = collider.right - collider.width()/4;
 
+        minusButton.collider.left = collider.left + collider.width()/7;
+        minusButton.collider.right = collider.left + collider.width()/5;
+        okButton.collider.left = collider.left + collider.width()/(float)2.5;
+        okButton.collider.right = collider.left + collider.width()/4;
         minusButton.draw(mCanvas, mPaint);
         plusButton.draw(mCanvas, mPaint);
+        okButton.draw(mCanvas, mPaint);
 
-        mCanvas.drawText(""+Levels, collider.left+collider.width()/2, collider.top+collider.height()/2,mPaint);
+        mCanvas.drawText(""+Levels, collider.left+collider.width()/(float)2.5, collider.top+collider.height()/2,mPaint);
 
 
     }
@@ -83,9 +90,14 @@ public class BOLevelSelector extends State {
                 }
                 if (motionEvent.getX() > plusButton.collider.left && motionEvent.getX() < plusButton.collider.right && motionEvent.getY() < plusButton.collider.bottom
                         && motionEvent.getY() > plusButton.collider.top) {
-                    if (Levels < 11) {
+                    if (Levels < 10) {
                         Levels++;
                     }
+                }
+                if (motionEvent.getX() > okButton.collider.left && motionEvent.getX() < okButton.collider.right && motionEvent.getY() < okButton.collider.bottom
+                        && motionEvent.getY() > okButton.collider.top) {
+                    gc.currentLevel = Levels;
+                    gc.context = new GameTransitionState(gc);
                 }
 
         }

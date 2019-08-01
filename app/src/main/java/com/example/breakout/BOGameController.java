@@ -80,7 +80,7 @@ public class BOGameController extends Activity {
     public int currentLevel = 10;
     public LevelSelect levelSelector;
     // level descriptions for the transition states
-    public String levelDesc[] = {"A  Simple  Breakout  Game.", "don't  be  confined.", "hello ____, my old friend", "things  are  backwards", "Daryl  Out", "UFOS", "One at a Time", "Nothing  is  Expected", "Never Stop Moving", "Blocks of Vengence"};
+    public String levelDesc[] = {"A  Simple  Breakout  Game.", "don't  be  confined.", "hello ____, my old friend", "things  are  backwards", "Daryl  Out", "UFOS", "One at a Time", "Nothing  is  Expected", "Never Stop Moving", "Blocks of Vengeance"};
 
     //TODO: Think about how many states we really need
 
