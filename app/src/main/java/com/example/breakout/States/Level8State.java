@@ -146,7 +146,7 @@ public class Level8State extends State{
             Random random = new Random();
             int newVelocity = random.nextInt(gc.getMeta().getDim('x') / 2); // pick a new random velocity to go to.
             ball.setxVelocity(newVelocity);
-            ball.blockBounce(gc.paddle.collider);
+            ball.paddleBounce();
 
         }
 
