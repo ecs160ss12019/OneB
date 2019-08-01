@@ -105,7 +105,7 @@ public class BOGameController extends Activity {
         level = 1;
         numPowerups = 0;
 
-        powerUp = new BONoPowerUp();
+        powerUp = new BONoPowerUp(this);
         mBOGame = new BOGame(this, this, size.x, size.y);
 
 

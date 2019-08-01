@@ -1,5 +1,8 @@
 package com.example.breakout;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+
 import java.util.Random;
 
 public abstract class BOPowerUp {
@@ -29,4 +32,6 @@ public abstract class BOPowerUp {
         return null; // crash
 
     }
+
+    public abstract void draw(Canvas mCanvas, Paint mPaint);
 }

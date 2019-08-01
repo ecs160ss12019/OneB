@@ -37,7 +37,9 @@ public class BODestroyBlocks extends BOPowerUp {
 
     public void draw(Canvas mCanvas, Paint mPaint)
     {
-        //mCanvas.drawText("Bomb!");
+        Point dim = gc.getMeta().getDim();
+        // gc.powerUp = new BONoPowerup();
+        mCanvas.drawText(this.type(), dim.x / 55,dim.y / 4, mPaint);
     }
 
     // Code the logic of our power-up.
@@ -55,7 +57,7 @@ public class BODestroyBlocks extends BOPowerUp {
 
     @Override
     public void time() {
-        gc.powerUp = new BONoPowerUp();
+        gc.powerUp = new BONoPowerUp(gc);
 
     }
 }
