@@ -7,7 +7,10 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 
+import com.example.breakout.BOBall;
 import com.example.breakout.BOGameController;
+import com.example.breakout.BONoPowerUp;
+import com.example.breakout.BOPaddle;
 import com.example.breakout.BOTimer;
 import com.example.breakout.GameObjectBuilder;
 import com.example.breakout.Point;
@@ -45,6 +48,17 @@ public class GameCreditState extends State{
 
     public boolean onTouchEvent(MotionEvent motionEvent) {
 
-        return false;
+        switch(motionEvent.getAction() & MotionEvent.ACTION_MASK) {
+
+            case MotionEvent.ACTION_DOWN: //placed finger on screen
+
+                gc.currentLevel = 1;
+                gc.mBOGame.startNewGame();
+                gc.context = new GameTransitionState(gc);
+
+
+
+        }
+        return true;
     }
 }
