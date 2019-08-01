@@ -38,7 +38,6 @@ public class BODestroyBlocks extends BOPowerUp {
     public void draw(Canvas mCanvas, Paint mPaint)
     {
         Point dim = gc.getMeta().getDim();
-        // gc.powerUp = new BONoPowerup();
         mCanvas.drawText(this.type(), dim.x / 55,dim.y / 4, mPaint);
     }
 
