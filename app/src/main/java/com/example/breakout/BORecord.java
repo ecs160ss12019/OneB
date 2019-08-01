@@ -22,7 +22,7 @@ public class BORecord implements Comparable<BORecord> {
     @Override
     public int compareTo(BORecord r) {
         if (getHighScore() == 0 || r.getHighScore() == 0) {
-            return 0;
+            return -1;
         }
         return Double.compare(getHighScore(), r.getHighScore());
     }

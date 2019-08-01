@@ -21,13 +21,14 @@ import java.util.List;
 
 public class GameLBState extends State {
 
-    private static final int SIZE = 5;
+    private int SIZE;
     private List<BORecord> top5 = new ArrayList<>();
     private List<BOLeaderboardItem> top5_LB = new ArrayList<>();
 
     public GameLBState(BOGameController gc) {
         super(gc);
         gc.myRef = FirebaseDatabase.getInstance().getReference("users");
+
         // get top 5 profiles from DB and populate ArrayList
         populateTopFive();
     }
@@ -36,6 +37,10 @@ public class GameLBState extends State {
         gc.myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                SIZE = (int)Math.min(5, dataSnapshot.getChildrenCount());
+
+                top5.clear();
+                top5_LB.clear();
 
                 for (DataSnapshot user : dataSnapshot.getChildren()) {
                     top5.add(new BORecord(0, user.getKey(), user.child("score").getValue(int.class)));
@@ -46,8 +51,10 @@ public class GameLBState extends State {
                 setRanks(top5);
                 top5 = top5.subList(0, SIZE);
 
-                for (int i = 0; i < SIZE; i++) {
-                    top5_LB.add(new BOLeaderboardItem((int)gc.getMeta().getDim().x, (int)gc.getMeta().getDim().y, gc, top5.get(i), gc.leaderboard.collider.top));
+                top5_LB.add(new BOLeaderboardItem((int)gc.getMeta().getDim().x, (int)gc.getMeta().getDim().y, gc, top5.get(0), gc.leaderboard.collider.top + gc.getMeta().getDim().y/(float)10));
+
+                for (int i = 1; i < SIZE; i++) {
+                    top5_LB.add(new BOLeaderboardItem((int)gc.getMeta().getDim().x, (int)gc.getMeta().getDim().y, gc, top5.get(i), top5_LB.get(i-1).collider.bottom));
                 }
             }
 
