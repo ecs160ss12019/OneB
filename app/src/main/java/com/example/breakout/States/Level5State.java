@@ -15,11 +15,13 @@ import com.example.breakout.R;
 
 public class Level5State extends State{
 
+    BOBall oldBall;
     public Level5State(BOGameController gc) {
         super(gc);
         float x = gc.getMeta().getDim('x');
         BOBall levelBall = new BOBall((int)(x * 3),BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.daryl) );
         levelBall.reset(gc.paddle);
+        oldBall = gc.ball;
         gc.ball = levelBall;
     }
 
@@ -109,7 +111,7 @@ public class Level5State extends State{
          */
         // Check to see if the player won
         if(gc.won) {
-            gc.context = new GameWonState(gc);
+            gc.ball = oldBall;
             gc.context = new GameWonState(gc);
             gc.won = false;
         }

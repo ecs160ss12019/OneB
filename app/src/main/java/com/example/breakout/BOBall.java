@@ -27,6 +27,11 @@ public class BOBall extends BOObject{
     private float yVelocity;
     private float angle;
 
+    public boolean goingLeft;
+    public boolean goingRight;
+    public boolean goingUp;
+    public boolean goingDown;
+
 
     public BOBall(int screenX, Bitmap sprite) {
         // standard constructor that always makes that ball
@@ -59,6 +64,11 @@ public class BOBall extends BOObject{
     }
 
 
+    public void paddleBounce() // the paddle
+    {
+        reverseYVelocity();
+    }
+
     public void blockBounce(RectF blockCollider) {
         /* handles collisions for blocks
 
@@ -68,8 +78,19 @@ public class BOBall extends BOObject{
         float top_bottom_difference = Math.abs(blockCollider.top - collider.bottom);
         float bottom_top_difference = Math.abs(blockCollider.bottom - collider.top);
 
+        float bottom_bottom_difference = Math.abs(blockCollider.bottom - collider.bottom);
+
+
+        if ((bottom_bottom_difference < right_left_difference ) && (bottom_bottom_difference < left_right_difference) && (bottom_bottom_difference < bottom_top_difference))
+        {
+            return; // do nothing.
+        }
+        else if((bottom_top_difference < bottom_bottom_difference) && (bottom_top_difference < right_left_difference) && (bottom_top_difference < left_right_difference))
+        {
+            reverseYVelocity();
+        }
         // This is what I feel to be 'realistic' bounces
-        if((left_right_difference < top_bottom_difference) && (left_right_difference < bottom_top_difference)) { // hit the left side
+        else if((left_right_difference < top_bottom_difference) && (left_right_difference < bottom_top_difference)) { // hit the left side
             reverseXVelocity();
         }
 
@@ -77,10 +98,13 @@ public class BOBall extends BOObject{
             reverseXVelocity();
 
         }
-        else // didn't hit any side
+        else
         {
             reverseYVelocity();
         }
+
+
+
 
 
 
@@ -102,6 +126,10 @@ public class BOBall extends BOObject{
         // Initialise the four points of
         // the rectangle which defines the ball
         // Initialized so that it will always be ~ the center of our paddle.
+        goingUp = true;
+        goingDown = false;
+        goingLeft = false;
+        goingRight = false;
         collider.left = paddle.collider.left + ( paddle.collider.width() / 2) - getLength()/2;
         collider.top = paddle.collider.top - paddle.getHeight() - getHeight();
         collider.right = paddle.collider.left + ( paddle.collider.width() / 2) + getLength() - getLength()/2;
@@ -159,6 +187,10 @@ public class BOBall extends BOObject{
         }
 
 
+    }
+
+    public void setxVelocity(float newVelocity) {
+        xVelocity = newVelocity;
     }
 
 }

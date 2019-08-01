@@ -11,8 +11,11 @@ import com.example.breakout.BOBall;
 import com.example.breakout.BOGameController;
 import com.example.breakout.Point;
 
+import java.util.Random;
+
 public class Level8State extends State{
 
+    // Gimmick is completely random bounces and velocity
     public Level8State(BOGameController gc) {
         super(gc);
     }
@@ -136,14 +139,15 @@ public class Level8State extends State{
     }
 
 
-    //TODO: Add a side hitbox to the paddle. Also refractor me
     private void detectCollisions(BOBall ball) {
         // Has our ball hit the paddle?
         if(RectF.intersects(gc.paddle.collider, ball.getCollider())) {
             // realistic bounce
-            ball.getCollider().bottom = gc.paddle.collider.top + (float).01; // shhhhh. We're making it so the ball isn't constantly colliding
+            Random random = new Random();
+            int newVelocity = random.nextInt(gc.getMeta().getDim('x') / 2); // pick a new random velocity to go to.
+            ball.setxVelocity(newVelocity);
             ball.blockBounce(gc.paddle.collider);
-            ball.incrementSpeed(10);
+
         }
 
         //handle walls
