@@ -198,6 +198,8 @@ public class BOGame extends SurfaceView implements Runnable {
             gc.context.draw(mCanvas, mPaint);
             gc.powerUp.apply(gc); // apply any power up
 
+            gc.powerUp.draw(mCanvas, mPaint);
+
             // Actual Members
             // in case you cared / wondered
             boolean DEBUGGING = false;

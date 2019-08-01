@@ -20,6 +20,8 @@ public class GameWonState extends State {
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
+        gc.powerUp = new BONoPowerUp(gc);
+
         // draw the New Game menu if in won state
         gc.mediaPlayer.pauseSoundtrack();
         gc.mediaPlayer.playYouWon();

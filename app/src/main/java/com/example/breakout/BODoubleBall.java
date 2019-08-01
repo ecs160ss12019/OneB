@@ -1,6 +1,8 @@
 package com.example.breakout;
 
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
 
@@ -44,6 +46,13 @@ public class BODoubleBall extends BOPowerUp {
 
     }
 
+    public void draw(Canvas mCanvas, Paint mPaint)
+    {
+        Point dim = gc.getMeta().getDim();
+
+        mCanvas.drawText(this.type(), dim.x / 55,dim.y / 4, mPaint);
+    }
+
 
     private void detectCollisions(BOBall ball) {
 
@@ -65,7 +74,7 @@ public class BODoubleBall extends BOPowerUp {
         // bottom wall
         if(ball.getCollider().bottom >= dim.y) {
 
-            gc.powerUp = new BONoPowerUp();
+            gc.powerUp = new BONoPowerUp(gc);
         }
 
         // Top wall
@@ -98,7 +107,7 @@ public class BODoubleBall extends BOPowerUp {
 
     @Override
     public void time() {
-        gc.powerUp = new BONoPowerUp();
+        gc.powerUp = new BONoPowerUp(gc);
 
     }
 }
