@@ -15,9 +15,15 @@ public class BODoubleBall extends BOPowerUp {
 
     public BODoubleBall(BOGameController gc){
         this.gc = gc;
-        doubleBall = new BOBall((int) gc.getMeta().getDim().x, gc.ball.sprite);
-        doubleBall.sprite = BitmapFactory.decodeResource(gc.getResources(), R.drawable.ball);
-        doubleBall.collider = new RectF(1, 1, 10, 10);
+        if (gc.currentLevel == 5){
+            doubleBall = new BOBall((int)(gc.getMeta().getDim().x * 3),BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.daryl) );
+            doubleBall.sprite = BitmapFactory.decodeResource(gc.getResources(), R.drawable.daryl);
+        }
+        else {
+            doubleBall = new BOBall((int) gc.getMeta().getDim().x, gc.ball.sprite);
+            doubleBall.sprite = BitmapFactory.decodeResource(gc.getResources(), R.drawable.ball);
+            doubleBall.collider = new RectF(1, 1, 10, 10);
+        }
         doubleBall.reset(gc.paddle); // puts the ball at the paddle
         doubleBall.reverseXVelocity();
 

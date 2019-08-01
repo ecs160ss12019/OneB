@@ -1,5 +1,6 @@
 package com.example.breakout;
 
+import com.example.breakout.States.Level10State;
 import com.example.breakout.States.Level1State;
 import com.example.breakout.States.Level2State;
 import com.example.breakout.States.Level3State;
@@ -51,6 +52,9 @@ public class LevelSelect {
                 break;
             case 9:
                 gc.context = new Level9State(gc);
+                break;
+            case 10:
+                gc.context = new Level10State(gc);
                 break;
 
 

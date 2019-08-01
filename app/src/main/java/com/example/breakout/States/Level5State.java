@@ -15,11 +15,13 @@ import com.example.breakout.R;
 
 public class Level5State extends State{
 
+    BOBall oldBall;
     public Level5State(BOGameController gc) {
         super(gc);
         float x = gc.getMeta().getDim('x');
         BOBall levelBall = new BOBall((int)(x * 3),BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.daryl) );
         levelBall.reset(gc.paddle);
+        oldBall = gc.ball;
         gc.ball = levelBall;
     }
 
@@ -109,7 +111,7 @@ public class Level5State extends State{
          */
         // Check to see if the player won
         if(gc.won) {
-            gc.context = new GameWonState(gc);
+            gc.ball = oldBall;
             gc.context = new GameWonState(gc);
             gc.won = false;
         }
@@ -148,7 +150,7 @@ public class Level5State extends State{
         if(RectF.intersects(gc.paddle.collider, ball.getCollider())) {
             // realistic bounce
             ball.getCollider().bottom = gc.paddle.collider.top + (float).01; // shhhhh. We're making it so the ball isn't constantly colliding
-            ball.blockBounce(gc.paddle.collider);
+            ball.paddleBounce();
             ball.incrementSpeed(10);
         }
 

@@ -63,7 +63,7 @@ public class BOGameController extends Activity {
     public BOMenu menu;
     public BOPauseButton pauseButton;
 
-    public BOLeaderboard leaderBoard;
+    public BOLeaderboard leaderboard;
     public BOPowerUp powerUp;
 
     // Database connection
@@ -77,11 +77,10 @@ public class BOGameController extends Activity {
                               // lets objects initialize sprites essentially.
 
 
-    public int currentLevel = 1;
+    public int currentLevel = 10;
     public LevelSelect levelSelector;
     // level descriptions for the transition states
-    public String levelDesc[] = {"A  Simple  Breakout  Game.", "don't  be  confined.", "the  third  one", "things  are  backwards", "Daryl  Out", "UFOS"};
-
+    public String levelDesc[] = {"A  Simple  Breakout  Game.", "don't  be  confined.", "hello ____, my old friend", "things  are  backwards", "Daryl  Out", "UFOS", "One at a Time", "Nothing  is  Expected", "Never Stop Moving", "Blocks of Vengence"};
 
     //TODO: Think about how many states we really need
 
