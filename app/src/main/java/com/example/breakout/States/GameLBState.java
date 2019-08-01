@@ -28,6 +28,7 @@ public class GameLBState extends State {
     public GameLBState(BOGameController gc) {
         super(gc);
         gc.myRef = FirebaseDatabase.getInstance().getReference("users");
+
         // get top 5 profiles from DB and populate ArrayList
         populateTopFive();
     }
@@ -46,8 +47,10 @@ public class GameLBState extends State {
                 setRanks(top5);
                 top5 = top5.subList(0, SIZE);
 
-                for (int i = 0; i < SIZE; i++) {
-                    top5_LB.add(new BOLeaderboardItem((int)gc.getMeta().getDim().x, (int)gc.getMeta().getDim().y, gc, top5.get(i), gc.leaderboard.collider.top));
+                top5_LB.add(new BOLeaderboardItem((int)gc.getMeta().getDim().x, (int)gc.getMeta().getDim().y, gc, top5.get(0), gc.leaderboard.collider.top + gc.leaderboard.leaderHeight));
+
+                for (int i = 1; i < SIZE; i++) {
+                    top5_LB.add(new BOLeaderboardItem((int)gc.getMeta().getDim().x, (int)gc.getMeta().getDim().y, gc, top5.get(i), top5_LB.get(i-1).collider.bottom));
                 }
             }
 

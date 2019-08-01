@@ -24,13 +24,13 @@ public class BOLeaderboardItem extends BOObject {
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
         leaderWidth = this.screenWidth / (float)1.75;
-        leaderHeight = this.screenHeight / (float)7.5;
+        leaderHeight = this.screenHeight / (float)10;
 
         this.rank = record.rank;
         name = record.name;
         score = record.highScore;
 
-        collider = new RectF( gc.menu.collider.left, top + gc.menu.menuHeight/4, gc.menu.collider.right, (top + gc.menu.menuHeight/4) + leaderHeight);
+        collider = new RectF( gc.leaderboard.collider.left, top + gc.leaderboard.leaderHeight/20, gc.leaderboard.collider.right, (top + gc.leaderboard.leaderHeight/20) + leaderHeight);
     }
 
 
@@ -49,16 +49,11 @@ public class BOLeaderboardItem extends BOObject {
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
-        System.out.println("stub1");
         mPaint.setColor(Color.argb(255,222,113,144));
         mCanvas.drawRect(collider, mPaint);
         drawText(mCanvas, mPaint);
 
-        System.out.println("stub2");
-
         mPaint.setColor(Color.argb(255,222,113,144));
-        mCanvas.drawText("Leaderboard",(int)collider.left + collider.width() / (float)6.5, collider.top - 50, mPaint);
-
     }
 
 }
