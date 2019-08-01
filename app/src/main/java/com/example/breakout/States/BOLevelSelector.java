@@ -100,6 +100,7 @@ public class BOLevelSelector extends State {
                         && motionEvent.getY() > okButton.collider.top) {
                     gc.currentLevel = Levels;
                     gc.mBOGame.startNewGame();
+                    gc.powerUp.time();
                     gc.powerUp = new BONoPowerUp(gc);
                     gc.ball.sprite = BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.ball);
                     //reset the ball
