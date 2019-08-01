@@ -142,7 +142,7 @@ public class BOBall extends BOObject{
         // You could even increase it as the game progresses
         // to make it harder
 
-        setSpeed(310); // if you put this at 310 or lower the ball can get stuck at the top also this is a magic number
+        setSpeed(500); // if you put this at 310 or lower the ball can get stuck at the top also this is a magic number
     }
 
     // Getters and Setters

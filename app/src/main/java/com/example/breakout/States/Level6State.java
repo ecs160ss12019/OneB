@@ -198,7 +198,7 @@ public class Level6State extends State{
 
 
         if(timer.completed) {
-            timer.run(1000L);
+            timer.run(1500L);
 
 
             for(int i = 0; i < shotsList.length; i++)
