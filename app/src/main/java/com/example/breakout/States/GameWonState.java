@@ -6,9 +6,11 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 
+import com.example.breakout.BOBall;
 import com.example.breakout.BOGameController;
 import com.example.breakout.BOLayout;
 import com.example.breakout.BONoPowerUp;
+import com.example.breakout.BOPaddle;
 import com.example.breakout.Point;
 import com.example.breakout.R;
 
@@ -57,7 +59,11 @@ public class GameWonState extends State {
                     gc.context = new GameCreditState(gc);
                     return false;
                 }
+                Point dim = gc.getMeta().getDim();
+                gc.paddle = new BOPaddle((int)dim.x,(int)dim.y, gc.resources);
 
+                gc.ball = new BOBall(gc.getMeta().getDim('x'),  BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.ball));
+                gc.ball.reset(gc.paddle);
                 gc.powerUp = new BONoPowerUp(gc);
                 gc.level++; // increase the level for power-ups
                 gc.mBOGame.startNewGame();

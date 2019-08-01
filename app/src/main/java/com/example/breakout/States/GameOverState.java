@@ -1,11 +1,16 @@
 package com.example.breakout.States;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 
+import com.example.breakout.BOBall;
 import com.example.breakout.BOGameController;
 import com.example.breakout.BONoPowerUp;
+import com.example.breakout.BOPaddle;
+import com.example.breakout.Point;
+import com.example.breakout.R;
 
 public class GameOverState extends State {
 
@@ -17,6 +22,7 @@ public class GameOverState extends State {
         // Write the high score to the database
         gc.myRef = gc.database.getReference("users/" + gc.user.nickname + "/score");
         gc.myRef.setValue(gc.score);
+        gc.powerUp.time();
 
     }
 
@@ -39,6 +45,13 @@ public class GameOverState extends State {
 
 
             case MotionEvent.ACTION_DOWN: //placed finger on screen
+                Point dim = gc.getMeta().getDim();
+
+                gc.ball = new BOBall(gc.getMeta().getDim('x'),  BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.ball));
+
+                gc.paddle = new BOPaddle((int)dim.x,(int)dim.y, gc.resources);
+                gc.ball.reset(gc.paddle);
+
                 gc.powerUp = new BONoPowerUp(gc);
                 gc.currentLevel = 1;
                 gc.level = 1;

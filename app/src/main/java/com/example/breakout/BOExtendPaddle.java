@@ -55,6 +55,7 @@ public class BOExtendPaddle extends BOPowerUp {
 
     @Override
     public void time() {
+
         gc.paddle = oldPaddle;
     }
 }
