@@ -26,7 +26,7 @@ public class BOLeaderboard extends BOObject {
         mCanvas.drawBitmap(sprite,null, gc.leaderboard.collider, mPaint);
 
         mPaint.setColor(Color.argb(255,222,113,144));
-        mCanvas.drawText("Leaderboard",(int)collider.left + collider.width() / (float)6.5, collider.top+100, mPaint);
+        mCanvas.drawText("\t\t\tLeaderboard",(int)collider.left + collider.width() / (float)6.5, collider.top+100, mPaint);
     }
 
 }
