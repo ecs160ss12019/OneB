@@ -26,6 +26,8 @@ public class BOBlock extends BOObject{
 
     public boolean isFalling = false;
 
+    public int pointsVal = -1;
+
 //    public BODoubleBall doubleBall;
 
     BOBlock(Point dim, float x, float y, BOGameController gameController) {
@@ -63,7 +65,13 @@ public class BOBlock extends BOObject{
                 gc.powerUp = gc.powerUp.randomPowerUp(gc);
                 Log.d("" + gc.powerUp + " PowerUp", "Activated");
             }
-            gc.score += 10;
+
+            if(pointsVal == -1) {
+                gc.score += 10;
+            }
+            else{
+                gc.score += pointsVal;
+            }
         }
 
     }
