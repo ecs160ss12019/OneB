@@ -27,10 +27,8 @@ public class BOBall extends BOObject{
     private float yVelocity;
     private float angle;
 
-    public boolean goingLeft;
-    public boolean goingRight;
-    public boolean goingUp;
-    public boolean goingDown;
+    public boolean fakeBounce = false; // used to see fake bounces
+
 
 
     public BOBall(int screenX, Bitmap sprite) {
@@ -81,20 +79,26 @@ public class BOBall extends BOObject{
         float bottom_bottom_difference = Math.abs(blockCollider.bottom - collider.bottom);
 
 
-        if ((bottom_bottom_difference < right_left_difference ) && (bottom_bottom_difference < left_right_difference) && (bottom_bottom_difference < bottom_top_difference))
+        // This is what I feel to be 'realistic' bounces
+
+        if ((bottom_bottom_difference < right_left_difference ) && (bottom_bottom_difference < left_right_difference) && (bottom_bottom_difference < bottom_top_difference) && (bottom_bottom_difference < top_bottom_difference))
         {
+            fakeBounce = true;
             return; // do nothing.
-        }
+        } // hit the bottom
         else if((bottom_top_difference < bottom_bottom_difference) && (bottom_top_difference < right_left_difference) && (bottom_top_difference < left_right_difference))
         {
             reverseYVelocity();
-        }
-        // This is what I feel to be 'realistic' bounces
-        else if((left_right_difference < top_bottom_difference) && (left_right_difference < bottom_top_difference)) { // hit the left side
+        } // hit the top
+
+        else if((left_right_difference < top_bottom_difference) && (left_right_difference < bottom_top_difference) && (left_right_difference < right_left_difference)) { // hit the left side
             reverseXVelocity();
         }
-
-        else if((right_left_difference < top_bottom_difference) && (right_left_difference < bottom_top_difference)) { // hit the right side
+        else if( (top_bottom_difference < left_right_difference ) && (top_bottom_difference < right_left_difference))
+        {
+            reverseYVelocity();
+        }
+        else if((right_left_difference < top_bottom_difference) && (right_left_difference < bottom_top_difference) && (right_left_difference < left_right_difference)) { // hit the right side
             reverseXVelocity();
 
         }
@@ -126,10 +130,7 @@ public class BOBall extends BOObject{
         // Initialise the four points of
         // the rectangle which defines the ball
         // Initialized so that it will always be ~ the center of our paddle.
-        goingUp = true;
-        goingDown = false;
-        goingLeft = false;
-        goingRight = false;
+
         collider.left = paddle.collider.left + ( paddle.collider.width() / 2) - getLength()/2;
         collider.top = paddle.collider.top - paddle.getHeight() - getHeight();
         collider.right = paddle.collider.left + ( paddle.collider.width() / 2) + getLength() - getLength()/2;

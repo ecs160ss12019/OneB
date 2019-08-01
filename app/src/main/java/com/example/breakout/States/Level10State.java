@@ -15,6 +15,7 @@ public class Level10State extends State{
 
     public Level10State(BOGameController gc) {
         super(gc);
+
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
@@ -62,8 +63,27 @@ public class Level10State extends State{
 
         for(int i = 0; i < gc.blocks.size(); i++)
         {
-            gc.blocks.get(i).update(gc.ball); // if collided with ball
+            gc.blocks.get(i).level10Update(gc.ball); // if collided with ball
         }
+
+
+        for(int i = 0; i < gc.blocks.size(); i++)
+        {
+            if(RectF.intersects(gc.paddle.collider, gc.blocks.get(i).collider))
+            {
+                gc.lives--;
+                Log.d("Lives:", "" + gc.lives);
+                gc.blocks.remove(i);
+                if(gc.lives == 0){ // Fun scoping issue.
+                    gc.context = new GameOverState(gc);
+
+                }
+                else
+                    gc.context = new GameWaitingState(gc);
+
+            }
+        }
+
         gc.won = wonGame();
     }
 
