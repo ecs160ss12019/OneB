@@ -9,6 +9,7 @@ import android.graphics.RectF;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import com.example.breakout.BOBall;
 import com.example.breakout.BOGameController;
 import com.example.breakout.BOMenuButton;
 import com.example.breakout.BONoPowerUp;
@@ -101,6 +102,9 @@ public class BOLevelSelector extends State {
                     gc.mBOGame.startNewGame();
                     gc.powerUp = new BONoPowerUp(gc);
                     gc.ball.sprite = BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.ball);
+                    //reset the ball
+                    gc.ball = new BOBall(gc.getMeta().getDim('x'), BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.ball) );
+                    gc.ball.reset(gc.paddle);
                     gc.context = new GameTransitionState(gc);
                 }
 
