@@ -98,6 +98,7 @@ public class BOLevelSelector extends State {
                         && motionEvent.getY() > okButton.collider.top) {
                     gc.currentLevel = Levels;
                     gc.mBOGame.startNewGame();
+                    gc.ball.sprite = BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.ball);
                     gc.context = new GameTransitionState(gc);
                 }
 
