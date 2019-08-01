@@ -62,7 +62,7 @@ public class Level9State extends State{
 
         for(int i = 0; i < gc.blocks.size(); i++)
         {
-            gc.blocks.get(i).update(gc.ball); // if collided with ball
+            gc.blocks.get(i).level9Update(gc.ball); // if collided with ball
         }
         gc.won = wonGame();
     }
@@ -142,7 +142,7 @@ public class Level9State extends State{
         if(RectF.intersects(gc.paddle.collider, ball.getCollider())) {
             // realistic bounce
             ball.getCollider().bottom = gc.paddle.collider.top + (float).01; // shhhhh. We're making it so the ball isn't constantly colliding
-            ball.blockBounce(gc.paddle.collider);
+            ball.paddleBounce();
             ball.incrementSpeed(10);
         }
 

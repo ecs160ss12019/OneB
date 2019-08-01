@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import com.example.breakout.BOGameController;
+import com.example.breakout.BONoPowerUp;
 
 public class GameOverState extends State {
 
@@ -38,6 +39,7 @@ public class GameOverState extends State {
 
 
             case MotionEvent.ACTION_DOWN: //placed finger on screen
+                gc.powerUp = new BONoPowerUp();
                 gc.currentLevel = 1;
                 gc.level = 1;
                 gc.mBOGame.startNewGame();

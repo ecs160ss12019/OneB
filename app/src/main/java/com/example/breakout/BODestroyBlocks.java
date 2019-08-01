@@ -37,7 +37,8 @@ public class BODestroyBlocks extends BOPowerUp {
 
     public void draw(Canvas mCanvas, Paint mPaint)
     {
-        //mCanvas.drawText("Bomb!");
+        //
+        // mCanvas.drawText("Bomb!");
     }
 
     // Code the logic of our power-up.

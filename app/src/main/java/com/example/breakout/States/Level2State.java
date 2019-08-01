@@ -17,6 +17,10 @@ public class Level2State extends State{
 
     public Level2State(BOGameController gc) {
         super(gc);
+        for(int i = 0; i < 4 ;i++ )
+        {
+            gc.blocks.remove(i);
+        }
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
@@ -142,7 +146,7 @@ public class Level2State extends State{
         if(RectF.intersects(gc.paddle.collider, ball.getCollider())) {
             // realistic bounce
             ball.getCollider().bottom = gc.paddle.collider.top + (float).01; // shhhhh. We're making it so the ball isn't constantly colliding
-            ball.blockBounce(gc.paddle.collider);
+            ball.paddleBounce();
             ball.incrementSpeed(10);
         }
 

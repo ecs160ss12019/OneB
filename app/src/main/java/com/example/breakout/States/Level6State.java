@@ -63,9 +63,6 @@ public class Level6State extends State{
         gc.pauseButton.draw(mCanvas, mPaint);
         drawGameObjects(mCanvas, mPaint);
 
-        if(gc.doubleBallPowerUp)
-            gc.ball2.draw(mCanvas, mPaint);
-
         mPaint.setTextSize(gc.getMeta().getFontSize());
         checkWon();
 
@@ -236,7 +233,7 @@ public class Level6State extends State{
         if(RectF.intersects(gc.paddle.collider, ball.getCollider())) {
             // realistic bounce
             ball.getCollider().bottom = gc.paddle.collider.top + (float).01; // shhhhh. We're making it so the ball isn't constantly colliding
-            ball.blockBounce(gc.paddle.collider);
+            ball.paddleBounce();
             ball.incrementSpeed(10);
         }
 
