@@ -171,6 +171,8 @@ public class BOGame extends SurfaceView implements Runnable {
         gc.blocks.clear();
         gc.lives = 3;
         gc.numPowerups = 0;
+        gc.powerUp.time();
+        gc.powerUp = new BONoPowerUp(gc);
 
         //only reset the score if we started back on the first level
         if(gc.currentLevel == 1) {

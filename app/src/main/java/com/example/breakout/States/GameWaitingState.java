@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import com.example.breakout.BOGame;
 import com.example.breakout.BOGameController;
 import com.example.breakout.BONoPowerUp;
+import com.example.breakout.BOPaddle;
 import com.example.breakout.BOPowerUp;
 import com.example.breakout.Point;
 
@@ -24,9 +25,12 @@ public class GameWaitingState extends State{
     public GameWaitingState(BOGameController gc){
         super(gc);
         gc.ball.reset(gc.paddle);
+        Point dim = gc.getMeta().getDim();
+        gc.paddle = new BOPaddle((int)dim.x,(int)dim.y, gc.resources);
+        gc.ball.reset(gc.paddle);
 
         //save the powerup that the user had on before
-        oldPowerup = gc.powerUp;
+        //oldPowerup = gc.powerUp;
         gc.powerUp = new BONoPowerUp(gc);
     }
 
@@ -53,7 +57,7 @@ public class GameWaitingState extends State{
             case MotionEvent.ACTION_DOWN: //placed finger on screen
 
 
-                gc.powerUp = oldPowerup;
+                //gc.powerUp = oldPowerup;
                 //TODO: this needs to be fixed so that a new game is started once the player beats all the levels
                 //also this part is probably completely wrong
                 //go to the next level in the level array here

@@ -21,7 +21,7 @@ public class BOPaddle extends BOObject {
                         // to set and im too lazy for a setter
 
 
-    BOPaddle(int x, int y, Context resources) {
+    public BOPaddle(int x, int y, Context resources) {
         /*
             Since the bat will be a fixed position based
             on the screen, our bat needs to know where
