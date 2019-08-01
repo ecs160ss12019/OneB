@@ -39,7 +39,7 @@ public class GameOverState extends State {
 
 
             case MotionEvent.ACTION_DOWN: //placed finger on screen
-                gc.powerUp = new BONoPowerUp();
+                gc.powerUp = new BONoPowerUp(gc);
                 gc.currentLevel = 1;
                 gc.level = 1;
                 gc.mBOGame.startNewGame();

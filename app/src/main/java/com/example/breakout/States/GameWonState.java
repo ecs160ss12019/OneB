@@ -50,7 +50,7 @@ public class GameWonState extends State {
 
             case MotionEvent.ACTION_DOWN: //placed finger on screen
 
-                gc.powerUp = new BONoPowerUp();
+                gc.powerUp = new BONoPowerUp(gc);
                 gc.currentLevel++; // increment current level
                 gc.level++; // increase the level for power-ups
                 gc.mBOGame.startNewGame();
