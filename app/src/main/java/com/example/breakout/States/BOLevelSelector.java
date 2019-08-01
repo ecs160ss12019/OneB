@@ -59,7 +59,8 @@ public class BOLevelSelector extends State {
         minusButton.collider.left = collider.left + collider.width()/7;
         minusButton.collider.right = collider.left + collider.width()/5;
         okButton.collider.left = collider.left + collider.width()/(float)2.5;
-        okButton.collider.right = collider.left + collider.width()/4;
+        okButton.collider.right = okButton.collider.left + collider.width() / (float)4;
+
         minusButton.draw(mCanvas, mPaint);
         plusButton.draw(mCanvas, mPaint);
         okButton.draw(mCanvas, mPaint);
@@ -81,7 +82,6 @@ public class BOLevelSelector extends State {
         switch(motionEvent.getAction() & MotionEvent.ACTION_MASK) {
 
             case MotionEvent.ACTION_DOWN: //placed finger on screen
-
                 if (motionEvent.getX() > minusButton.collider.left && motionEvent.getX() < minusButton.collider.right && motionEvent.getY() < minusButton.collider.bottom
                         && motionEvent.getY() > minusButton.collider.top) {
                     if (Levels > 1) {
@@ -97,6 +97,7 @@ public class BOLevelSelector extends State {
                 if (motionEvent.getX() > okButton.collider.left && motionEvent.getX() < okButton.collider.right && motionEvent.getY() < okButton.collider.bottom
                         && motionEvent.getY() > okButton.collider.top) {
                     gc.currentLevel = Levels;
+                    gc.mBOGame.startNewGame();
                     gc.context = new GameTransitionState(gc);
                 }
 
