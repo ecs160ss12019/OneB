@@ -76,37 +76,19 @@ public class BOBall extends BOObject{
         float top_bottom_difference = Math.abs(blockCollider.top - collider.bottom);
         float bottom_top_difference = Math.abs(blockCollider.bottom - collider.top);
 
-        float bottom_bottom_difference = Math.abs(blockCollider.bottom - collider.bottom);
-
-
         // This is what I feel to be 'realistic' bounces
-
-        if ((bottom_bottom_difference < right_left_difference ) && (bottom_bottom_difference < left_right_difference) && (bottom_bottom_difference < bottom_top_difference) && (bottom_bottom_difference < top_bottom_difference))
-        {
-            fakeBounce = true;
-            return; // do nothing.
-        } // hit the bottom
-        else if((bottom_top_difference < bottom_bottom_difference) && (bottom_top_difference < right_left_difference) && (bottom_top_difference < left_right_difference))
-        {
-            reverseYVelocity();
-        } // hit the top
-
-        else if((left_right_difference < top_bottom_difference) && (left_right_difference < bottom_top_difference) && (left_right_difference < right_left_difference)) { // hit the left side
+        if((left_right_difference < top_bottom_difference) && (left_right_difference < bottom_top_difference)) { // hit the left side
             reverseXVelocity();
         }
-        else if( (top_bottom_difference < left_right_difference ) && (top_bottom_difference < right_left_difference))
-        {
-            reverseYVelocity();
-        }
-        else if((right_left_difference < top_bottom_difference) && (right_left_difference < bottom_top_difference) && (right_left_difference < left_right_difference)) { // hit the right side
+
+        else if((right_left_difference < top_bottom_difference) && (right_left_difference < bottom_top_difference)) { // hit the right side
             reverseXVelocity();
 
         }
-        else
+        else // didn't hit any side
         {
             reverseYVelocity();
         }
-
 
 
 
