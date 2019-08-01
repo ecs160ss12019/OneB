@@ -57,5 +57,6 @@ public class BOExtendPaddle extends BOPowerUp {
     public void time() {
 
         gc.paddle = oldPaddle;
+        gc.powerUp = new BONoPowerUp(gc);
     }
 }
