@@ -62,7 +62,7 @@ public class Level9State extends State{
 
         for(int i = 0; i < gc.blocks.size(); i++)
         {
-            gc.blocks.get(i).update(gc.ball); // if collided with ball
+            gc.blocks.get(i).level9Update(gc.ball); // if collided with ball
         }
         gc.won = wonGame();
     }

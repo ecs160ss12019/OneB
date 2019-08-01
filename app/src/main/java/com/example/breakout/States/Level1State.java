@@ -147,8 +147,7 @@ public class Level1State extends State{
             ball.getCollider().bottom = gc.paddle.collider.top + (float).01; // shhhhh. We're making it so the ball isn't constantly colliding
             ball.paddleBounce();
             ball.incrementSpeed(10);
-            ball.goingDown = false;
-            ball.goingUp = true;
+
         }
 
         //handle walls

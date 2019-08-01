@@ -15,10 +15,13 @@ public class BOBlock extends BOObject{
     including collisions and deletions
      */
 
+    Random random = new Random();
+    int speed = random.nextInt(15);
+
     private boolean isDead; // check to see if the block has been destroyed
 
     public boolean hasPowerUp;
-
+    public boolean reverse = false;
     private BOGameController gc;
 //    public BODoubleBall doubleBall;
 
@@ -43,6 +46,58 @@ public class BOBlock extends BOObject{
             // We're going to lazy delete this block. Since this app isn't super memory
             // intensive if a block is 'hit' it'll just change its collider elements to negative numbers
             // effectively removing it from the screen
+
+            if(ball.fakeBounce)
+            {
+                ball.fakeBounce = false;
+                return;
+            }
+
+            collider = new RectF(-1,-1,-1,-1);
+            isDead = true;
+            // check if the block hit has a power-up
+            if (hasPowerUp) {
+                //gc.powerUp = gc.powerUp.randomPowerUp(gc);
+                gc.powerUp = new BODoubleBall(gc);
+                Log.d("" + gc.powerUp + " PowerUp", "Activated");
+            }
+            gc.score += 10;
+        }
+
+    }
+
+    public void level9Update(BOBall ball) {
+
+        if(collider.right >= gc.getMeta().getDim('x'))
+        {
+            reverse = true;
+        }
+        else if(collider.left <= 0){
+            reverse = false;
+        }
+
+
+        if(!reverse) {
+            collider.left += speed;
+            collider.right += speed;
+        }
+        else
+        {
+            collider.left -= speed;
+            collider.right -= speed ;
+        }
+        if(collided(ball))
+        {
+            // We're going to lazy delete this block. Since this app isn't super memory
+            // intensive if a block is 'hit' it'll just change its collider elements to negative numbers
+            // effectively removing it from the screen
+
+            if(ball.fakeBounce)
+            {
+                ball.fakeBounce = false;
+                return;
+            }
+
             collider = new RectF(-1,-1,-1,-1);
             isDead = true;
             // check if the block hit has a power-up
@@ -63,7 +118,6 @@ public class BOBlock extends BOObject{
         if(RectF.intersects(collider, ball.getCollider())){
             // realistic bounce
             ball.blockBounce(collider);
-            isDead = true;
             return true;
         }
         return false;

@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 
 import com.example.breakout.BOGameController;
 import com.example.breakout.BOLayout;
+import com.example.breakout.BONoPowerUp;
 import com.example.breakout.Point;
 import com.example.breakout.R;
 
@@ -47,6 +48,7 @@ public class GameWonState extends State {
 
             case MotionEvent.ACTION_DOWN: //placed finger on screen
 
+                gc.powerUp = new BONoPowerUp();
                 gc.currentLevel++; // increment current level
                 gc.level++; // increase the level for power-ups
                 gc.mBOGame.startNewGame();
