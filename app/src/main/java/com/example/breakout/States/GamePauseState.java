@@ -1,15 +1,10 @@
 package com.example.breakout.States;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import android.util.Log;
 import android.view.MotionEvent;
 
 import com.example.breakout.BOGameController;
-import com.example.breakout.BOLeaderboard;
-import com.example.breakout.BOLeaderboardItem;
 import com.example.breakout.BOMenuButton;
 import com.example.breakout.Point;
 
@@ -82,6 +77,10 @@ public class GamePauseState extends State {
                         && motionEvent.getY() > exitButton.collider.top) {
                     gc.closeApplication(gc.mBOGame);
 
+                }
+                if (motionEvent.getX() > levelButton.collider.left && motionEvent.getX() < levelButton.collider.right && motionEvent.getY() < levelButton.collider.bottom
+                        && motionEvent.getY() > levelButton.collider.top) {
+                    gc.context = new BOLevelSelector(gc);
                 }
                 if (motionEvent.getX() > leaderButton.collider.left && motionEvent.getX() < leaderButton.collider.right && motionEvent.getY() < leaderButton.collider.bottom
                         && motionEvent.getY() > leaderButton.collider.top) {

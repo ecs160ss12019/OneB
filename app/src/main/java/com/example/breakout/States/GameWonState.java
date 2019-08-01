@@ -20,6 +20,8 @@ public class GameWonState extends State {
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
+        gc.powerUp = new BONoPowerUp(gc);
+
         // draw the New Game menu if in won state
         gc.mediaPlayer.pauseSoundtrack();
         gc.mediaPlayer.playYouWon();
@@ -48,7 +50,7 @@ public class GameWonState extends State {
 
             case MotionEvent.ACTION_DOWN: //placed finger on screen
 
-                gc.powerUp = new BONoPowerUp();
+                gc.powerUp = new BONoPowerUp(gc);
                 gc.currentLevel++; // increment current level
                 gc.level++; // increase the level for power-ups
                 gc.mBOGame.startNewGame();
