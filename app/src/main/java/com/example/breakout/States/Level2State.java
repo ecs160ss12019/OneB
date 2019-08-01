@@ -17,10 +17,6 @@ public class Level2State extends State{
 
     public Level2State(BOGameController gc) {
         super(gc);
-        for(int i = 0; i < 4 ;i++ )
-        {
-            gc.blocks.remove(i);
-        }
     }
 
     public void draw(Canvas mCanvas, Paint mPaint) {
