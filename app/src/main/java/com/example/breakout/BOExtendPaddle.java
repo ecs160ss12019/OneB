@@ -56,7 +56,10 @@ public class BOExtendPaddle extends BOPowerUp {
     @Override
     public void time() {
 
-        gc.paddle = oldPaddle;
+        BOPaddle retPaddle = new BOPaddle((int) gc.getMeta().getDim('x'), gc.getMeta().getDim('y') ,gc.resources);
+        retPaddle.collider.left = gc.paddle.collider.left + gc.paddle.collider.width() / 4;
+        retPaddle.collider.right = retPaddle.collider.left + retPaddle.getLength();
+        gc.paddle = retPaddle;
         gc.powerUp = new BONoPowerUp(gc);
     }
 }

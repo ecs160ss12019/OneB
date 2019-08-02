@@ -32,7 +32,7 @@ public class GameCreditState extends State{
         gc.myLayout.draw(mCanvas, mPaint);
         mCanvas.drawText("Credits:", dim.x/(float)2.5, dim.y/15, mPaint);
         mCanvas.drawText("Phillip   Tran   -   Degenerate   Leader" , dim.x/(float)15, dim.y/5, mPaint);
-        mCanvas.drawText("Michel   Eter   -   Spells   'Michael'   Incorrectly" , dim.x/(float)15, (dim.y/5)*2, mPaint);
+        mCanvas.drawText("Michel   Eter   -   Spells   'Michael'   Incorrect" , dim.x/(float)15, (dim.y/5)*2, mPaint);
         mCanvas.drawText("Kira   Bender   -   Making   Bad    Puns" , dim.x/(float)15, (dim.y/5)*3, mPaint);
         mCanvas.drawText("Zain   Munad   -   Consistently   Tardy" , dim.x/(float)15, (dim.y/5)*4, mPaint);
         mCanvas.drawText("Gabriella   Quattrone   -   Weeb" , dim.x/(float)15, (dim.y/5)*5, mPaint);
