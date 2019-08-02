@@ -133,7 +133,7 @@ public class BOBall extends BOObject{
     }
 
     // Function to set the speed of the ball. Normally used once per game, at the beginning
-    private void setSpeed(float s) {
+    public void setSpeed(float s) {
         this.speed = s;
 
         // Magnitude of the velocity
@@ -167,7 +167,7 @@ public class BOBall extends BOObject{
 
     // Getter to return current speed
     public float getSpeed() {
-        return speed;
+        return this.speed;
     }
 
     // Function to increment speed but maintain pre-existing direction

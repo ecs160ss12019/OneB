@@ -6,9 +6,6 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
 
-import com.example.breakout.States.GameOverState;
-import com.example.breakout.States.GameWaitingState;
-
 public class BODoubleBall extends BOPowerUp {
     public BOGameController gc;
     private BOBall doubleBall;
@@ -25,6 +22,7 @@ public class BODoubleBall extends BOPowerUp {
             doubleBall.collider = new RectF(1, 1, 10, 10);
         }
         doubleBall.reset(gc.paddle); // puts the ball at the paddle
+//        doubleBall.setSpeed(310);
         doubleBall.reverseXVelocity();
 
     }
@@ -43,13 +41,13 @@ public class BODoubleBall extends BOPowerUp {
         Log.d("Doubleball's Collider", ""+ doubleBall.collider);
 
         detectCollisions(doubleBall);
-
     }
 
     public void draw(Canvas mCanvas, Paint mPaint)
     {
+        System.out.println("Original Ball Speed: " + gc.ball.getSpeed());
+        System.out.println("Double Ball Speed: " + doubleBall.getSpeed());
         Point dim = gc.getMeta().getDim();
-
         mCanvas.drawText(this.type(), dim.x / 55,dim.y / 4, mPaint);
     }
 
