@@ -151,6 +151,20 @@ public class BOBall extends BOObject{
 
     }
 
+    public void randomizeSpeed() {
+        // Magnitude of the velocity
+        Random random = new Random();
+        speed = random.nextInt(700) + 300;
+        // Choose a random yVelocity component between appropriate bounds
+        yVelocity = (float) -1*(random.nextInt((int) Math.round(0.7 * speed)) + ((float) 0.3 * speed));
+        // Compute the xVelocity based on desired magnitude
+        xVelocity = (float) (Math.sqrt(speed * speed - yVelocity * yVelocity));
+        // Randomly make xVelocity negative or positive
+        if (random.nextInt(100) > 50) {
+            xVelocity *= -1;
+        }
+    }
+
     // Getter to return current speed
     public float getSpeed() {
         return speed;

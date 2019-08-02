@@ -143,10 +143,8 @@ public class Level8State extends State{
         // Has our ball hit the paddle?
         if(RectF.intersects(gc.paddle.collider, ball.getCollider())) {
             // realistic bounce
-            Random random = new Random();
-            int newVelocity = random.nextInt(gc.getMeta().getDim('x') / 2); // pick a new random velocity to go to.
-            ball.setxVelocity(newVelocity);
-            ball.paddleBounce();
+            ball.randomizeSpeed();
+//            ball.paddleBounce();
 
         }
 
