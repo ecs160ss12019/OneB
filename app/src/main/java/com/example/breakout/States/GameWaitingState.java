@@ -38,7 +38,7 @@ public class GameWaitingState extends State{
 
         Point dim = gc.getMeta().getDim();
 
-        new GameRunningState(gc).draw(mCanvas, mPaint); // this is good practice?? LOL Probably not, but its useful.
+        new Level1State(gc).draw(mCanvas, mPaint); // this is good practice?? LOL Probably not, but its useful.
         mPaint.setTextSize(dim.x / 15);
         mCanvas.drawText("Tap Anywhere To Launch!",(dim.x / (float)6.6) ,dim.y / (float)1.5, mPaint); // TODO: move this to UI class? Also magic numbers FIX ME
     }
