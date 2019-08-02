@@ -128,11 +128,15 @@ public class BOBlock extends BOObject{
             collider.top += 20;
             collider.bottom += 20;
             if(collider.bottom >= gc.getMeta().getDim('y')) {
-                collider = new RectF(-1, -1, -1, -1);
+                collider = new RectF(-10, -10, -10, -10);
                 isDead = true;
                 // check if the block hit has a power-up
-
+                isFalling = false;
                 gc.score += 10;
+                if (hasPowerUp) {
+                    gc.powerUp = gc.powerUp.randomPowerUp(gc);
+                    Log.d("" + gc.powerUp + " PowerUp", "Activated");
+                }
             }
         }
         if(collided(ball))

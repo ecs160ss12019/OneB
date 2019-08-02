@@ -198,8 +198,6 @@ public class BOGame extends SurfaceView implements Runnable {
             mCanvas = holder.lockCanvas();
 
             gc.context.draw(mCanvas, mPaint);
-            gc.powerUp.apply(gc); // apply any power up
-
 
 
             // Actual Members
