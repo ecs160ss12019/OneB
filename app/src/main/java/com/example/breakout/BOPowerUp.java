@@ -16,7 +16,7 @@ public abstract class BOPowerUp {
         Random random = new Random();
         int choice = random.nextInt(4);
 
-        if(choice == 0 || choice == 1 || choice == 2 || choice == 3) {
+        if(choice == 0) {
             return(new BODoubleBall(gc));
         }
         else if(choice == 1) {

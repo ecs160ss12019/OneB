@@ -12,7 +12,7 @@ public class BODoubleBall extends BOPowerUp {
 
     public BODoubleBall(BOGameController gc){
         this.gc = gc;
-        if (gc.currentLevel == 5){
+        if (gc.currentLevel == 3 || gc.currentLevel == 5){
             doubleBall = new BOBall((int)(gc.getMeta().getDim().x * 3),BitmapFactory.decodeResource(gc.resources.getResources(), R.drawable.daryl) );
             doubleBall.sprite = BitmapFactory.decodeResource(gc.getResources(), R.drawable.daryl);
         }
