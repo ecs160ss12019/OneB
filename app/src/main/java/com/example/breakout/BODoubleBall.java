@@ -26,6 +26,7 @@ public class BODoubleBall extends BOPowerUp {
         }
         doubleBall.reset(gc.paddle); // puts the ball at the paddle
         doubleBall.reverseXVelocity();
+        doubleBall.setSpeed(300);
 
     }
 
