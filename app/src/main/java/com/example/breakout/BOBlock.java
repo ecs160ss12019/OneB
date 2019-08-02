@@ -62,7 +62,7 @@ public class BOBlock extends BOObject{
             isDead = true;
             // check if the block hit has a power-up
             if (hasPowerUp) {
-//                gc.powerUp = new BODoubleBall(gc);
+                //gc.powerUp = new BODoubleBall(gc);
                 gc.powerUp = gc.powerUp.randomPowerUp(gc);
                 Log.d("" + gc.powerUp + " PowerUp", "Activated");
             }
