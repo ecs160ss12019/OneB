@@ -83,7 +83,7 @@ public class GameInputState extends State {
                         gc.user = new BOUser(name);
                         gc.context = new GameTransitionState(gc);
 
-                        //break so we dont go into the other if statements
+                        // break so we dont go into the other if statements
                         break;
                     }
                 }
