@@ -337,8 +337,8 @@ public class BOGame extends SurfaceView implements Runnable {
         }
 
         int powerupLimit = gc.currentLevel;
-        if (powerupLimit > 5) {
-            powerupLimit = 5;
+        if (powerupLimit > 3) {
+            powerupLimit = 3;
         }
         Log.d("Amount of Power Ups: ", "" + powerupLimit);
         Log.d("Level Number: ", "" + gc.currentLevel);
