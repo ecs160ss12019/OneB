@@ -80,10 +80,10 @@ public class GameInputState extends State {
                 if(ret.matches("GO")) {
                     //make sure the user didnt just make an empty username
                     if(name.length() > 0) {
-                        gc.user = new BOUser(name, 0);
+                        gc.user = new BOUser(name);
                         gc.context = new GameTransitionState(gc);
 
-                        //break so we dont go into the other if statements
+                        // break so we dont go into the other if statements
                         break;
                     }
                 }

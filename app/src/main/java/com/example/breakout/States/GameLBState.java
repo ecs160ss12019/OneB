@@ -54,6 +54,7 @@ public class GameLBState extends State {
                 top5_LB.add(new BOLeaderboardItem((int)gc.getMeta().getDim().x, (int)gc.getMeta().getDim().y, gc, top5.get(0), gc.leaderboard.collider.top + gc.getMeta().getDim().y/(float)10));
 
                 for (int i = 1; i < SIZE; i++) {
+                    System.out.println(top5.get(i).name);
                     top5_LB.add(new BOLeaderboardItem((int)gc.getMeta().getDim().x, (int)gc.getMeta().getDim().y, gc, top5.get(i), top5_LB.get(i-1).collider.bottom));
                 }
             }

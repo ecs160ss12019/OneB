@@ -62,7 +62,7 @@ public class BOBlock extends BOObject{
             isDead = true;
             // check if the block hit has a power-up
             if (hasPowerUp) {
-                //gc.powerUp = new BODestroyBlocks(gc);
+//                gc.powerUp = new BODoubleBall(gc);
                 gc.powerUp = gc.powerUp.randomPowerUp(gc);
                 Log.d("" + gc.powerUp + " PowerUp", "Activated");
             }
@@ -127,6 +127,13 @@ public class BOBlock extends BOObject{
         {
             collider.top += 20;
             collider.bottom += 20;
+            if(collider.bottom >= gc.getMeta().getDim('y')) {
+                collider = new RectF(-1, -1, -1, -1);
+                isDead = true;
+                // check if the block hit has a power-up
+
+                gc.score += 10;
+            }
         }
         if(collided(ball))
         {
@@ -142,18 +149,6 @@ public class BOBlock extends BOObject{
             }
 
 
-
-
-            if(collider.bottom >= gc.getMeta().getDim('y')) {
-                collider = new RectF(-1, -1, -1, -1);
-                isDead = true;
-                // check if the block hit has a power-up
-                if (hasPowerUp) {
-                    gc.powerUp = gc.powerUp.randomPowerUp(gc);
-                    Log.d("" + gc.powerUp + " PowerUp", "Activated");
-                }
-                gc.score += 10;
-            }
         }
     }
 

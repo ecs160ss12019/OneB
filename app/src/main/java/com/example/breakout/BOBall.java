@@ -76,37 +76,19 @@ public class BOBall extends BOObject{
         float top_bottom_difference = Math.abs(blockCollider.top - collider.bottom);
         float bottom_top_difference = Math.abs(blockCollider.bottom - collider.top);
 
-        float bottom_bottom_difference = Math.abs(blockCollider.bottom - collider.bottom);
-
-
         // This is what I feel to be 'realistic' bounces
-
-        if ((bottom_bottom_difference < right_left_difference ) && (bottom_bottom_difference < left_right_difference) && (bottom_bottom_difference < bottom_top_difference) && (bottom_bottom_difference < top_bottom_difference))
-        {
-            fakeBounce = true;
-            return; // do nothing.
-        } // hit the bottom
-        else if((bottom_top_difference < bottom_bottom_difference) && (bottom_top_difference < right_left_difference) && (bottom_top_difference < left_right_difference))
-        {
-            reverseYVelocity();
-        } // hit the top
-
-        else if((left_right_difference < top_bottom_difference) && (left_right_difference < bottom_top_difference) && (left_right_difference < right_left_difference)) { // hit the left side
+        if((left_right_difference < top_bottom_difference) && (left_right_difference < bottom_top_difference)) { // hit the left side
             reverseXVelocity();
         }
-        else if( (top_bottom_difference < left_right_difference ) && (top_bottom_difference < right_left_difference))
-        {
-            reverseYVelocity();
-        }
-        else if((right_left_difference < top_bottom_difference) && (right_left_difference < bottom_top_difference) && (right_left_difference < left_right_difference)) { // hit the right side
+
+        else if((right_left_difference < top_bottom_difference) && (right_left_difference < bottom_top_difference)) { // hit the right side
             reverseXVelocity();
 
         }
-        else
+        else // didn't hit any side
         {
             reverseYVelocity();
         }
-
 
 
 
@@ -142,7 +124,7 @@ public class BOBall extends BOObject{
         // You could even increase it as the game progresses
         // to make it harder
 
-        setSpeed(310); // if you put this at 310 or lower the ball can get stuck at the top also this is a magic number
+        setSpeed(500); // if you put this at 310 or lower the ball can get stuck at the top also this is a magic number
     }
 
     // Getters and Setters
@@ -151,7 +133,7 @@ public class BOBall extends BOObject{
     }
 
     // Function to set the speed of the ball. Normally used once per game, at the beginning
-    private void setSpeed(float s) {
+    public void setSpeed(float s) {
         this.speed = s;
 
         // Magnitude of the velocity
@@ -167,6 +149,20 @@ public class BOBall extends BOObject{
         // Compute the angle between the xComponent and yComponent
         angle = (float)Math.atan(Math.abs(yVelocity)/Math.abs(xVelocity));
 
+    }
+
+    public void randomizeSpeed() {
+        // Magnitude of the velocity
+        Random random = new Random();
+        speed = random.nextInt(700) + 300;
+        // Choose a random yVelocity component between appropriate bounds
+        yVelocity = (float) -1*(random.nextInt((int) Math.round(0.7 * speed)) + ((float) 0.3 * speed));
+        // Compute the xVelocity based on desired magnitude
+        xVelocity = (float) (Math.sqrt(speed * speed - yVelocity * yVelocity));
+        // Randomly make xVelocity negative or positive
+        if (random.nextInt(100) > 50) {
+            xVelocity *= -1;
+        }
     }
 
     // Getter to return current speed

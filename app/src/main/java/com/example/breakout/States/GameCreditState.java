@@ -7,7 +7,10 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 
+import com.example.breakout.BOBall;
 import com.example.breakout.BOGameController;
+import com.example.breakout.BONoPowerUp;
+import com.example.breakout.BOPaddle;
 import com.example.breakout.BOTimer;
 import com.example.breakout.GameObjectBuilder;
 import com.example.breakout.Point;
@@ -29,7 +32,7 @@ public class GameCreditState extends State{
         gc.myLayout.draw(mCanvas, mPaint);
         mCanvas.drawText("Credits:", dim.x/(float)2.5, dim.y/15, mPaint);
         mCanvas.drawText("Phillip   Tran   -   Degenerate   Leader" , dim.x/(float)15, dim.y/5, mPaint);
-        mCanvas.drawText("Michel   Eter   -   Spells   'Michael'   Incorrectly" , dim.x/(float)15, (dim.y/5)*2, mPaint);
+        mCanvas.drawText("Michel   Eter   -   Spells   'Michael'   Incorrect" , dim.x/(float)15, (dim.y/5)*2, mPaint);
         mCanvas.drawText("Kira   Bender   -   Making   Bad    Puns" , dim.x/(float)15, (dim.y/5)*3, mPaint);
         mCanvas.drawText("Zain   Munad   -   Consistently   Tardy" , dim.x/(float)15, (dim.y/5)*4, mPaint);
         mCanvas.drawText("Gabriella   Quattrone   -   Weeb" , dim.x/(float)15, (dim.y/5)*5, mPaint);
@@ -45,6 +48,17 @@ public class GameCreditState extends State{
 
     public boolean onTouchEvent(MotionEvent motionEvent) {
 
-        return false;
+        switch(motionEvent.getAction() & MotionEvent.ACTION_MASK) {
+
+            case MotionEvent.ACTION_DOWN: //placed finger on screen
+
+                gc.currentLevel = 1;
+                gc.mBOGame.startNewGame();
+                gc.context = new GameTransitionState(gc);
+
+
+
+        }
+        return true;
     }
 }
