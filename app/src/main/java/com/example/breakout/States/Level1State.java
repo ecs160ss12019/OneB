@@ -144,9 +144,12 @@ public class Level1State extends State{
         // Has our ball hit the paddle?
         if(RectF.intersects(gc.paddle.collider, ball.getCollider())) {
             // realistic bounce
-            ball.getCollider().bottom = gc.paddle.collider.top + (float).01; // shhhhh. We're making it so the ball isn't constantly colliding
+            ball.getCollider().bottom = ball.collider.bottom - (float)1; // shhhhh. We're making it so the ball isn't constantly colliding
+            ball.getCollider().top = ball.collider.top - (float)1;
+
             ball.paddleBounce();
             ball.incrementSpeed(10);
+
 
         }
 

@@ -33,28 +33,35 @@ public class LevelSelect {
                 gc.context = new Level2State(gc);
                 break;
             case 3:
-                gc.context = new Level3State(gc);
+                gc.context = new Level5State(gc);
+
                 break;
             case 4:
-                gc.context = new Level4State(gc);
+                gc.context = new Level3State(gc);
+
                 break;
             case 5:
-                gc.context = new Level5State(gc);
+                gc.context = new Level8State(gc);
+
                 break;
             case 6:
-                gc.context = new Level6State(gc);
+                gc.context = new Level4State(gc);
+
                 break;
             case 7:
                 gc.context = new Level7State(gc);
                 break;
             case 8:
-                gc.context = new Level8State(gc);
+                gc.context = new Level9State(gc);
+
                 break;
             case 9:
-                gc.context = new Level9State(gc);
+                gc.context = new Level10State(gc);
+
                 break;
             case 10:
-                gc.context = new Level10State(gc);
+                gc.context = new Level6State(gc);
+
                 break;
 
 
